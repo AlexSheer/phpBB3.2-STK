@@ -1,5 +1,6 @@
 # phpBB3.2-STK
 SupportTool Kit For phpBB3.2.x
+
 Create folder called stk in the root folder of your board (where located file config.php) and just copy all files from folder PHPBB3.2-STK-MASTER, keeping folder structure.
 
 Open file default_lang.txt and write there abbreviation used on your board default language, for example en or ru
