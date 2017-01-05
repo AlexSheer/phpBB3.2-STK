@@ -1,0 +1,64 @@
+<!-- INCLUDE overall_header.html -->
+
+	<h1>{L_CONFIG_LIST}</h1>
+	<p>{L_CONFIG_LIST_EXPLAIN}</p>
+	<form method="post" id="display_form" action="{U_DISPLAY_ACTION}">
+		<fieldset class="jumpbox" style="line-height: 1.8em;">
+			<label for="limit">{L_LIMIT}:</label>
+			<input name="limit" type="text" size="3" value="{LIMIT}" />
+			<label for="display">{L_FILTER}:</label>
+			<select name="display" id="display" onchange="document.forms['display_form'].submit()">
+			<!-- BEGIN options -->
+				<option value="{options.OPTION}"<!-- IF options.SELECTED --> selected="selected"<!-- ENDIF -->>{options.LANG}</option>
+			<!-- END options -->
+			</select>
+			&nbsp;<input type="submit" value="{L_GO}" class="button2" />
+		</fieldset>
+	</form>
+	<!-- IF .row -->
+	<form method="post" id="select_action" action="{S_ACTION}">
+	<table cellspacing="1">
+		<tr>
+			<th>{L_CONFIG_PURPOSE}</th>
+			<th>{L_CONFIG_NAME}</th>
+			<th>{L_CONFIG_VALUE}</th>
+			<th class="mark">{L_IS_DYNAMIC}</th>
+		</tr>
+		<!-- BEGIN row -->
+		<tr class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+			<td style="text-align: right;">{row.CONFIG_PURPOSE}&nbsp;</td>
+			<td style="font-weight:bold">{row.CONFIG_NAME}<!-- IF row.HUMAN_DATE -->&nbsp;<p style="text-align: right; color:#006830; font-weight:normal">{row.HUMAN_DATE}</p><!-- ENDIF --></td>
+			<td>
+				<!-- IF row.S_BOOL -->
+					<input type="radio" name="config[{row.CONFIG_NAME}]" value="1" {row.S_CHECKED} class="radio" /> {L_YES}&nbsp;
+					<input type="radio" name="config[{row.CONFIG_NAME}]" value="0" {row.S_NO_CHECKED} class="radio" /> {L_NO}
+				<!-- ELSE -->
+					<input id="{row.CONFIG_NAME}" name="config[{row.CONFIG_NAME}]" maxlength="255" size="44" value="{row.CONFIG_VALUE}" type="text">
+				<!-- ENDIF -->
+			</td>
+			<td>
+				<input type="radio" name="is_dinamic[{row.CONFIG_NAME}]" value="1" {row.IS_DINAMIC_CHECKED} class="radio" /> {L_YES}&nbsp;
+				<input type="radio" name="is_dinamic[{row.CONFIG_NAME}]" value="0" {row.NO_DINAMIC_CHECKED} class="radio" /> {L_NO}
+			</td>
+		</tr>
+		<!-- END row -->
+		</table>
+		<div class="pagination">
+			<b>{L_TOTAL_ITEMS}:</b> {TOTAL_ITEMS}
+			<!-- IF .pagination -->
+				<!-- INCLUDE pagination.html -->
+			<!-- ELSE -->
+				&bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+		</div>
+	<fieldset class="jumpbox" style="text-align: right;">
+		<label for="sa">{L_CLICK_HERE_TO_CHANGE}</label> <input type="submit" name="sa" class="button2" value="{L_GO}" />
+	</fieldset>
+	</form>
+	<!-- ELSE -->
+	<fieldset>
+		<legend>{L_NO_CONFIG_TITLE}</legend>
+		<p>{L_NO_CONFIG_TEXT}</p>
+	</fieldset>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

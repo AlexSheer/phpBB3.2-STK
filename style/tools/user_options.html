@@ -1,0 +1,31 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_USER_OPTIONS}</h1>
+<p>{L_USER_OPTIONS_EXPLAIN}</p>
+<form method="post" id="select_action" action="{U_DISPLAY_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label for="user_groups">{L_GROUPS}:</label></dt>
+			<dd>
+				<select name="user_groups[]" id="display" multiple="multiple" size="7">
+					{S_OPTIONS}
+				</select>
+			</dd>
+			<dd><label><input class="radio" name="all_groups" value="1" type="checkbox" style="margin-top: 5px;">&nbsp;{L_ALL_GROUPS}</label></dd>
+		</dl>
+		<!-- BEGIN settings -->
+		<dl>
+			<dt><label for="{settings.SETTINGS}">{settings.SETTINGS_NAME}:</label></dt>
+			<dd>
+				<label for="{settings.SETTINGS}{settings.BIT}0"><input type="radio" name="settings[{settings.BIT}]" value="0" checked="checked" class="radio" /> {L_NOTHING}&nbsp;</label>
+				<label for="{settings.SETTINGS}{settings.BIT}1"><input type="radio" name="settings[{settings.BIT}]" value="1" {row.S_NO_CHECKED} class="radio" /> {L_NO}</label>
+				<label for="{settings.SETTINGS}{settings.BIT}2"><input type="radio" name="settings[{settings.BIT}]" value="2" {row.S_NO_CHECKED} class="radio" /> {L_YES}</label>
+			</dd>
+		</dl>
+		<!-- END settings -->
+	</fieldset>
+	<fieldset class="jumpbox" style="text-align: center;">
+		<input type="submit" name="sa" class="button2" value="{L_GO}" />
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

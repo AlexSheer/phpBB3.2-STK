@@ -1,0 +1,32 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_USER_COPY_PERM}</h1>
+<p>{L_USER_COPY_PERM_EXPLAIN}</p>
+<form id="stk" method="post" action="{U_ACTION}" name="support_tool_kit">
+	<fieldset>
+		<legend>{L_USER_COPY_PERM}</legend>
+		<dl>
+			<dt><label for="source_name">{L_FIND_FROM_USER}{L_COLON}</label><br><span>{L_COPY_USER_PERMISSIONS_EXPLAIN}</span></dt>
+			<dd><input id="source_name" size="40" maxlength="255" name="source_name" value="{SOURCE_NAME}" type="text"></dd>
+			<dd>[ <a href="{U_FIND_USER}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]</dd>
+		</dl>
+		<dl>
+			<dt><label for="source_id">{L_ID_FROM}{L_COLON}</label></dt>
+			<dd><input id="source_id" size="10" maxlength="50" name="source_id" value="{SOURCE_ID}" type="text"></dd>
+		</dl>
+		<dl>
+			<dt><label for="target_name">{L_FIND_TO_USER}{L_COLON}</label></dt>
+			<dd><input id="target_name" size="40" maxlength="255" name="target_name" value="{TARGET_NAME}" type="text"></dd>
+			<dd>[ <a href="{U_FIND_TO_USER}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]</dd>
+		</dl>
+		<dl>
+			<dt><label for="target_id">{L_ID_TO}{L_COLON}</label><br></span></dt>
+			<dd><input id="target_id" size="10" maxlength="50" name="target_id" value="{TARGET_ID}" type="text"></dd>
+		</dl>
+		<p class="submit-buttons">
+		<input class="button1" type="submit" name="sa" value="{L_SUBMIT}" />
+		</p>
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

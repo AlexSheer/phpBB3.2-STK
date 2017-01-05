@@ -1,0 +1,67 @@
+<!-- INCLUDE overall_header.html -->
+<script type="text/javascript">
+//<![CDATA[
+function goBack() {
+	window.history.back()
+}
+//]]>
+</script>
+<!-- IF TREE -->
+<link rel="stylesheet" href="style/dtree.css" type="text/css" />
+<script type="text/javascript" src="style/dtree.js"></script>
+	<h1>{L_PHPBB}</h1>
+	<div class="dtree">
+		<p><a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.openAll();">{L_EXPAND_VIEW}</a> | <a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.closeAll();">{L_COLLAPSE_VIEW}</a></p>
+		<script type="text/javascript">
+			<!--
+			d = new dTree('d');
+			d.add(0,-1,'{ROOT}');
+			{TREE}
+			document.write(d);
+			//-->
+		</script>
+	</div>
+	<br /><p style="font-size: 0.8em;">{TIME}</p>
+<!-- ELSE -->
+<link rel="stylesheet" href="style/codemirror/lib/codemirror.css">
+<script src="style/codemirror/lib/codemirror.js"></script>
+<script src="style/codemirror/htmlmixed/htmlmixed.js"></script>
+<script src="style/codemirror/xml/xml.js"></script>
+<script src="style/codemirror/javascript/javascript.js"></script>
+<script src="style/codemirror/css/css.js"></script>
+<script src="style/codemirror/clike/clike.js"></script>
+<script src="style/codemirror/php/php.js"></script>
+<style type="text/css">
+.CodeMirror {
+	margin-top:8px;
+	max-width: 1000px;
+	border-left: 1px solid #AFAEAA;
+	border-top: 1px solid #AFAEAA;
+	border-right: 1px solid #D5D5C8;
+	border-bottom: 1px solid #D5D5C8;
+	background-color: #FFF;
+	line-height: 1.3em;
+	height:500px;
+}
+.cm-s-default .cm-variable-2 {color: #0000BB;}
+.cm-s-default .cm-comment {color: #FF8000;}
+.cm-s-default .cm-keyword {color: #007700;}
+.cm-s-default .cm-builtin {color: #007700;}
+.cm-s-default .cm-string {color: #DD0000;}
+</style>
+	<a href="#" onclick="goBack()" style="float: right;">&laquo; {L_BACK}</a>
+	<h1>{FILE_NAME}</h1><br />
+	<p style="font-size:0.8em">{L_SELECT_ALL}</p>
+
+	<textarea id="code" name="template_data">{TEXT}</textarea>
+<script>
+	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+		lineNumbers: true,
+		matchBrackets: true,
+		mode: "application/x-httpd-php",
+		indentUnit: 4,
+		indentWithTabs: true
+	});
+</script>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

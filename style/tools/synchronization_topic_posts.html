@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_SYNCHRONIZATION_TOPIC_POSTS}</h1>
+<p>{L_SYNCHRONIZATION_TOPIC_POSTS_EXPLAIN}</p>
+
+<!-- IF .topics_not_synchronized -->
+<form id="stk_synchronization_topic_posts" method="post" action="{U_SYNCHRONIZATION_TOPIC_POSTS}">
+	<fieldset>
+	<legend>{L_TOPICS_NOT_SYNCHRONIZED}</legend>
+	<table cellspacing="1">
+		<thead>
+			<tr>
+				 <th >{L_TOPIC_ID}</th>
+				 <th>{L_TOPIC_TITLE}</th>
+				 <th title="{L_TOPIC_TOTAL_POSTS_TITLE}">{L_TOPIC_TOTAL_POSTS}</th>
+				 <th >{L_POSTS_TOTAL_CAPTION}</th>
+				 <th >{L_TOPIC_LAST_POST_ID}{L_FROM_TOPICS_TABLE}</th>
+				 <th >{L_MAX_POST_ID}{L_FROM_POSTS_TABLE}</th>
+				 <th  class="mark">{L_MARK}</th>
+			</tr>
+		</thead>
+		<tbody id="topics_not_synchronized_list" >
+			<!-- BEGIN topics_not_synchronized -->
+			<tr>
+				<td>{topics_not_synchronized.TOPIC_ID}</td>
+				<td><a href="{topics_not_synchronized.U_TOPIC}" target="_blank">{topics_not_synchronized.TOPIC_TITLE}</a></td>
+				<td>{topics_not_synchronized.TOPIC_TOTAL_POSTS}</td>
+				<td>{topics_not_synchronized.REAL_TOTAL_POSTS}</td>
+				<td>{topics_not_synchronized.TOPIC_LAST_POST_ID}</td>
+				<td>{topics_not_synchronized.MAX_POST_ID}</td>
+				<td class="mark"><input type="checkbox" name="topics[]" value="{topics_not_synchronized.TOPIC_ID}" /></td>
+			</tr>
+			<!-- END topics_not_synchronized -->
+		</tbody>
+	</table>
+	<div class="rightside pagination">
+		<a href="#" onclick="marklist('stk_synchronization_topic_posts', 'topics', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('stk_synchronization_topic_posts', 'topics', false); return false;">{L_UNMARK_ALL}</a><br /><br />
+		<input type="submit" name="sinc" class="button2" value="{L_SYNCHRONIZING_TOPICS}" />
+	</div>
+	</fieldset>
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+</form>
+<!-- ELSE -->
+<fieldset>
+	<legend>{L_TOPICS_NOT_SYNCHRONIZED}</legend>
+	<dl>
+		<dd><b>{L_NO_NOT_SYNCHRONIZED_TOPICS}</b></dd>
+	</dl>
+</fieldset>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

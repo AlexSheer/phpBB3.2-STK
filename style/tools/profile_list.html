@@ -1,0 +1,106 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_PROFILE_LIST}</h1>
+
+<p>{L_PROFILE_LIST_EXPLAIN}</p>
+
+<form method="post" id="display_form" action="{U_DISPLAY_ACTION}">
+	<fieldset class="jumpbox" style="line-height: 1.8em;">
+		<label for="display">{L_FILTER}:</label>
+		<select name="display" id="display" onchange="document.forms['display_form'].submit()">
+			<option value="all">{L_ALL}</option>
+		<!-- BEGIN options -->
+			<option value="{options.OPTION}"<!-- IF options.SELECTED --> selected="selected"<!-- ENDIF -->>{options.LANG}</option>
+		<!-- END options -->
+		</select>
+		<label for="empty_only">{L_ONLY_NON_EMPTY}</label>
+		<input name="empty_only" type="checkbox" class="checkbox"<!-- IF S_EMPTY_CHECKED --> checked="checked"<!-- ENDIF --> onclick="document.forms['display_form'].submit()" /><br />
+		<label for="order">{L_ORDER_BY}:</label>
+		<select name="order" id="order" onchange="document.forms['display_form'].submit()">
+		<!-- BEGIN order -->
+			<option value="{order.OPTION}"<!-- IF order.SELECTED --> selected="selected"<!-- ENDIF -->>{order.LANG}</option>
+		<!-- END order -->
+		</select>
+		<select name="dir" id="dir" onchange="document.forms['display_form'].submit()">
+			<option value="DESC"<!-- IF S_DESC --> selected="selected"<!-- ENDIF -->>{L_DESCENDING}</option>
+			<option value="ASC"<!-- IF not S_DESC --> selected="selected"<!-- ENDIF -->>{L_ASCENDING}</option>
+		</select>
+		<label for="limit">{L_LIMIT}:</label>
+		<input name="limit" type="text" size="3" value="{LIMIT}" />
+		<div style="margin-top:10px">
+			<input type="submit" value="{L_GO}" class="button2" />
+		</div>
+	</fieldset>
+</form>
+
+
+	<div class="pagination">
+		{TOTAL_ITEMS}
+		<!-- IF .pagination -->
+			<!-- INCLUDE pagination.html -->
+		<!-- ELSE -->
+			&bull; {PAGE_NUMBER}
+		<!-- ENDIF -->
+	</div>
+
+<form method="post" id="user_select_action" action="{U_SELECTED_ACTION}">
+<table cellspacing="1">
+	<tr>
+		<th>{L_USERNAME}</th>
+		<th class="mark">{L_MARK}</th>
+	</tr>
+	<!-- BEGIN users -->
+		<tr class="<!-- IF items.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+			<td style="font-weight: bold;">{users.USERNAME} [ <a href="{users.U_USER_ADMIN}">{L_USER_ADMIN}</a> ]</td>
+			<td class="mark"><input type="checkbox" name="marked_user_id[]" <!-- IF users.USERID -->value="{users.USERID}"<!-- ELSE -->disabled="disabled"<!-- ENDIF --> /></td>
+		</tr>
+		<!-- IF S_DISPLAY_ALL || S_DISPLAY_SIG -->
+		<tr class="row3">
+			<td colspan="3">
+				<!-- IF S_DISPLAY_ALL -->
+					<div class="column1">
+						<!-- IF users.S_USER_INACTIVE --><strong>{L_USER_IS_INACTIVE}:</strong> {users.USER_INACTIVE_REASON}<br /><!-- ENDIF -->
+						{L_JOINED}: <b>{users.JOINED}</b><br />
+						<!-- IF users.VISITED -->{L_VISITED}: <b>{users.VISITED}</b><br /><!-- ENDIF -->
+						{L_TOTAL_POSTS}: <b>{users.POSTS}</b><br />
+						<!-- IF users.WARNINGS -->{L_WARNINGS}: <b>{users.WARNINGS}</b><br /><!-- ENDIF -->
+						<!-- IF users.LOCATION -->{L_LOCATION}: <b>{users.LOCATION}</b><br /><!-- ENDIF -->
+						<!-- IF users.OCCUPATION -->{L_OCCUPATION}: <b>{users.OCCUPATION}</b><br /><!-- ENDIF -->
+						<!-- IF users.INTERESTS -->{L_INTERESTS}:</strong> <b>{users.INTERESTS}</b><br /><!-- ENDIF -->
+					</div>
+
+					<div class="column2" style="line-height: 1.4em;">
+						<!-- IF users.EMAIL --><strong>{L_EMAIL_ADDRESS}:</strong> {users.EMAIL}<br /><!-- ENDIF -->
+						<!-- IF users.WEBSITE --><strong>{L_WEBSITE}:</strong> {users.WEBSITE}<br /><!-- ENDIF -->
+						<!-- IF users.WLM --><strong>WLM:</strong> {users.WLM}<br /><!-- ENDIF -->
+						<!-- IF users.AOL --><strong>AOL:</strong> {users.AOL}<br /><!-- ENDIF -->
+						<!-- IF users.SKYPE --><strong>{L_SKYPE}:</strong> {users.SKYPE}<br /><!-- ENDIF -->
+						<!-- IF users.FACEBOOK --><strong>{L_FACEBOOK}:</strong> {users.FACEBOOK}<br /><!-- ENDIF -->
+						<!-- IF users.YAHOO --><strong>{L_YAHOO}:</strong> {users.YAHOO}<br /><!-- ENDIF -->
+						<!-- IF users.GOOGLE --><strong>{L_GOOGLEPLUS}:</strong> {users.GOOGLE}<br /><!-- ENDIF -->
+						<!-- IF users.TWITTER --><strong>{L_TWITTER}:</strong> {users.TWITTER}<br /><!-- ENDIF -->
+						<!-- IF users.YOUTUBE --><strong>{L_YOUTUBE}:</strong> {users.YOUTUBE}<br /><!-- ENDIF -->
+						<!-- IF users.ICQ --><strong>ICQ:</strong> {users.ICQ}<br /><!-- ENDIF -->
+						<!-- IF users.JABBER --><strong>{L_JABBER}:</strong> {users.JABBER}<br /><!-- ENDIF -->
+					</div>
+				<!-- IF users.SIGNATURE --><br style="clear: both;" /><br /><hr /><!-- ENDIF -->
+				<!-- ENDIF -->
+				{users.SIGNATURE}
+			</td>
+		</tr>
+		<!-- ENDIF -->
+	<!-- END users -->
+</table>
+
+	<fieldset class="jumpbox" style="text-align: right;">
+		<label for="c2d">{L_CLICK_TO_DELETE}:</label> <input type="submit" name="c2d" class="button2" value="{L_DELETE}" />
+	</fieldset>
+</form>
+
+<!-- IF PAGINATION -->
+<div class="pagination">
+	<span>{PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

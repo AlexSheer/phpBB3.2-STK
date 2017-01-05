@@ -1,0 +1,47 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_OPTIMIZE_TABLES}</h1>
+
+<p>{L_OPTIMIZE_TABLES_EXPLAIN}</p>
+
+<form method="post" name="database_cleaner" action="{U_DISPLAY_ACTION}">
+	<!-- IF TABLES -->
+	<table cellspacing="1">
+		<tr>
+			<th>{L_TABLE_NAME}</th>
+			<th>{L_CREATE_TIME}</th>
+			<th>{L_UPDATE_TIME}</th>
+			<th>{L_CHECK_TIME}</th>
+			<th>{L_TABLE_SIZE}&nbsp;({L_BYTES})</th>
+			<th>{L_FRAGMENTED}&nbsp;({L_BYTES})</th>
+			<th>{L_MARK}</th>
+		</tr>
+		<!-- BEGIN row -->
+		<tr class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+			<td>{row.TABLE_NAME}</td>
+			<td>{row.CREATE_TIME}</td>
+			<td>{row.UPDATE_TIME}</td>
+			<td>{row.CHECK_TIME}</td>
+			<td>{row.TABLE_SIZE}</td>
+			<td>{row.FRAGMENTED}</td>
+			<td style="text-align: center;"><input name="tables_list[]" type="checkbox" class="radio" value="{row.TABLE_NAME}" checked /> </td>
+		</tr>
+		<!-- END row -->
+		<tr class="row3">
+			<td style="padding: 4px;"><strong>{L_ALL}{TABLES}</strong></td>
+			<td colspan="3"></td>
+			<td align="right"><b>{L_ALL}</b></td>
+			<td><b>{FRAGMENTED}&nbsp;{L_BYTES}</b></td>
+			<td></td>
+		</tr>
+	</table>
+	<div class="rightside pagination"><a href="#" onclick="marklist('database_cleaner', '', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('database_cleaner', '', false); return false;">{L_UNMARK_ALL}</a></div>
+	<fieldset class="jumpbox">
+		<label for="sa">{L_OPTIMIZER_MESSAGE}</label><input name="sa" class="button2" value="{L_GO}" style="float: right;" type="submit">
+	</fieldset>
+	<!-- ELSE -->
+	<div class="errorbox notice" style="background-color: #282;"><p style="border-bottom: medium none;">{L_NOT_FOUND}</p></div>
+	<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE overall_footer.html -->

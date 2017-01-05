@@ -1,0 +1,38 @@
+<!-- INCLUDE overall_header.html -->
+
+	<h1>{L_CLEAR_EXTENSIONS}</h1>
+	<p>{L_CLEAR_EXTENSIONS_EXPLAIN}</p>
+	<!-- IF .row -->
+	<form method="post" id="select_action" action="{S_ACTION}">
+	<table cellspacing="1">
+		<tr>
+			<th>{L_EXT_NAME}</th>
+			<th>{L_EXT_PATH}</th>
+			<th>{L_MISSING_PATH}</th>
+			<th class="mark">{L_MARK}</th>
+		</tr>
+		<!-- BEGIN row -->
+		<tr <!-- IF row.MISSING_PATH or row.NO_COMPOSER -->style="background-color: #BC2A4D; color: #FFF" <!-- ENDIF -->class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+			<td<!-- IF row.S_ACTIVE --> style="font-weight: bold;"<!-- ENDIF -->><!-- IF row.EXT_MISSING_PATH -->{row.EXT_MISSING_PATH}<!-- ENDIF --> {row.DISPLAY_NAME}<span style="color: <!-- IF row.S_ACTIVE -->#007D00;">{L_S_ACTIVE}<!-- ELSE -->#F00;">{L_S_OFF}<!-- ENDIF --></span></td>
+			<td>{row.EXT_NAME}</td>
+			<td>{row.MISSING_PATH}</td>
+			<td class="mark"><input type="checkbox" style="cursor:default;" name="marked_name[]" value="{row.EXT_NAME}" /></td>
+		</tr>
+		<!-- END row -->
+	</table>
+	<div class="rightside pagination"><a href="#" onclick="marklist('select_action', 'marked_name', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('select_action', 'marked_name', false); return false;">{L_UNMARK_ALL}</a></div>
+	<fieldset class="jumpbox">
+		<label for="submit">{L_CLICK_TO_CLEAR}</label> <div style="text-align: right;"><input type="submit" name="submit" class="button2" style="float: right;" value="{L_DELETE}" /></div>
+	</fieldset>
+	<fieldset class="jumpbox">
+		<label for="submit">{L_CLICK_TO_OFF}</label> <input type="submit" name="off" class="button2" style="float: right;" value="{L_OFF_EXT}" />
+	</fieldset>
+	</form>
+	<!-- ELSE -->
+	<fieldset>
+		<legend>{L_NO_EXTENSIONS_TITLE}</legend>
+		<p>{L_NO_EXTENSIONS_TEXT}</p>
+	</fieldset>
+	<!-- ENDIF -->
+</div>
+<!-- INCLUDE overall_footer.html -->

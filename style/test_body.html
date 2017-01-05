@@ -1,0 +1,61 @@
+<!-- INCLUDE overall_header.html -->
+<script type="text/javascript">
+<!--
+function toggleDisplay()
+{
+	document.getElementById("toggleMe").style.visibility = "visible";
+	if(document.getElementById("toggleMe").style.display == "none")
+	{
+		document.getElementById("toggleMe").style.display = "";
+	}
+	else
+	{
+		document.getElementById("toggleMe").style.display = "none";
+	}
+}
+//-->
+</script>
+
+<h1>{L_TEST}</h1><br />
+
+<p>{L_DATABASE_INFO}: <b>{DATABASE_INFO}</b></p>
+<p>{L_BOARD_VERSION}: <b>{BOARD_VERSION}</b><p>
+<p>{L_GZIP_COMPRESSION}: <b>{GZIP_COMPRESSION}</b><p>
+<p>{L_DBMS}: <b>{DBMS}</b></p>
+<!-- IF S_MBSTRING_LOADED --><div class="errorbox notice" style="background-color: #282;">{L_MBSTRING_LOADED}</div>
+		<!-- IF S_MBSTRING_FUNC_OVERLOAD_FAIL -->
+			<div class="errorbox">
+				<h3>{L_ERROR_MBSTRING_FUNC_OVERLOAD}</h3>
+				<p>{L_ERROR_MBSTRING_FUNC_OVERLOAD_EXPLAIN}</p>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_MBSTRING_ENCODING_TRANSLATION_FAIL -->
+			<div class="errorbox">
+				<h3>{L_ERROR_MBSTRING_ENCODING_TRANSLATION}</h3>
+				<p>{L_ERROR_MBSTRING_ENCODING_TRANSLATION_EXPLAIN}</p>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_MBSTRING_HTTP_INPUT_FAIL -->
+			<div class="errorbox">
+				<h3>{L_ERROR_MBSTRING_HTTP_INPUT}</h3>
+				<p>{L_ERROR_MBSTRING_HTTP_INPUT_EXPLAIN}</p>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_MBSTRING_HTTP_OUTPUT_FAIL -->
+			<div class="errorbox">
+				<h3>{L_ERROR_MBSTRING_HTTP_OUTPUT}</h3>
+				<p>{L_ERROR_MBSTRING_HTTP_OUTPUT_EXPLAIN}</p>
+			</div>
+		<!-- ENDIF -->
+		<!-- ELSE -->
+<div class="errorbox notice">{L_MBSTRING_NOT_LOADED}<p>{L_ERROR_MBSTRING_NOT_LOADED_EXPLAIN}</p></div>
+<!-- ENDIF -->
+<p><a href="#" onclick="toggleDisplay();"><b>{L_PHP_INFO}</b></a></p>
+<div id="toggleMe" style="display: none;">
+	{INFO}
+</div>
+
+<!-- INCLUDE overall_footer.html -->

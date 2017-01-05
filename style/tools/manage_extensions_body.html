@@ -1,0 +1,130 @@
+<!-- INCLUDE overall_header.html -->
+<!-- IF S_TREE or S_EDIT -->
+<!-- IF .row -->
+<link rel="stylesheet" href="style/codemirror/lib/codemirror.css">
+<script src="style/codemirror/lib/codemirror.js"></script>
+<script src="style/codemirror/htmlmixed/htmlmixed.js"></script>
+<script src="style/codemirror/xml/xml.js"></script>
+<script src="style/codemirror/javascript/javascript.js"></script>
+<script src="style/codemirror/css/css.js"></script>
+<script src="style/codemirror/clike/clike.js"></script>
+<script src="style/codemirror/php/php.js"></script>
+<style type="text/css">
+.CodeMirror {
+	margin-top:8px;
+	max-width: 1000px;
+	border-left: 1px solid #AFAEAA;
+	border-top: 1px solid #AFAEAA;
+	border-right: 1px solid #D5D5C8;
+	border-bottom: 1px solid #D5D5C8;
+	background-color: #FFF;
+	line-height: 1.3em;
+}
+.cm-s-default .cm-variable-2 {color: #0000BB;}
+.cm-s-default .cm-comment {color: #FF8000;}
+.cm-s-default .cm-keyword {color: #007700;}
+.cm-s-default .cm-builtin {color: #007700;}
+.cm-s-default .cm-string {color: #DD0000;}
+</style>
+<!-- ENDIF -->
+<!-- ENDIF -->
+	<h1>{L_EXTENSIONS_FILES}</h1>
+	<p>{L_EXTENSIONS_FILES_EXPLAIN}</p>
+	<!-- IF .row -->
+	<form id="acp_styles" method="post" action="{S_ACTION}">
+	<!-- IF S_TREE -->
+	<link rel="stylesheet" href="style/dtree.css" type="text/css" />
+	<script type="text/javascript" src="style/dtree.js"></script>
+
+	<h1>{EXT_FILES}</h1>
+
+	<div class="dtree">
+		<p><a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.openAll();">{L_EXPAND_VIEW}</a> | <a style="font-size: 1.2em; font-weight: bold; line-height: 1.6em;" href="javascript: d.closeAll();">{L_COLLAPSE_VIEW}</a></p>
+		<script type="text/javascript">
+			<!--
+			d = new dTree('d');
+			d.add(0,-1,'{ROOT}');
+			{TREE}
+			document.write(d);
+			function goBack() {
+				window.history.back()
+			}
+			//-->
+		</script>
+	</div>
+
+	<fieldset>
+		<legend>{L_ADD_NEW}</legend>
+		<dl>
+			<dt><label for="path">{L_PATH}{L_COLON}</label><br />{L_PATH_EXPLAIN}</dt>
+			<dd><input id="path" type="text" size="60" maxlength="255" name="path" placeholder="styles/prosilver/template/event" value="" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="file">{L_FILE}{L_COLON}</label></dt>
+			<dd><input id="file" type="text" size="60" maxlength="255" name="file" placeholder="overall_header_breadcrumb_prepend.html" value="" /></dd>
+		</dl>
+		<label for="content"><strong>{L_CONTENT}{L_COLON}</strong></label><br />
+		<textarea id="code" name="template_data">{CONTENT}</textarea>
+		<p class="submit-buttons"><input class="button1" type="submit" id="save" name="save" value="{L_SAVE}" /></p>
+	</fieldset>
+	<a href="#" onclick="goBack()" style="float: right;">&laquo; {L_BACK}</a>
+	<!-- ELSEIF S_EDIT -->
+		<fieldset>
+			<legend>{L_EDIT}{L_COLON} {FILE}</legend>
+			<p style="font-size:0.8em">{L_SELECT_ALL}</p>
+			<textarea id="code" name="template_data">{CONTENT}</textarea>
+		</fieldset>
+		<fieldset class="submit-buttons">
+			<legend>{L_GO}</legend>
+			<p class="submit-buttons"><input class="button1" id="save" name="save" value="{L_SAVE}" type="submit"></p>
+		</fieldset>
+	<!-- ELSEIF S_RENAME -->
+		<fieldset>
+			<legend>{L_RENAME}</legend>
+			<dl>
+				<dt><label for="file">{L_FILE}{L_COLON}</label></dt>
+				<dd><input id="file" type="text" size="60" maxlength="255" name="file" disabled="disabled" value="{FILE}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="newname">{L_NEW_NAME}{L_COLON}</label></dt>
+				<dd><input id="newname" type="text" size="60" maxlength="255" name="newname" value="" /></dd>
+			</dl>
+		</fieldset>
+		<fieldset class="submit-buttons">
+			<legend>{L_GO}</legend>
+			<p class="submit-buttons"><input class="button1" id="save" name="save" value="{L_SAVE}" type="submit"></p>
+		</fieldset>
+	<!-- ELSE -->
+		<table cellspacing="1">
+			<tr>
+				<th>{L_EXT_NAME}</th>
+				<th>{L_EXT_PATH}</th>
+				<th>&nbsp;</th>
+				<th>{L_VERSION}</th>
+			</tr>
+			<!-- BEGIN row -->
+			<tr class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->" <!-- IF row.S_ENABLED -->style="font-weight: bold;"<!-- ENDIF -->>
+				<td><a href="{row.U_EXT_NAME}">{row.EXT_NAME}</a></td>
+				<td>{row.EXT_PATH}</td>
+				<td style="text-align: center;">[ <!-- IF row.S_ENABLED -->{L_ENABLED}<!-- ELSEIF row.S_DISABLED -->{L_DISABLED}<!-- ELSE --><span style="color:#999">{L_NOT_INSTALLED}</span><!-- ENDIF --> ]</td>
+				<td>{row.EXT_VERSION}</td>
+			</tr>
+			<!-- END row -->
+		</table>
+	<!-- ENDIF -->
+	</form>
+	<!-- IF S_TREE or S_EDIT -->
+<script>
+	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+		lineNumbers: true,
+		matchBrackets: true,
+		mode: "application/x-httpd-php",
+		indentUnit: 4,
+		indentWithTabs: true
+	});
+</script>
+<!-- ENDIF -->
+<!-- ELSE -->
+<div class="errorbox"><p>{L_NO_EXTENSIONS_FILES}</p></div>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

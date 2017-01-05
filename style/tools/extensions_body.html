@@ -1,0 +1,49 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_EXTENSIONS}</h1>
+<p>{L_EXTENSIONS_EXPLAIN}</p>
+
+<!-- IF ERROR -->
+<div class="errorbox"><p>{ERROR}</p></div>
+<!-- ENDIF -->
+
+<form method="post" id="select_action" action="{U_DISPLAY_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label for="vendor">{L_AUTHOR}*{L_COLON}</label><br />{L_AUTHOR_EXPLAIN}</dt>
+			<dd><input id="vendor" type="text" size="40" maxlength="255" name="vendor" placeholder="phpbbguru" value="{VENDOR}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="ext_name">{L_EXTENSION}*{L_COLON}</label><br />{L_EXT_EXPLAIN}</dt>
+			<dd><input id="ext_name" type="text" size="40" maxlength="255" name="ext_name" placeholder="myextension" value="{EXT_NAME}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="developer">{L_DEVELOPER}*{L_COLON}</label><br />{L_DEVELOPER_EXPLAIN}</dt>
+			<dd><input id="developer" type="text" size="40" maxlength="255" name="developer" placeholder="Your name" value="{DEVELOPER}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="version">{L_VERSION}*{L_COLON}</label></dt>
+			<dd><input id="version" type="text" size="40" maxlength="255" name="version" placeholder="0.0.1" value="{VERSION}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="display_name">{L_DISPLAY_NAME}*{L_COLON}</label></dt>
+			<dd><input id="display_name" type="text" size="40" maxlength="255" name="display_name" placeholder="My Extension" value="{DISPLAY_NAME}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="description">{L_DESCRIPTION}{L_COLON}</label><br />{L_DESCRIPTION_EXPLAIN}</dt>
+			<dd><input id="description" type="text" size="40" maxlength="255" name="description" placeholder="Description" value="{DESCRIPTION}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="role">{L_ROLE}{L_COLON}</label><br />{L_ROLE_EXPLAIN}</dt>
+			<dd><input id="role" type="text" size="40" maxlength="255" name="role" placeholder="Developer" value="{ROLE}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="homepage">{L_HOMEPAGE}{L_COLON}</label></dt>
+			<dd><input id="homepage" type="text" size="40" maxlength="255" name="homepage" placeholder="http://www.phpbbguru.net/community/" value="{HOMEPAGE}" /></dd>
+		</dl>
+		<p>{L_ARE_REQUIRED}</p>
+	</fieldset>
+	<fieldset class="jumpbox" style="text-align: center;">
+		<input type="submit" name="sa" class="button2" value="{L_GO}" />
+	</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

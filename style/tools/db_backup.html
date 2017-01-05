@@ -1,0 +1,94 @@
+<!-- INCLUDE overall_header.html -->
+<script type="text/javascript">
+//<![CDATA[
+var onload_functions = new Array();
+var expand_collapse = ['{L_EXPAND}', '{L_COLLAPSE}'];
+
+window.onload = function()
+{
+	for (var i = 0; i < onload_functions.length; i++)
+	{
+		eval(onload_functions[i]);
+	}
+};
+
+function expand_code(e) {
+	var c = e.parentNode.nextSibling;
+	if (c.style.maxHeight == 'none') {
+		c.style.maxHeight = '200px';
+		e.innerHTML = expand_collapse[0];
+	}
+	else {
+		c.style.maxHeight = 'none';
+		e.innerHTML = expand_collapse[1];
+	}
+}
+function expand_code_init() {
+	var boxes = document.getElementsByTagName('pre');
+	for (i = 0; i < boxes.length; i++) {
+		if (boxes[i].scrollHeight > boxes[i].offsetHeight + 1) {
+			boxes[i].previousSibling.innerHTML += ' &middot; <a href="#" onclick="expand_code(this); return false;">' + expand_collapse[0] + '</a>';
+		}
+	}
+}
+onload_functions.push('expand_code_init()');
+
+function setSelectOptions(the_form, the_select, do_check)
+{
+	var selectObject = document.forms[the_form].elements[the_select];
+	var selectCount  = selectObject.length;
+	for (var i = 0; i < selectCount; i++) {
+		selectObject.options[i].selected = do_check;
+	}
+	return true;
+}
+
+//]]>
+</script>
+
+	<h1>{L_DB_BACKUP}</h1>
+	<!-- IF DUMP -->
+	<p style="margin: 5px 0px 15px;">{TABLE_DUMP}</p>
+
+<div class="codebox" style="padding: 5px; background: #FFF; border-left: 1px solid #AFAEAA; border-top: 1px solid #AFAEAA; border-right: 1px solid #D5D5C8;	border-bottom: 1px solid #D5D5C8;">
+<div><a href="#" onclick="selectCode(this); return false;">{L_SELECT_ALL_CODE}</a></div><pre><code><!-- BEGIN row -->{row.DATA}<!-- END row --></code></pre></div>
+	<!-- ELSE -->
+	<p>{L_DB_BACKUP_EXPLAIN}</p>
+	<!-- IF SCREEN_ENABLE --><p style="font-size: 0.85em; margin-top:-6px">{L_DB_BACKUP_EXPLAIN_DUMPER}</p><!-- ENDIF -->
+	<form method="post" id="select_action" action="{U_DISPLAY_ACTION}" name="dump">
+		<fieldset>
+		<legend>{L_SELECT_TABLE}</legend>
+		<select name="table_select[]" size="10" multiple="multiple">{S_SELECT}</select>
+		<p style="margin-top: 10px">
+			<a href="#" onclick="setSelectOptions('dump', 'table_select[]', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="setSelectOptions('dump', 'table_select[]', false); return false;">{L_UNMARK_ALL}</a><br />
+		</p>
+		<p class="submit-buttons"><input type="submit" name="sa" class="button1" value="{L_SUBMIT}" /></p>
+		<div style="margin-top: -200px; margin-bottom: 130px; margin-left: 240px;">
+			<dl>
+				<dt style="width: 15%;"><label for="gzip">{L_GZIP}:</label></dt>
+				<dd style="margin: 0px 0px 0px 15%;">
+					<dd style="margin: 0px 0px 0px 15%;">
+					<!-- BEGIN methods -->
+						<input name="method"<!-- IF methods.S_FIRST_ROW --> id="method" checked="checked"<!-- ENDIF --> type="radio" class="radio" value="{methods.TYPE}" /> {methods.TYPE}
+					<!-- END methods -->
+					</dd>
+				</dd>
+			</dl>
+			<dl>
+				<dt style="width: 15%;"><label for="type">{L_BACKUP_TYPE}:</label></dt>
+				<dd style="margin: 0px 0px 0px 15%;"><label><input type="radio" class="radio" name="type" value="full" id="type" checked="checked" /> {L_FULL}</label>
+					<label><input type="radio" name="type" class="radio" value="structure" /> {L_STRUCTURE}</label>
+					<label><input type="radio" class="radio" name="type" value="data" /> {L_DATA}</label></dd>
+			</dl>
+			<dl>
+				<dt style="width: 15%;"><label for="action">{L_BACKUP_ACTION}:</label></dt>
+				<dd style="margin: 0px 0px 0px 15%;"><label><input type="radio" class="radio" name="action" value="store" id="action" checked="checked" /> {L_SAVE}</label>
+					<label><input type="radio" name="action" class="radio" value="download" /> {L_DOWNLOAD}</label>
+					<!-- IF SCREEN_ENABLE --><label><input type="radio" class="radio" name="action" value="screen" /> {L_SCREEN}</label></dd><!-- ENDIF -->
+			</dl>
+		</div>
+		</fieldset>
+	</form>
+	<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
