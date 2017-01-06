@@ -166,6 +166,7 @@ class database_cleaner_views
 		$actions =array(
 			'introduction'			=> $lang['INTRODUCTION'],
 			'tables'				=> $lang['DATABASE_TABLES'],
+			'indexes'				=> $lang['INDEXES'],
 			'columns'				=> $lang['COLUMNS'],
 			'config'				=> $lang['CONFIG_SETTINGS'],
 			'extension_groups'		=> $lang['ACP_EXTENSION_GROUPS'],
@@ -772,7 +773,8 @@ class database_cleaner_views
 
 		//Find missing modules
 		foreach($modules as $module)
-		{			if (!in_array($module, $existing_modules))
+		{
+			if (!in_array($module, $existing_modules))
 			{
 				$key = array_find($this->db_cleaner->data->acp_modules, $module);
 				if ($key)
@@ -827,5 +829,68 @@ class database_cleaner_views
 		));
 
 		$this->success_message = 'DATABASE_ROLE_DATA_SUCCESS';
+		$this->not_run_message	= 'DATABASE_ROLE_DATA_SKIP';
+	}
+
+	function indexes()
+	{
+		global $db, $lang, $template, $phpEx, $phpbb_root_path, $umil;
+
+		// Time to start going through the database and listing any extra/missing fields
+		$last_output_table = '';
+		foreach ($this->db_cleaner->data->tables as $table_name => $data)
+		{
+			if ($umil->table_exists($table_name) === false)
+			{
+				continue;
+			}
+			$existing_keys = get_keys($table_name);
+
+			if ($existing_keys === false)
+			{
+				// Table doesn't exist, don't handle here.
+				continue;
+			}
+
+			if (!empty($data['KEYS']))
+			{
+				$keys = array_unique(array_merge(array_keys($data['KEYS']), $existing_keys));
+			}
+			sort($keys);
+			foreach ($keys as $key)
+			{
+				if ((!isset($data['KEYS'][$key]) && in_array($key, $existing_keys)) || (isset($data['KEYS'][$key]) && !in_array($key, $existing_keys)))
+				{
+					if ($last_output_table != $table_name)
+					{
+						$last_output_table = $table_name;
+
+						$this->_section_data[$table_name] = array(
+							'NAME'	=> $table_name,
+							'TITLE'	=> 'INDEXES',
+						);
+					}
+
+					// Add the data
+					$this->_section_data[$table_name]['ITEMS'][] = array(
+						'NAME'			=> $key,
+						'FIELD_NAME'	=> $table_name . '_' . $key,
+						'MISSING'		=> (!in_array($key, $existing_keys) || empty($existing_keys)) ? true : false,
+					);
+
+					if ($this->_has_changes === false)
+					{
+						$this->_has_changes = true;
+					}
+				}
+			}
+		}
+
+		$template->assign_vars(array(
+			'NO_CHANGES_TEXT'	=> $lang['SECTION_NOT_CHANGED_EXPLAIN'][$this->db_cleaner->step_to_action[$this->db_cleaner->step]],
+			'NO_CHANGES_TITLE'	=> $lang['SECTION_NOT_CHANGED_TITLE'][$this->db_cleaner->step_to_action[$this->db_cleaner->step]],
+		));
+
+		$this->success_message = 'DATABASE_TABLES_SUCCESS';
 	}
 }
