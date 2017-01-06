@@ -254,10 +254,12 @@ function user_lang()
 
 */
 function stk_add_lang($lang_file)
-{	global $template, $lang, $user;
+{
+	global $template, $lang, $user;
 
 	if (!isset($user))
-	{		if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
+	{
+		if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
 		{
 			$default_lang = trim(file_get_contents(STK_ROOT_PATH . 'default_lang.txt'));
 			if (empty($default_lang))
@@ -310,7 +312,8 @@ function stk_add_lang($lang_file)
 	if (!defined('IN_ERK') && isset($user->data['user_id']))
 	{
 		foreach($lang as $key => $value)
-		{			//print"<pre>"; print_r($lang); print"</pre>";
+		{
+			//print"<pre>"; print_r($lang); print"</pre>";
 			$template->assign_var('L_' . $key, $value);
 		}
 	}
@@ -523,7 +526,7 @@ function perform_authed_quick_tasks($action)
  */
 function stk_version_check()
 {
-	global $cache, $template, $umil, $user;
+	global $cache, $template, $umil, $user, $lang;
 
 	// We cache the result, check once per session
 	$version_check = $cache->get('_stk_version_check');
@@ -536,7 +539,7 @@ function stk_version_check()
 		}
 
 		// Lets collect the latest version data. We can use UMIL for this
-		$info = $umil->version_check('sheer.phpbbguru.net', '/stk', ((defined('STK_QA') && STK_QA) ? 'stk_qa.txt' : 'stk.txt'));
+		$info = $umil->version_check('sheer.phpbbguru.net', '/stk', ((defined('STK_QA') && STK_QA) ? 'stk_32_qa.txt' : 'stk_32.txt'));
 
 		// Compare it and cache the info
 		$version_check = array();
@@ -569,7 +572,7 @@ function stk_version_check()
 	else if (isset($version_check['outdated']) && $version_check['outdated'] === true)
 	{
 		// Need to clear the $user->lang array to prevent the error page from breaking
-		$msg = sprintf($user->lang['STK_OUTDATED'], $version_check['latest'], $version_check['current'], $version_check['topic'], append_sid(STK_ROOT_PATH . $user->page['page_name'], $user->page['query_string'] . '&amp;force_check=1'));
+		$msg = sprintf($lang['STK_OUTDATED'], $version_check['latest'], $version_check['current'], $version_check['topic'], append_sid(STK_ROOT_PATH . $user->page['page_name'], $user->page['query_string'] . '&amp;force_check=1'));
 
 		// Trigger
 		trigger_error($msg, E_USER_ERROR);
@@ -1097,8 +1100,10 @@ function check_phpbb_version()
 }
 
 function sinc_stats()
-{	global $db, $config;
-	$sql = 'SELECT COUNT(post_id) AS stat
+{
+	global $db, $config;
+
+	$sql = 'SELECT COUNT(post_id) AS stat
 		FROM ' . POSTS_TABLE . '
 		WHERE post_visibility = ' . ITEM_APPROVED;
 	$result = $db->sql_query($sql);
