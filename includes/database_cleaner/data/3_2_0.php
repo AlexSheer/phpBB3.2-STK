@@ -1679,6 +1679,7 @@ class datafile_3_2_0
 				'topic_id'				=> array('INDEX', 'topic_id'),
 				'reportee_id'			=> array('INDEX', 'reportee_id'),
 				'user_id'				=> array('INDEX', 'user_id'),
+				'log_time'				=> array('INDEX', 'log_time'),
 			),
 		);
 
@@ -2124,7 +2125,7 @@ class datafile_3_2_0
 				'title_match'		=> array('BOOL', 0),
 			),
 			'KEYS'			=> array(
-				'unq_mtch'			=> array('UNIQUE', array('word_id', 'post_id', 'title_match')),
+				'un_mtch'			=> array('UNIQUE', array('word_id', 'post_id', 'title_match')),
 				'word_id'			=> array('INDEX', 'word_id'),
 				'post_id'			=> array('INDEX', 'post_id'),
 			),
