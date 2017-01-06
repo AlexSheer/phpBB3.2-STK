@@ -183,68 +183,60 @@ function user_lang()
 	global $user, $lang;
 
 	$args = func_get_args();
-	//print_r($args);
 
-	//if (method_exists($user, 'lang'))
+	$key = $args[0];
+
+	// Return if language string does not exist
+	if (!isset($lang[$key]) || (!is_string($lang[$key]) && !is_array($lang[$key])))
 	{
-		//return call_user_func_array(array($user, 'lang'), $args);
+		return $key;
 	}
-	//else
+
+	// If the language entry is a string, we simply mimic sprintf() behaviour
+	if (is_string($lang[$key]))
 	{
-		$key = $args[0];
-
-		// Return if language string does not exist
-		if (!isset($lang[$key]) || (!is_string($lang[$key]) && !is_array($lang[$key])))
+		if (sizeof($args) == 1)
 		{
-			return $key;
+			return $lang[$key];
 		}
 
-		// If the language entry is a string, we simply mimic sprintf() behaviour
-		if (is_string($lang[$key]))
-		{
-			if (sizeof($args) == 1)
-			{
-				return $lang[$key];
-			}
-
-			// Replace key with language entry and simply pass along...
-			$args[0] = $lang[$key];
-			return call_user_func_array('sprintf', $args);
-		}
-
-		// It is an array... now handle different nullar/singular/plural forms
-		$key_found = false;
-
-		// We now get the first number passed and will select the key based upon this number
-		for ($i = 1, $num_args = sizeof($args); $i < $num_args; $i++)
-		{
-			if (is_int($args[$i]))
-			{
-				$numbers = array_keys($lang[$key]);
-
-				foreach ($numbers as $num)
-				{
-					if ($num > $args[$i])
-					{
-						break;
-					}
-
-					$key_found = $num;
-				}
-			}
-		}
-
-		// Ok, let's check if the key was found, else use the last entry (because it is mostly the plural form)
-		if ($key_found === false)
-		{
-			$numbers = array_keys($lang[$key]);
-			$key_found = end($numbers);
-		}
-
-		// Use the language string we determined and pass it to sprintf()
-		$args[0] = $lang[$key][$key_found];
+		// Replace key with language entry and simply pass along...
+		$args[0] = $lang[$key];
 		return call_user_func_array('sprintf', $args);
 	}
+
+	// It is an array... now handle different nullar/singular/plural forms
+	$key_found = false;
+
+	// We now get the first number passed and will select the key based upon this number
+	for ($i = 1, $num_args = sizeof($args); $i < $num_args; $i++)
+	{
+		if (is_int($args[$i]))
+		{
+			$numbers = array_keys($lang[$key]);
+
+			foreach ($numbers as $num)
+			{
+				if ($num > $args[$i])
+				{
+					break;
+				}
+
+				$key_found = $num;
+			}
+		}
+	}
+
+	// Ok, let's check if the key was found, else use the last entry (because it is mostly the plural form)
+	if ($key_found === false)
+	{
+		$numbers = array_keys($lang[$key]);
+		$key_found = end($numbers);
+	}
+
+	// Use the language string we determined and pass it to sprintf()
+	$args[0] = $lang[$key][$key_found];
+	return call_user_func_array('sprintf', $args);
 }
 
 /**
@@ -313,7 +305,6 @@ function stk_add_lang($lang_file)
 	{
 		foreach($lang as $key => $value)
 		{
-			//print"<pre>"; print_r($lang); print"</pre>";
 			$template->assign_var('L_' . $key, $value);
 		}
 	}
