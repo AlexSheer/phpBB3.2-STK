@@ -28,6 +28,7 @@ if (!class_exists('database_cleaner'))
 		var $step_to_action = array(
 			'introduction',
 			'tables',
+			'indexes',
 			'columns',
 			'config',
 			'extension_groups',
@@ -182,7 +183,8 @@ if (!class_exists('database_cleaner'))
 		* @return void
 		*/
 		function run_tool(&$error)
-		{			global $request;
+		{
+			global $request;
 
 			// Setup
 			$this->_setup();
