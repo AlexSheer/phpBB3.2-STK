@@ -115,8 +115,8 @@ class readd_module_management
 	}
 
 	function module_add($lang_name, $class, $parent, $module_data)
-	{		print "$lang_name, $class, $parent<br />";
-		print"<pre>"; print_r($module_data); print"</pre>";		global $db, $phpbb_root_path, $phpEx, $user;
+	{
+		global $db, $phpbb_root_path, $phpEx, $user;
 
 		$sql = 'SELECT module_id
 			FROM ' . MODULES_TABLE . '
@@ -125,7 +125,7 @@ class readd_module_management
 		$parent_id = $db->sql_fetchfield('module_id', false, $result);
 		$db->sql_freeresult($result);
 
-		$module_data = array(
+		$data = array(
 			'module_enabled'	=> 1,
 			'module_display'	=> 1,
 			'module_basename'	=> $module_data['module_basename'],
@@ -138,11 +138,11 @@ class readd_module_management
 
 		if (!class_exists('acp_modules'))
 		{
-			include($phpbb_root_path . 'includes/acp/acp_modules.' . $phpEx);
+			include(STK_ROOT_PATH . 'includes/acp_modules.' . $phpEx);
 			$user->add_lang('acp/modules');
 		}
 		$acp_modules = new acp_modules();
-		$result = $acp_modules->update_module_data($module_data, true);
+		$result = $acp_modules->update_module_data($data, true);
 
 		if (is_string($result))
 		{
