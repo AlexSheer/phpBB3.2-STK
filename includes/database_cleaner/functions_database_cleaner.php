@@ -398,7 +398,7 @@ function get_phpbb_tables()
 * @param database_cleaner_data The database cleaner data object
 * @param String The version
 */
-function fetch_cleaner_data(&$data, $phpbb_version)
+function fetch_cleaner_data($data, $phpbb_version)
 {
 	global $config;
 
