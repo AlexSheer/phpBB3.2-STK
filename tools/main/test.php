@@ -77,6 +77,7 @@ class test
 			'DATABASE_INFO'		=> $db->sql_server_info(),
 			'BOARD_VERSION'		=> $config['version'],
 			'DBMS'				=> $db->get_sql_layer(),
+			'PHP_VERSION'		=> @phpversion(),
 		));
 
 		if (extension_loaded('mbstring'))
