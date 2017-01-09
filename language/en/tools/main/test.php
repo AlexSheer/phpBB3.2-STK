@@ -44,6 +44,7 @@ $lang = array_merge($lang, array(
 	'DATABASE_INFO'		=> 'Database server',
 	'DBMS'				=> 'Database type',
 	'PHP_INFO'			=> 'Information about php',
+	'PHP_VERSION'		=> 'php version',
 	'MBSTRING_LOADED'	=> 'Functions for working with multi-byte strings (extension php <b> mbstring </b>) is loaded',
 	'MBSTRING_NOT_LOADED'				=> 'Functions for working with multi-byte strings (extension php <b> mbstring </b>) not loaded',
 	'ERROR_MBSTRING_NOT_LOADED_EXPLAIN'	=> 'mbstring is not included in the list of extensions that are installed by default. This means that initially this extension is disabled. To use the functions of this extension, you must explicitly enable the module to configure php. Need to consult the documentation for <a href="http://php.net/manual/ru/mbstring.configuration.php"> php </a>',
