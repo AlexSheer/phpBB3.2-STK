@@ -130,7 +130,7 @@ class reparse_bbcode
 	*/
 	function run_tool()
 	{
-		global $cache, $config, $db, $user, $request;
+		global $cache, $config, $db, $user, $request, $lang;
 		// Prevent some errors from missing language strings.
 		$user->add_lang('posting');
 
@@ -373,7 +373,9 @@ class reparse_bbcode
 		}
 
 		// User object used to store a second user object used when parsing signatures. (#62451)
-		$_user2 = new \phpbb\user('');
+		$loader = new phpbb\language\language_file_loader(PHPBB_ROOT_PATH, 'php', $user->data['user_lang']);
+		$lng = new \phpbb\language\language($loader);
+		$_user2 = new \phpbb\user($lng, '\phpbb\datetime');
 
 		// Walk through the batch
 		foreach ($batch as $this->data)
@@ -467,7 +469,7 @@ class reparse_bbcode
 			// Done!
 			$cache->destroy('_stk_reparse_posts');
 			$cache->destroy('_stk_reparse_pms');
-			trigger_error($user->lang['REPARSE_BBCODE_COMPLETE']);
+			trigger_error($lang['REPARSE_BBCODE_COMPLETE']);
 		}
 		else if ($last_batch)
 		{
@@ -725,7 +727,8 @@ class reparse_bbcode
 	* @param Object &$parser the parser object
 	*/
 	function _clean_message(&$parser)
-	{		global $request;
+	{
+		global $request;
 		// Format the content as if it where *INSIDE* the posting field.
 		$parser->decode_message($this->data['bbcode_uid']);
 		$message = &$parser->message;	// tmp copy
