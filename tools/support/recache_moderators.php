@@ -25,7 +25,21 @@ class recache_moderators
 	*/
 	function display_options()
 	{
-		return 'RECACHE_MODERATORS';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'RECACHE_MODERATORS';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('RECACHE_MODERATORS_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=support&amp;t=recache_moderators&amp;submit=' . true);
+		}
 	}
 
 	/**
