@@ -426,7 +426,7 @@ class database_cleaner_controller
 				include STK_ROOT_PATH . 'includes/acp_modules.' . PHP_EXT;
 			}
 
-			$_module = &new acp_modules();
+			$_module = new acp_modules();
 			$module_classes = array('acp', 'mcp', 'ucp');
 
 			// Add categories
@@ -1092,7 +1092,7 @@ class database_cleaner_controller
 						}
 						$parent_id = $row['module_id'];
 						$k_ary = explode('_', $key);
-						$base_name = '' . $module_class . '_' . strtolower(array_pop(explode('_', $key))) . '';
+						$base_name = '' . $module_class . '_' . strtolower(array_pop($k_ary)) . '';
 						if ($module_langname == 'ACP_SEARCH_INDEX')
 						{
 							$base_name = 'acp_search';
@@ -1194,5 +1194,55 @@ class database_cleaner_controller
 			return false;
 		}
 		return true;
+	}
+
+	function indexes($error, $selected)
+	{
+		global $umil;
+
+		foreach ($this->db_cleaner->data->tables as $table_name => $data)
+		{
+			if ($umil->table_exists($table_name) === false)
+			{
+				continue;
+			}
+			$existing_keys = get_keys($table_name);
+
+			if ($existing_keys === false)
+			{
+				// Table doesn't exist, don't handle here.
+				continue;
+			}
+
+			if (!empty($data['KEYS']))
+			{
+				$keys = array_unique(array_merge(array_keys($data['KEYS']), $existing_keys));
+			}
+
+			foreach ($keys as $key)
+			{
+				if (isset($selected[$table_name . '_' . $key]))
+				{
+					if (!isset($data['KEYS'][$key]) && in_array($key, $existing_keys))
+					{
+						$result = $umil->table_index_remove($table_name, $key);
+						if (stripos($result, 'SQL ERROR'))
+						{
+							$error[] = $result;
+						}
+					}
+					else if (isset($data['KEYS'][$key]) && !in_array($key, $existing_keys))
+					{
+						$columns = $data['KEYS'][$key][1];
+						$result = $umil->table_index_add($table_name, $key, $columns, $data['KEYS'][$key][0]);
+						if (stripos($result, 'SQL ERROR'))
+						{
+							$error[] = $result;
+						}
+					}
+				}
+			}
+		}
+		return $error;
 	}
 }
