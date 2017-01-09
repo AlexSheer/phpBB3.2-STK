@@ -557,7 +557,7 @@ class umil
 	/**
 	* Cache Purge
 	*
-	* This function is for purging either phpBB3вЂ™s data cache, authorization cache, or the styles cache.
+	* This function is for purging either phpBB3’s data cache, authorization cache, or the styles cache.
 	*
 	* @param string $type The type of cache you want purged.  Available types: auth, imageset, template, theme.  Anything else sent will purge the forum's cache.
 	* @param int $style_id The id of the item you want purged (if the type selected is imageset/template/theme, 0 for all items in that section)
