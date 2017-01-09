@@ -25,7 +25,7 @@ class sanitise_anonymous_user
 	*/
 	function display_options()
 	{
-		global $db, $plugin, $user;
+		global $db, $plugin, $user, $lang;
 
 		// Grep the anonymous user
 		$sql = 'SELECT *
