@@ -39,7 +39,21 @@ class resync_avatars
 	 */
 	function display_options()
 	{
-		return 'RESYNC_AVATARS';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'RESYNC_AVATARS';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('RESYNC_AVATARS_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=admin&amp;t=resync_avatars&amp;submit=' . true);
+		}
 	}
 
 	function run_tool()
