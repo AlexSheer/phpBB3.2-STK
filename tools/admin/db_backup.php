@@ -22,7 +22,7 @@ class db_backup
 {
 	function display_options()
 	{
-		global $db, $template, $config, $user, $request;
+		global $db, $template, $config, $user, $lang, $request;
 
 		$submit = $request->variable('sa', false);
 		$tables = $request->variable('table_select', array(''));
@@ -33,7 +33,7 @@ class db_backup
 
 		$sql_layer = $db->get_sql_layer();
 
-		if($format === $user->lang['NO'])
+		if($format === $lang['NO'])
 		{
 			$format = 'text';
 		}
@@ -77,7 +77,7 @@ class db_backup
 			));
 		}
 		$template->assign_block_vars('methods', array(
-			'TYPE'	=> $user->lang['NO']
+			'TYPE'	=> $lang['NO']
 		));
 
 		switch ($sql_layer)
@@ -396,7 +396,7 @@ class dbbase_extractor
 
 	function dbbase_extractor($format, $filename, $time, $download = false, $store = false)
 	{
-		global $request;
+		global $request, $lang;
 
 		$this->download = $download;
 		$this->store = $store;
@@ -464,7 +464,7 @@ class dbbase_extractor
 
 			if (!$this->fp)
 			{
-				trigger_error('FILE_WRITE_FAIL', E_USER_ERROR);
+				trigger_error($lang['FILE_WRITE_FAIL'], E_USER_ERROR);
 			}
 		}
 	}
