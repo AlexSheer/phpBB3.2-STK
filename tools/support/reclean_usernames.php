@@ -25,7 +25,21 @@ class reclean_usernames
 	*/
 	function display_options()
 	{
-		return 'RECLEAN_USERNAMES';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'RECLEAN_USERNAMES';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('RECLEAN_USERNAMES_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=support&amp;t=reclean_usernames&amp;submit=' . true);
+		}
 	}
 
 	/**
