@@ -30,7 +30,7 @@
 <!-- ENDIF -->
 	<h1>{L_EXTENSIONS_FILES}</h1>
 	<p>{L_EXTENSIONS_FILES_EXPLAIN}</p>
-	<!-- IF .row -->
+	<!-- IF .row or S_RENAME -->
 	<form id="acp_styles" method="post" action="{S_ACTION}">
 	<!-- IF S_TREE -->
 	<link rel="stylesheet" href="style/dtree.css" type="text/css" />
@@ -113,7 +113,7 @@
 		</table>
 	<!-- ENDIF -->
 	</form>
-	<!-- IF S_TREE or S_EDIT -->
+<!-- IF S_TREE or S_EDIT -->
 <script>
 	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 		lineNumbers: true,
