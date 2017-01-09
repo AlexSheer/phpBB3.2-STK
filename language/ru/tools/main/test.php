@@ -44,6 +44,7 @@ $lang = array_merge($lang, array(
 	'DATABASE_INFO'		=> 'Сервер базы данных',
 	'DBMS'				=> 'Тип базы данных',
 	'PHP_INFO'			=> 'Сведения о php',
+	'PHP_VERSION'		=> 'Версия php',
 	'MBSTRING_LOADED'	=> 'Функции для работы с многобайтными строками (расширение php <b>mbstring</b>) загружены',
 	'MBSTRING_NOT_LOADED'				=> 'Функции для работы с многобайтными строками (расширение php <b>mbstring</b>) не загружены',
 	'ERROR_MBSTRING_NOT_LOADED_EXPLAIN'	=> 'mbstring не входит в список расширений, устанавливаемых по умолчанию. Это значит, что изначально это расширение отключено. Для использования функций этого расширения необходимо явно включить модуль в настройке php. Обратитесь за справкой к <a href="http://php.net/manual/ru/mbstring.configuration.php">документации по php</a>',
