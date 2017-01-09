@@ -25,10 +25,6 @@ class add_user
 	*/
 	function display_options()
 	{
-		global $user;
-
-		$user->add_lang('ucp');
-
 		return array(
 			'title'	=> 'ADD_USER',
 			'vars'	=> array(
@@ -56,8 +52,6 @@ class add_user
 	function run_tool(&$error)
 	{
 		global $cache, $config, $db, $user, $request;
-
-		//$user->add_lang(array('acp/groups', 'ucp'));
 
 		if (!check_form_key('add_user'))
 		{
@@ -258,6 +252,7 @@ class add_user
 */
 function get_groups()
 {
+	global $lang;
 	static $option_list = null;
 	$args = func_get_args();
 
@@ -279,7 +274,7 @@ function get_groups()
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$selected	= ($row['group_name'] == 'REGISTERED') ? 'selected=selected' : '';
-			$group_name = ($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
+			$group_name = ($row['group_type'] == GROUP_SPECIAL) ? $lang['G_' . $row['group_name']] : $row['group_name'];
 			$option_list .= "<option value='{$row['group_id']}'{$selected}>{$group_name}</option>";
 		}
 
