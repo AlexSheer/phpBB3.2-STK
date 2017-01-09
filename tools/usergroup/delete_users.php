@@ -18,7 +18,6 @@ if (!defined('IN_PHPBB'))
 
 class delete_users
 {
-
 	function run_tool(&$error)
 	{
 		global $user, $db, $request;
@@ -104,14 +103,14 @@ class delete_users
 	*/
 	function display_options()
 	{
-		global $template, $user, $request;
+		global $template, $lang, $request, $user;
 
 		$user->add_lang('memberlist');
 
 		$delete = $request->variable('delete', false);
 		$period = $request->variable('period', 3);
 
-		$period_ary = array(0 => $user->lang['7_DAYS'], 1 => $user->lang['1_MONTH'], 2 => $user->lang['3_MONTHS'], 3 => $user->lang['6_MONTHS'], 4 => $user->lang['1_YEAR']);
+		$period_ary = array(0 => $lang['7_DAYS'], 1 => $lang['1_MONTH'], 2 => $lang['3_MONTHS'], 3 => $lang['6_MONTHS'], 4 => $lang['1_YEAR']);
 		$times = array(0 => 7, 1 => 30, 2 => 90, 3 => 180, 4 => 365);
 		$s_options = '';
 		foreach($period_ary as $key => $value)
