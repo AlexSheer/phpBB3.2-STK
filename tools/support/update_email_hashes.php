@@ -28,7 +28,21 @@ class update_email_hashes
 	*/
 	function display_options()
 	{
-		return 'UPDATE_EMAIL_HASHES';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'UPDATE_EMAIL_HASHES';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('UPDATE_EMAIL_HASHES_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=support&amp;t=update_email_hashes&amp;submit=' . true);
+		}
 	}
 
 	/**
@@ -36,7 +50,7 @@ class update_email_hashes
 	*/
 	function run_tool()
 	{
-		global $db, $template, $request;
+		global $db, $template, $request, $lang;
 
 		$step = $request->variable('step', 0);
 
@@ -49,7 +63,7 @@ class update_email_hashes
 
 		if (!$batch)
 		{
-			trigger_error('UPDATE_EMAIL_HASHES_COMPLETE');
+			trigger_error($lang['UPDATE_EMAIL_HASHES_COMPLETE']);
 		}
 
 		foreach ($batch as $userrow)
@@ -70,7 +84,7 @@ class update_email_hashes
 		meta_refresh(0, append_sid(STK_INDEX, array('c' => 'support', 't' => 'update_email_hashes', 'submit' => true, 'step' => ++$step)));
 		$template->assign_var('U_BACK_TOOL', false);
 
-		trigger_error('UPDATE_EMAIL_HASHES_NOT_COMPLETE');
+		trigger_error($lang['UPDATE_EMAIL_HASHES_NOT_COMPLETE']);
 	}
 
 	/**
