@@ -77,7 +77,6 @@ class profile_list
 		*/
 		$options = array(
 			'pf_phpbb_icq'			=> 'ICQ',
-			//'pf_phpbb_wlm'			=> 'WLM',
 			'pf_phpbb_aol'			=> 'AOL',
 			'pf_phpbb_skype'		=> 'SKYPE',
 			'pf_phpbb_facebook'		=> 'FACEBOOK',
@@ -101,7 +100,7 @@ class profile_list
 		{
 			$template->assign_block_vars('options', array(
 				'OPTION'	=> $option,
-				'LANG'		=> isset($user->lang[$lang_key]) ? $user->lang[$lang_key] : $lang_key,
+				'LANG'		=> isset($lang[$lang_key]) ? $lang[$lang_key] : $lang_key,
 				'SELECTED'	=> ($display == $option) ? true : false,
 			));
 
@@ -161,7 +160,7 @@ class profile_list
 		{
 			$template->assign_block_vars('order', array(
 				'OPTION'	=> $option,
-				'LANG'		=> $user->lang[$lang_key],
+				'LANG'		=> $lang[$lang_key],
 				'SELECTED'	=> ($order_by == $option) ? true : false,
 			));
 		}
@@ -220,7 +219,6 @@ class profile_list
 			}
 
 			$template->assign_block_vars('users', array(
-				//'WLM'				=> $row['pf_phpbb_wlm'],
 				'AOL'				=> $row['pf_phpbb_aol'],
 				'SKYPE'				=> $row['pf_phpbb_skype'],
 				'FACEBOOK'			=> $row['pf_phpbb_facebook'],
@@ -264,7 +262,7 @@ class profile_list
 			'LIMIT'					=> $limit,
 			'OPTION_SECTION'		=> (isset($options[$display]) && $display != 'user_sig') ? $user->lang[$options[$display]] : '',
 			'ORDER_SECTION'			=> ($order_by == 'username_clean') ? '' : ((isset($order[$order_by])) ? $user->lang[$order[$order_by]] : $user->lang['JOINED']),
-			'TOTAL_ITEMS'			=> ''.user_lang('TOTAL').': '.$count.'',
+			'TOTAL_ITEMS'			=> '' . user_lang('TOTAL') . ': ' . $count . '',
 
 			'S_DESC'				=> ($order_dir == 'DESC') ? true : false,
 			'S_DISPLAY_ALL'			=> (!isset($options[$display])) ? true : false,
