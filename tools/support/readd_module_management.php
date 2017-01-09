@@ -69,7 +69,21 @@ class readd_module_management
 	*/
 	function display_options()
 	{
-		return 'READD_MODULE_MANAGEMENT';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'READD_MODULE_MANAGEMENT';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('READD_MODULE_MANAGEMENT_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=support&amp;t=readd_module_management&amp;submit=' . true);
+		}
 	}
 
 	/**
@@ -81,12 +95,15 @@ class readd_module_management
 	{
 		global $cache, $db, $umil;
 
+		$s_changed = false;
+
 		// Check all modules for existance
 		foreach ($this->check_modules as $module_data)
 		{
 			if(!$umil->module_exists($module_data['class'], $module_data['parent'], $module_data['lang_name']))
 			{
 				$this->module_add($module_data['lang_name'], $module_data['class'], $module_data['parent'], ((empty($module_data['data'])) ? $module_data['lang_name'] : $module_data['data']));
+				$s_changed = true;
 			}
 
 			// This module exists, now make sure that it is enabled
@@ -107,11 +124,19 @@ class readd_module_management
 					WHERE module_class = '" . $db->sql_escape($module_data['class']) . "'
 						AND module_langname = '" . $db->sql_escape($module_data['lang_name']) . "'";
 				$db->sql_query($sql);
+				$s_changed = true;
 			}
 		}
 
-		$cache->destroy('_modules_acp');
-		trigger_error(user_lang('READD_MODULE_MANAGEMENT_SUCCESS'));
+		if ($s_changed)
+		{
+			$cache->destroy('_modules_acp');
+			trigger_error(user_lang('READD_MODULE_MANAGEMENT_SUCCESS'));
+		}
+		else
+		{
+			trigger_error(user_lang('NO_NEED_READD_MODULE_MANAGEMENT'));
+		}
 	}
 
 	function module_add($lang_name, $class, $parent, $module_data)
