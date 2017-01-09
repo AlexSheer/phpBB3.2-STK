@@ -354,6 +354,8 @@ class database_cleaner_controller
 
 		$data = $group_rows = $existing_groups = array();
 		get_group_rows($data, $group_rows, $existing_groups);
+		$group_rows = array_keys($this->db_cleaner->data->groups);
+
 		foreach ($group_rows as $name)
 		{
 			// Skip ones that are in the default install and are in the existing permissions
@@ -368,6 +370,10 @@ class database_cleaner_controller
 				{
 					// Add it with the default settings we've got...
 					$group_id = false;
+					if (!function_exists('group_create'))
+					{
+						include(PHPBB_ROOT_PATH . 'includes/functions_user.' . PHP_EXT);
+					}
 					group_create($group_id, $this->db_cleaner->data->groups[$name]['group_type'], $name, $this->db_cleaner->data->groups[$name]['group_desc'], array('group_colour' => $this->db_cleaner->data->groups[$name]['group_colour'], 'group_legend' => $this->db_cleaner->data->groups[$name]['group_legend'], 'group_avatar' => $this->db_cleaner->data->groups[$name]['group_avatar'], 'group_max_recipients' => $this->db_cleaner->data->groups[$name]['group_max_recipients']));
 				}
 				else if (!isset($this->db_cleaner->data->groups[$name]) && in_array($name, $existing_groups))
