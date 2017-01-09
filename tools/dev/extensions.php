@@ -25,7 +25,7 @@ class extensions
 	*/
 	function display_options()
 	{
-		global $template, $lang, $db, $config, $phpbb_root_path, $request;
+		global $template, $lang, $db, $config, $phpbb_root_path, $request, $user;
 		$error = array();
 		$submit = $request->variable('sa', false);
 
