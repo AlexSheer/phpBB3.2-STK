@@ -20,7 +20,21 @@ class remove_orphaned_permissions
 {
 	function display_options()
 	{
-		return 'REMOVE_ORPHANED_PERMISSIONS';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'REMOVE_ORPHANED_PERMISSIONS';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('REMOVE_ORPHANED_PERMISSIONS_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=support&amp;t=remove_orphaned_permissions&amp;submit=' . true);
+		}
 	}
 
 	function run_tool()
