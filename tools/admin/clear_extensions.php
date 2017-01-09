@@ -137,7 +137,7 @@ class clear_extensions
 				'EXT_NAME'			=> $row['ext_name'],
 				'MISSING_PATH'		=> ($missing_path) ? $missing_path : '',
 				'NO_COMPOSER'		=> ($no_composer) ? true : false,
-				'DISPLAY_NAME'		=> ($display_name) ? $display_name : sprintf($user->lang['NO_COMPOSER'], $row['ext_name']),
+				'DISPLAY_NAME'		=> ($display_name) ? $display_name : sprintf($lang['NO_COMPOSER'], $row['ext_name']),
 				'NO_COMPOSER'		=> ($display_name) ? false : true,
 				'S_ACTIVE'			=> $row['ext_active'],
 				'EXT_MISSING_PATH'	=> ($missing_path) ? sprintf($lang['EXT_MISSING_PATH'], $row['ext_name']) : '',
