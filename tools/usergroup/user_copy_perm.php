@@ -99,7 +99,7 @@ class user_copy_perm
 			$db->sql_freeresult($result);
 
 			$sql = 'UPDATE ' . USERS_TABLE . '
-				SET user_permissions = \''. $user_permissions .'\'
+				SET user_permissions = \'' . $user_permissions . '\'
 				WHERE user_id = '. $target_id;
 			$db->sql_query($sql);
 
