@@ -204,7 +204,8 @@ class orphaned_posts
 			case 'orphaned_shadows':
 			case 'forum_orphaned_topics':
 				if (isset($_POST['reassign']) && $mode == 'forum_orphaned_topics')
-				{					$forums_map = $request->variable('forum', array(0 => 0));
+				{
+					$forums_map = $request->variable('forum', array(0 => 0));
 					foreach ($forums_map as $topic_id => $forum_id)
 					{
 						if ($forum_id == 0)
@@ -303,7 +304,17 @@ class orphaned_posts
 						$result = $db->sql_query_limit($sql, 1);
 						$forum_id = (int) $db->sql_fetchfield('forum_id');
 						$db->sql_freeresult($result);
+
 						$sql = 'UPDATE ' . POSTS_TABLE . ' SET topic_id = ' . (int) $topic_id . ', forum_id = ' . (int) $forum_id . ' WHERE post_id = ' . (int) $post_id;
+						$db->sql_query($sql);
+						$sql = 'SELECT COUNT(post_id) AS posts
+							FROM ' . POSTS_TABLE . '
+							WHERE topic_id = ' . $topic_id . '
+							AND post_visibility = 1';
+						$result = $db->sql_query_limit($sql, 1);
+						$posts = (int) $db->sql_fetchfield('posts');
+						$db->sql_freeresult($result);
+						$sql = 'UPDATE ' . TOPICS_TABLE . ' SET topic_posts_approved = ' . $posts . ' WHERE topic_id = ' . $topic_id;
 						$db->sql_query($sql);
 					}
 
