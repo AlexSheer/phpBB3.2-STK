@@ -557,7 +557,7 @@ class umil
 	/**
 	* Cache Purge
 	*
-	* This function is for purging either phpBB3’s data cache, authorization cache, or the styles cache.
+	* This function is for purging either phpBB3вЂ™s data cache, authorization cache, or the styles cache.
 	*
 	* @param string $type The type of cache you want purged.  Available types: auth, imageset, template, theme.  Anything else sent will purge the forum's cache.
 	* @param int $style_id The id of the item you want purged (if the type selected is imageset/template/theme, 0 for all items in that section)
@@ -2429,7 +2429,7 @@ class umil
 		if (!function_exists('get_tables'))
 		{
 			global $phpbb_root_path, $phpEx;
-			include($phpbb_root_path . 'includes/functions_install.' . $phpEx);
+			include($phpbb_root_path . 'includes/functions_compatibility.' . $phpEx);
 		}
 
 		$tables = get_tables($this->db);
@@ -2485,7 +2485,7 @@ class umil
 		if (!function_exists('get_available_dbms'))
 		{
 			global $phpbb_root_path, $phpEx;
-			include("{$phpbb_root_path}includes/functions_install.$phpEx");
+			include("functions_install.$phpEx");
 		}
 
 		/*
