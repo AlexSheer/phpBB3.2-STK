@@ -25,7 +25,21 @@ class purge_sessions
 	*/
 	function display_options()
 	{
-		return 'PURGE_SESSIONS';
+		if (@phpversion() < '7.0.0')
+		{
+			return 'PURGE_SESSIONS';
+		}
+
+		global $lang;
+
+		if (confirm_box(true))
+		{
+			$this->run_tool();
+		}
+		else
+		{
+			confirm_box(false, user_lang('PURGE_SESSIONS_CONFIRM'), '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . '?c=admin&amp;t=purge_sessions&amp;submit=' . true);
+		}
 	}
 
 	/**
