@@ -35,8 +35,8 @@ class synchronization_topic_posts
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$topic_total_posts = (int) $row['topic_posts_approved'] + (int) $row['topic_posts_unapproved']  +  (int) $row['topic_posts_softdeleted'];
-			$topic_total_posts .= ' (' . $row['topic_posts_approved'] . '+' .  $row['topic_posts_unapproved'] . '+' .  $row['topic_posts_softdeleted'] . ')';
+			$topic_total_posts = (int) $row['topic_posts_approved'] + (int) $row['topic_posts_unapproved'] + (int) $row['topic_posts_softdeleted'];
+			$topic_total_posts .= ' (' . $row['topic_posts_approved'] . '+' .  $row['topic_posts_unapproved'] . '+' . $row['topic_posts_softdeleted'] . ')';
 			$template->assign_block_vars('topics_not_synchronized', array(
 				'FORUM_ID'				=> $row['forum_id'],
 				'U_TOPIC'				=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 't=' . $row['topic_id']),
@@ -74,8 +74,6 @@ class synchronization_topic_posts
 	function run_tool(&$error)
 	{
 		global $db, $lang;
-
-		$user->add_lang('ucp');
 
 		if (!check_form_key('synchronization_topic_posts'))
 		{
