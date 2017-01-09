@@ -117,7 +117,7 @@ if (!$extra_data)
 						$migrations_subdir = (@opendir($sub_dir)) ? array_diff(scandir($sub_dir), array('..', '.')) : array();
 						foreach($migrations_subdir as $key => $value)
 						{
-							$migrations[] = ' '. $file . '\\' . $value . '';
+							$migrations[] = '' . $file . '\\' . $value . '';
 						}
 						$migrations = array_diff($migrations, array($file));
 					}
