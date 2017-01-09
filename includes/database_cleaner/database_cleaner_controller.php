@@ -864,7 +864,7 @@ class database_cleaner_controller
 
 				if (!function_exists('adjust_language_keys_callback'))
 				{
-					include PHPBB_ROOT_PATH . 'includes/functions_install.' . PHP_EXT;
+					include STK_ROOT_PATH . 'includes/functions_install.' . PHP_EXT;
 				}
 
 				// The highest next order
