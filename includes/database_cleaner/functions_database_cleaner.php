@@ -47,7 +47,7 @@ function get_config_rows(&$phpbb_config, &$config_rows, &$existing_config)
 */
 function get_extension_groups_rows(&$extension_groups_data, &$extension_groups_rows, &$existing_extension_groups)
 {
-	global $db, $user;
+	global $db, $user, $lang;
 
 	$existing_extension_groups = array();
 	$sql_ary = array(
@@ -63,9 +63,9 @@ function get_extension_groups_rows(&$extension_groups_data, &$extension_groups_r
 		// Since phpBB 3.0.8 the module extensions are translatable,
 		// but now module extensions are NOT translatable and we need convert group_name into native
 		$extension_group_name = $row['group_name'];
-		if (in_array($row['group_name'], $user->lang))
+		if (in_array($row['group_name'], $lang))
 		{
-			$key = array_keys($user->lang, $row['group_name']);
+			$key = array_keys($lang, $row['group_name']);
 			$extension_group_name = $key[0];
 			unset ($key);
 		}
@@ -82,7 +82,7 @@ function get_extension_groups_rows(&$extension_groups_data, &$extension_groups_r
 */
 function get_extensions($group, &$group_id)
 {
-	global $db, $user;
+	global $db, $user, $lang;
 
 	$sql_ary = array(
 		'SELECT'	=> 'e.extension, eg.group_id',
@@ -111,7 +111,7 @@ function get_extensions($group, &$group_id)
 	// but now module extensions are NOT translatable and we need convert group_name into native
 	if(!sizeof($set))
 	{
-		if (in_array($user->lang[$group], $user->lang))
+		if (in_array($lang[$group], $lang))
 		{
 			$sql_ary = array(
 				'SELECT'	=> 'e.extension, eg.group_id',
@@ -120,7 +120,7 @@ function get_extensions($group, &$group_id)
 					EXTENSION_GROUPS_TABLE	=> 'eg',
 				),
 				'WHERE'		=> "e.group_id = eg.group_id
-					AND eg.group_name = '" . $db->sql_escape($user->lang[$group]) . "'",
+					AND eg.group_name = '" . $db->sql_escape($lang[$group]) . "'",
 			);
 
 			$sql = $db->sql_build_query('SELECT', $sql_ary);
@@ -352,7 +352,7 @@ function get_phpbb_tables()
 
 	if (!function_exists('get_tables'))
 	{
-		include PHPBB_ROOT_PATH . 'includes/functions_install.' . PHP_EXT;
+		include PHPBB_ROOT_PATH . 'includes/functions_compatibility.' . PHP_EXT;
 	}
 
 	// Function returns all tables in the database
