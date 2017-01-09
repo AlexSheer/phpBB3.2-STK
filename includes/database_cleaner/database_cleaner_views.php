@@ -451,11 +451,11 @@ class database_cleaner_views
 	*/
 	function groups()
 	{
-		global $template, $lang;
+		global $template, $lang, $user;
 
 		// Display the system groups that are missing or aren't from a vanilla installation
 		$this->_section_data['groups'] = array(
-			'NAME'		=> 'ACP_GROUPS_MANAGEMENT',
+			'NAME'		=> $user->lang['ACP_GROUPS_MANAGEMENT'],
 			'TITLE'		=> 'ROWS',
 		);
 
