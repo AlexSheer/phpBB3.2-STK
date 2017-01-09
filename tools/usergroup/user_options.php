@@ -20,9 +20,7 @@ class user_options
 {
 	function display_options()
 	{
-		global $template, $user, $db, $request;
-
-		$user->add_lang('groups');
+		global $template, $lang, $db, $request;
 
 		$settings_value = $request->variable('settings', array('' => ''), true);
 		$groups = $request->variable('user_groups', array(0));
@@ -56,7 +54,7 @@ class user_options
 		$s_options = '';
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$group_name = (isset($user->lang['G_' . $row['group_name'] . ''])) ? $user->lang['G_' . $row['group_name'] . ''] : $row['group_name'];
+			$group_name = (isset($lang['G_' . $row['group_name'] . ''])) ? $lang['G_' . $row['group_name'] . ''] : $row['group_name'];
 			$s_options .= '<option value="' . $row['group_id'] . '">' . $group_name;
 		}
 		$db->sql_freeresult($result);
