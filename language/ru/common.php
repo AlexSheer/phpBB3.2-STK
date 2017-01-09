@@ -73,7 +73,6 @@ $lang = array_merge($lang, array(
 	'INCORRECT_PHPBB_VERSION'			=> 'Ваша версия phpBB несовместима с данным STK. Убедитесь, что вы используете версию phpBB: %1$s.<br />Актуальная версия phpBB доступна для скачивания <a href="http://www.phpbbguru.net/files/base/phpbb31-ru/">здесь</a>',
 
 	'LOGIN_STK_SUCCESS'					=> 'Авторизация прошла успешно, сейчас вы будете перенаправлены в Инструментарий поддержки.',
-
 	'NOTICE'							=> 'Примечание',
 	'NO_VERSION_FILE'					=> 'STK не определил актуальную версию пакета. Перейдите на <a href="http://www.phpbbguru.net/community/topic42862.html" target="_blank">страницу</a> и убедитесь, что используемая вами версия актуальная перед тем, как продолжать её использовать.',
 
@@ -141,4 +140,6 @@ $lang = array_merge($lang, array(
 	'SUBMIT'							=> 'Отправить',
 	'CANCEL'							=> 'Отмена',
 	'FORUM_INDEX'						=> 'Список форумов',
+
+	'FILE_WRITE_FAIL'					=> 'Не удалось записать файл',
 ));
