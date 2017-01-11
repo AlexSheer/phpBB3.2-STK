@@ -32,7 +32,7 @@ class profile_list
 		if ($submit)
 		{
 			$uids = $request->variable('marked_user_id', array(0, 0));
-			if (confirm_box(true))
+			if (confirm_box(true) || (@phpversion() >= '7.0.0'))
 			{
 				if (!function_exists('user_delete'))
 				{
