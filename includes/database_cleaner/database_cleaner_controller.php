@@ -252,18 +252,20 @@ class database_cleaner_controller
 	*/
 	function extension_groups($error, $selected)
 	{
-		global $db;
+		global $db, $lang;
 
 		$extension_groups_rows = $existing_extension_groups = array();
 		get_extension_groups_rows($this->db_cleaner->data->extension_groups, $extension_groups_rows, $existing_extension_groups);
+
 		foreach ($extension_groups_rows as $name)
 		{
+
 			if (isset($this->db_cleaner->data->extension_groups[$name]) && in_array($name, $existing_extension_groups))
 			{
 				continue;
 			}
 
-			if (isset($selected[$name]))
+			if (isset($selected[$lang[$name]]))
 			{
 				if (isset($this->db_cleaner->data->extension_groups[$name]) && !in_array($name, $existing_extension_groups))
 				{
@@ -321,6 +323,8 @@ class database_cleaner_controller
 						'extension'	=> $extension,
 					);
 					$db->sql_query('INSERT INTO ' . EXTENSIONS_TABLE . ' ' . $db->sql_build_array('INSERT', $insert));
+					// Remove orphaned extension
+					$db->sql_query('DELETE FROM ' . EXTENSIONS_TABLE . ' WHERE group_id = 0');
 				}
 			}
 		}
