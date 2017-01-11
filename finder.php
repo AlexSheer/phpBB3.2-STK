@@ -139,7 +139,8 @@ if (!$extra_data)
 						}
 						if (isset($table_data['drop_columns']))
 						{
-							$column_extra = array_merge($column_extra, $table_data['drop_columns']);
+							//$column_extra = array_merge($column_extra, $table_data['drop_columns']);
+							$column_extra = $column_extra + $table_data['drop_columns'];
 						}
 
 						$update_data = $phpbb_ext->update_data();
