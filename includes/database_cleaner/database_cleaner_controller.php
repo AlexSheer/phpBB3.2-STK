@@ -256,10 +256,8 @@ class database_cleaner_controller
 
 		$extension_groups_rows = $existing_extension_groups = array();
 		get_extension_groups_rows($this->db_cleaner->data->extension_groups, $extension_groups_rows, $existing_extension_groups);
-
 		foreach ($extension_groups_rows as $name)
 		{
-
 			if (isset($this->db_cleaner->data->extension_groups[$name]) && in_array($name, $existing_extension_groups))
 			{
 				continue;
