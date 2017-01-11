@@ -30,7 +30,7 @@ class clear_extensions
 			trigger_error($lang['NO_EXT_SELECTED'], E_USER_WARNING);
 		}
 
-		if (confirm_box(true))
+		if (confirm_box(true) || (@phpversion() >= '7.0.0'))
 		{
 			$sql = 'SELECT ext_name FROM ' . EXT_TABLE . '
 				WHERE ' . $db->sql_in_set('ext_name', $uids, false);
@@ -38,7 +38,7 @@ class clear_extensions
 			while ($row = $db->sql_fetchrow($result))
 			{
 				$ext_name = explode('/', $row['ext_name']);
-				$keyword = '*'. $ext_name[1] .'*';
+				$keyword = '*' . $ext_name[1] . '*';
 				$sql = 'DELETE FROM ' . MIGRATIONS_TABLE . '
 					WHERE migration_name ' . $db->sql_like_expression(str_replace('*', $db->get_any_char(), $keyword));
 				$db->sql_query($sql);
@@ -79,7 +79,7 @@ class clear_extensions
 				$error[] = 'NO_EXT_SELECTED';
 				trigger_error($lang['NO_EXT_SELECTED'], E_USER_WARNING);
 			}
-			if (confirm_box(true))
+			if (confirm_box(true) || (@phpversion() >= '7.0.0'))
 			{
 				$sql = 'UPDATE ' . EXT_TABLE . '
 					SET ext_active = 0
@@ -96,7 +96,7 @@ class clear_extensions
 		}
 
 		$sql = 'SELECT *
-			FROM ' . EXT_TABLE . '';
+			FROM ' . EXT_TABLE;
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
