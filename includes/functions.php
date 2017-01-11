@@ -939,14 +939,21 @@ function html_entity_decode_utf8($string)
 {
 	static $trans_tbl;
 	// replace numeric entities
+	if (@phpversion() < '7.0.0')
+	{
+		$string = preg_replace('~&#x([0-9a-f]+);~ei', '_code2utf8(hexdec("\\1"))', $string);
+		$string = preg_replace('~&#([0-9]+);~e', '_code2utf8(\\1)', $string);
+	}
+	else
+	{
+		// eval() sucks, but we must use preg_replace_callback() to support
+		// PHP 7.0, and custom BBcode replacement function is stored as a string
 
-	// eval() sucks, but we must use preg_replace_callback() to support
-	// PHP 7.0, and custom BBcode replacement function is stored as a string
-
-	$replacement = '_code2utf8(hexdec("\\1"))';
-	$string = preg_replace_callback('|&#x([0-9a-f]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
-	$replacement = '_code2utf8(\\1)';
-	$string = preg_replace_callback('|&#([0-9]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
+		$replacement = '_code2utf8(hexdec("\\1"))';
+		$string = preg_replace_callback('|&#x([0-9a-f]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
+		$replacement = '_code2utf8(\\1)';
+		$string = preg_replace_callback('|&#([0-9]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
+	}
 
 	// replace literal entities
 	if (!isset($trans_tbl))
