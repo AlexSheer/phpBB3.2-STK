@@ -326,6 +326,11 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 		case 'request_phpbb_version' :
 			global $cache, $config, $phpbb_container;
 
+			if ($config['version'] < '3.2.0')
+			{
+				trigger_error(sprintf($lang['STK_INCOMPARTIBLE'], $config['version']), E_USER_WARNING);
+			}
+
 			$_version_number = $cache->get('_stk_phpbb_version_number');
 			if ($_version_number === false)
 			{
@@ -374,7 +379,6 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 					}
 
 					// Build the options
-					$version_options = '';
 					for ($i = $_phpbb_version; $i > 1; $i--)
 					{
 						$v = "3.2.{$i}";
