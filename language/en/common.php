@@ -142,4 +142,7 @@ $lang = array_merge($lang, array(
 	'SUBMIT'							=> 'Submit',
 	'CANCEL'							=> 'Cancel',
 	'FORUM_INDEX'						=> 'Board index',
+
+	'FILE_WRITE_FAIL'					=> 'Failed to write file',
+	'STK_INCOMPARTIBLE'					=> 'This version of STK for phpBB 3.2.x, while your version is %1$s',
 ));
