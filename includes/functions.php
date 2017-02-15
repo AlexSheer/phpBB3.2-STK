@@ -650,6 +650,7 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 
 		if (!isset($critical_repair))
 		{
+			include(STK_ROOT_PATH . 'includes/critical_repair.' . PHP_EXT);
 			$critical_repair = new critical_repair();
 		}
 
