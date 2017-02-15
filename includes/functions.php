@@ -379,6 +379,7 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 					}
 
 					// Build the options
+					$version_options = '';
 					for ($i = $_phpbb_version; $i > 1; $i--)
 					{
 						$v = "3.2.{$i}";
