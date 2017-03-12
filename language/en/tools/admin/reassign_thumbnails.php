@@ -45,5 +45,6 @@ $lang = array_merge($lang, array(
 	'NEED_TO_PROCESS' 				=> 'Files without thumbnails: ',
 	'THUMB'							=> '<strong>thumbnail</strong>',
 	'REBUILT_THUMB'					=> 'Create Thumbnails',
+	'NO_NEED_REBUILT'				=> '<strong style="color: #aaa;">No need thumbnal</strong> for ',
 	'SOURCE_UNAVAILABLE'			=> 'File not found: ',
 ));
