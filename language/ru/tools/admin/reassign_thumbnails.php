@@ -44,6 +44,7 @@ $lang = array_merge($lang, array(
 	'NO_THUMBNAILS_TO_REBUILD'		=> 'Нет файлов для которых требуется создание миниатюр.',
 	'NEED_TO_PROCESS' 				=> 'Найдено файлов без миниатюр: %d',
 	'REBUILT'						=> '<strong>Создано для</strong> ',
+	'NO_NEED_REBUILT'				=> '<strong style="color: #aaa;">Не требуется</strong> создание миниатюры для файла ',
 	'THUMB'							=> '<strong>миниатюра</strong>',
 	'SOURCE_UNAVAILABLE'			=> 'Файл не найден: ',
 ));
