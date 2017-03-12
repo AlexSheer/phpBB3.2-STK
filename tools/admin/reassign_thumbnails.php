@@ -76,9 +76,15 @@ class reassign_thumbnails
 			//Make Sure The File Actually Exists Before Processing It
 			if (file_exists($upload_path . $batch[$i]['physical_filename']))
 			{
-				create_thumbnail($upload_path . $batch[$i]['physical_filename'], $upload_path . $thumb_file_name, $batch[$i]['mimetype']);
-				$output[] = $lang['REBUILT'] . $batch[$i]['physical_filename'] . ' ' . $lang['THUMB'] . ' '. $thumb_file_name;
-				$thumbs[] = $batch[$i]['attach_id'];
+				if (create_thumbnail($upload_path . $batch[$i]['physical_filename'], $upload_path . $thumb_file_name, $batch[$i]['mimetype']))
+				{
+					$output[] = $lang['REBUILT'] . $batch[$i]['physical_filename'] . ' ' . $lang['THUMB'] . ' '. $thumb_file_name;
+					$thumbs[] = $batch[$i]['attach_id'];
+				}
+				else
+				{
+					$output[] = $lang['NO_NEED_REBUILT'] . $batch[$i]['physical_filename'];
+				}
 			}
 			else
 			{
@@ -92,11 +98,18 @@ class reassign_thumbnails
 			$cache->destroy('_stk_reassign_thumbnails');
 			$thumbs = $cache->get('_stk_thumbnails');
 			$cache->destroy('_stk_thumbnails');
-			$db->sql_query('UPDATE ' . ATTACHMENTS_TABLE . ' SET thumbnail = 1 WHERE ' . $db->sql_in_set('attach_id', $thumbs));
+			if (!empty($thumbs))
+			{
+				$db->sql_query('UPDATE ' . ATTACHMENTS_TABLE . ' SET thumbnail = 1 WHERE ' . $db->sql_in_set('attach_id', $thumbs));
+			}
 			trigger_error($lang['REASSIGN_THUMBNAILS_FINISHED']);
 		}
 
 		// Next step
+		if (!isset($thumbs))
+		{
+			$thumbs = array();
+		}
 		$cache->put('_stk_thumbnails', $thumbs);
 		$template->assign_var('U_BACK_TOOL', false);
 		meta_refresh(3, append_sid(STK_INDEX, array('c' => 'admin', 't' => 'reassign_thumbnails', 'step' => ++$step, 'submit' => true)));
