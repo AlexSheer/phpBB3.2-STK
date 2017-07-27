@@ -271,6 +271,7 @@ $lang = array_merge($lang, array(
 	'load_tplcompile'					=> '',
 	'load_unreads_search'				=> '',
 	'load_user_activity'				=> '',
+	'load_user_activity_limit'			=> '',
 	'max_attachments'					=> '',
 	'max_attachments_pm'				=> '',
 	'max_autologin_time'				=> '',
