@@ -55,6 +55,7 @@ class config_list
 
 		$options = array(
 			'all'				=> $lang['ALL'],
+			'statistics'		=> $lang['STATISTICS'],
 			'cron'				=> $lang['CRON_TASKS'],
 			'attachments'		=> $lang['ATTACHMENTS'],
 			'board_config'		=> $lang['BOARD_CONFIG'],
@@ -176,7 +177,7 @@ class config_list
 			'limit_load', 'session_length', 'active_sessions', 'load_online_time', 'read_notification_expire_days', 'load_notifications', 'load_db_track',
 			'load_db_lastread', 'load_anon_lastread', 'load_online', 'load_online_guests', 'load_onlinetrack', 'load_birthdays', 'load_unreads_search',
 			'load_moderators', 'load_jumpbox', 'load_user_activity', 'load_tplcompile', 'allow_cdn', 'allow_live_searches', 'load_cpf_memberlist',
-			'load_cpf_pm', 'load_cpf_viewprofile', 'load_cpf_viewtopic', 'load_user_activity_limit',
+			'load_cpf_pm', 'load_cpf_viewprofile', 'load_cpf_viewtopic',
 		);
 
 		$config_search = array(
@@ -187,7 +188,13 @@ class config_list
 			'fulltext_sphinx_id', 'fulltext_sphinx_data_path', 'fulltext_sphinx_indexer_mem_limit', 'fulltext_sphinx_host', 'fulltext_sphinx_port', 'fulltext_sphinx_stopwords',
 		);
 
+		$config_statistics = array(
+			'dbms_version', 'last_queue_run', 'board_startdate', 'newest_user_id', 'newest_username', 'num_files', 'num_posts', 'num_topics',
+			'num_users', 'record_online_date', 'record_online_users', 'upload_dir_size', 'version',
+		);
+
 		$config_common = $config_all = array();
+		$config_common = array_merge($config_common, $config_statistics);
 		$config_common = array_merge($config_common, $config_cron);
 		$config_common = array_merge($config_common, $config_attachments);
 		$config_common = array_merge($config_common, $config_avatras);
@@ -239,7 +246,11 @@ class config_list
 		{
 			// Show selected
 			switch ($display)
-			{	case 'cron'				:
+			{
+				case 'statistics'		:
+					$where = $config_statistics;
+				break;
+				case 'cron'				:
 					$where = $config_cron;
 				break;
 				case 'attachments'		:
@@ -323,6 +334,7 @@ class config_list
 		$not_bool = array('assets_version', 'form_token_mintime', 'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width', 'max_attachments_pm', 'max_autologin_time', 'max_post_img_height',
 			'max_post_img_width', 'max_post_smilies', 'max_post_urls', 'max_sig_img_height', 'max_sig_img_width', 'max_sig_smilies', 'num_files', 'default_style', 'cron_lock', 'upload_dir_size',
 			'num_posts', 'num_topics', 'num_users', 'pm_edit_time', 'pm_max_recipients', 'search_interval', 'search_anonymous_interval', 'search_indexing_state', 'plupload_last_gc', 'warnings_expire_days',
+			'last_queue_run',
 		);
 		$ex_time_gc = array('database_gc', 'cache_gc', 'session_gc', 'search_gc', 'warnings_gc', 'read_notification_gc');
 
