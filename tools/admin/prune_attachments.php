@@ -28,7 +28,7 @@ class prune_attachments
 
 	function display_options()
 	{
-		global $db, $template, $config, $cache, $request;
+		global $db, $template, $config, $cache, $request, $lang;
 		$list = '';
 		// For further use if make extension "Attachments in subfolders"
 		$subfolders = false;
@@ -140,7 +140,7 @@ class prune_attachments
 			else
 			{
 				meta_refresh(3, append_sid("" . STK_ROOT_PATH . "index." . PHP_EXT . "", 'c=admin&amp;t=prune_attachments&sa=true'));
-				trigger_error('' . $user->lang['PRUNE_ATTACHMENTS_PROGRESS'] . '<br />' . $list . '');
+				trigger_error('' . $lang['PRUNE_ATTACHMENTS_PROGRESS'] . '<br />' . $list . '');
 			}
 		}
 
