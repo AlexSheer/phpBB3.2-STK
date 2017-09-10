@@ -257,7 +257,7 @@ if($info)
 			$display_name = $obj->{'extra'}->{'display-name'};
 			$ext_path = $obj->{'name'};
 			$version = $obj->{'version'};
-			$description = (isset($obj->{'description'})) ? $obj->{'description'} : '';
+			$description = $obj->{'description'};
 		}
 	}
 	$sql = 'SELECT ext_active FROM ' . EXT_TABLE . '
