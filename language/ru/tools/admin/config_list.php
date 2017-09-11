@@ -158,6 +158,7 @@ $lang = array_merge($lang, array(
 	'cookie_name'						=> 'Имя cookie',
 	'cookie_path'						=> 'Путь cookie',
 	'cookie_secure'						=> 'Безопасные cookie [ https ]',
+	'cookie_notice'						=> 'Предупреждение об использовании cookie',
 	'coppa_enable'						=> 'Включить COPPA',
 	'coppa_fax' 						=> 'Номер факса для COPPA',
 	'coppa_mail'						=> 'Почтовый адрес для COPPA',
@@ -381,6 +382,19 @@ $lang = array_merge($lang, array(
 	'remote_upload_verify'				=> 'Проверять сертификат загрузки',
 	'allow_board_notifications' 		=> 'Разрешить уведомления',
 	'allowed_schemes_links'				=> 'Разрешенные протоколы ссылок',
+
+	'REPARSING'							=> 'Репарсинг',
+	'reparse_lock'								=> 'Блокировка репарсинга (выполняется по расписанию)',
+	'text_reparser.pm_text_cron_interval'		=> 'Интервал репарсинга ЛС',
+	'text_reparser.pm_text_last_cron'			=> 'Дата последнего репарсинга ЛС',
+	'text_reparser.poll_option_cron_interval'	=> 'Интервал репарсинга вариантов ответов в опросах',
+	'text_reparser.poll_option_last_cron'		=> 'Дата последнего репарсинга вариантов ответов в опросах',
+	'text_reparser.poll_title_cron_interval'	=> 'Интервал репарсинга заголовков опросов',
+	'text_reparser.poll_title_last_cron'		=> 'Дата последнего репарсинга заголовков опросов',
+	'text_reparser.post_text_cron_interval'		=> 'Интервал репарсинга сообщений',
+	'text_reparser.post_text_last_cron'			=> 'Дата последнего репарсинга сообщений',
+	'text_reparser.user_signature_cron_interval'=> 'Интервал репарсинга подписей пользователей',
+	'text_reparser.user_signature_last_cron'	=> 'Дата последнего репарсинга подписей пользователей',
 
 	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Назначение неизвестно, параметр не входит в набор стандартных для phpBB3.2.x</em></span>',
 ));

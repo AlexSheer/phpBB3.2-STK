@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Support Toolkit - Test
+* @package Support Toolkit - Events
 * @version $Id$
 * @copyright (c) 2010 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
