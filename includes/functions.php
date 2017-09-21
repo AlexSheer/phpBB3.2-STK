@@ -958,7 +958,11 @@ function html_entity_decode_utf8($string)
 		$replacement = '_code2utf8(hexdec("\\1"))';
 		$string = preg_replace_callback('|&#x([0-9a-f]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
 		$replacement = '_code2utf8(\\1)';
-		$string = preg_replace_callback('|&#([0-9]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
+		$string = preg_replace_callback(
+			'|&#([0-9]+);|',
+			function ($matches) { return _code2utf8(hexdec($matches[1])); },
+			$string
+		);
 	}
 
 	// replace literal entities
