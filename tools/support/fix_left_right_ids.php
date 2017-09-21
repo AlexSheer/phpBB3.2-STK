@@ -53,6 +53,9 @@ class fix_left_right_ids
 
 		$changes_made = false;
 
+		// Purge the cache before run tool
+		$cache->purge();
+
 		/**
 		* Fix Left/Right ID's for the modules table
 		*/
