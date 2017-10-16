@@ -249,7 +249,7 @@ function stk_add_lang($lang_file)
 {
 	global $template, $lang, $user;
 
-	if (empty($user->data))
+	if (empty($user->data) || !$user->data['user_lang'])
 	{
 		if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
 		{
@@ -691,14 +691,19 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 				$errfile = stk_filter_root_path($errfile);
 				$msg_text = stk_filter_root_path($msg_text);
 				$error_name = ($errno === E_WARNING) ? 'PHP Warning' : 'PHP Notice';
-				echo '<b>[phpBB Debug] ' . $error_name . '</b>: in file <b>' . $errfile . '</b> on line <b>' . $errline . '</b>: <b>' . $msg_text . '</b><br />' . "\n";
+				$id = rand(1, 10000);
+				$template->assign_block_vars('debug_r', array(
+					'U_DEBUGING_ERN'	=> $error_name,
+					'U_DEBUGING_ERF'	=> $errfile,
+					'U_DEBUGING_ERL'	=> $errline,
+					'U_DEBUGING_MSG'	=> $msg_text,
+				));
 
 				// we are writing an image - the user won't see the debug, so let's place it in the log
 				if (defined('IMAGE_OUTPUT') || defined('IN_CRON'))
 				{
 					add_log('critical', 'LOG_IMAGE_GENERATION_ERROR', $errfile, $errline, $msg_text);
 				}
-				echo '<br /><br />BACKTRACE<br />' . get_backtrace() . '<br />' . "\n";
 			}
 
 			return;
