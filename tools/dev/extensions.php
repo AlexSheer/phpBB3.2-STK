@@ -30,7 +30,7 @@ class extensions
 		$submit = $request->variable('sa', false);
 
 		$vendor = $request->variable('vendor', '');
-		$author = $request->variable('developer', '', true);
+		$author = $request->variable('developer', '');
 		$version = $request->variable('version', '');
 		$description = $request->variable('description', '');
 		$homepage = $request->variable('homepage', '');
@@ -122,8 +122,8 @@ class extensions
 					$data .= "    " . $vendor . "." . $ext_name . ".listener:\r\n";
 					$data .= "        class: " . $vendor . "\\" . $ext_name . "\\event\\listener\r\n";
 					$data .= "        arguments:\r\n";
-					$data .= "            - '%core.root_path%'\r\n";
-					$data .= "            - '@template'\r\n";
+					$data .= "            - %core.root_path%\r\n";
+					$data .= "            - @template\r\n";
 					$data .= "        tags:\r\n";
 					$data .= "            - { name: event.listener }\r\n";
 
