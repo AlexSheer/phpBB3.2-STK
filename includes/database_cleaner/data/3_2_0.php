@@ -163,6 +163,7 @@ class datafile_3_2_0
 		'contact_admin_form_enable'		=> array('config_value' => '1', 'is_dynamic' => '0'),
 		'cookie_domain'					=> array('config_value' => '', 'is_dynamic' => '0'),
 		'cookie_name'					=> array('config_value' => 'phpbb3_bhra1', 'is_dynamic' => '0'),
+		'cookie_notice'					=> array('config_value' => '0', 'is_dynamic' => '0'),
 		'cookie_path'					=> array('config_value' => '/', 'is_dynamic' => '0'),
 		'cookie_secure'					=> array('config_value' => '0', 'is_dynamic' => '0'),
 		'coppa_enable'					=> array('config_value' => '0', 'is_dynamic' => '0'),

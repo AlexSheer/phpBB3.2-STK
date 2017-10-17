@@ -67,6 +67,7 @@ class clear_extensions
 		global $db, $template, $lang, $cache, $request;
 
 		$off = $request->variable('off', false);
+		$on = $request->variable('on', false);
 
 		page_header($lang['CLEAR_EXTENSIONS']);
 		$no_composer = false;
@@ -95,9 +96,28 @@ class clear_extensions
 			}
 		}
 
+		if ($on)
+		{
+			$uids = request_var('marked_name', array('', ''));
+			if (empty($uids))
+			{
+				$error[] = 'NO_EXT_SELECTED';
+				trigger_error('NO_EXT_SELECTED', E_USER_WARNING);
+			}
+
+			$sql = 'UPDATE ' . EXT_TABLE . '
+				SET ext_active = 1
+				WHERE ' . $db->sql_in_set('ext_name', $uids, false);
+			$db->sql_query($sql);
+			$cache->purge(); // Purge the cache
+			trigger_error('ON_EXT_SUCCESS');
+		}
+
 		$sql = 'SELECT *
-			FROM ' . EXT_TABLE;
+			FROM ' . EXT_TABLE . '
+			ORDER BY ext_active DESC';
 		$result = $db->sql_query($sql);
+
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$path = explode('/', $row['ext_name']);

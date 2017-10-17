@@ -232,6 +232,17 @@ function selectCode(a)
 
 	<div id="page-body">
 		<div id="tabs">
+		<!-- BEGIN debug_r -->
+			<!-- IF debug_r.U_DEBUGING_ERN == 'PHP Warning' -->
+				<div class="debug warning">
+					<div><strong>{L_PHPBB_DEBUG} {debug_r.U_DEBUGING_ERN}</strong>: {L_DEBUG_IN_FILE} {debug_r.U_DEBUGING_ERF} {L_DEBUG_ON_LINE} <strong>{debug_r.U_DEBUGING_ERL}</strong>: <strong>{debug_r.U_DEBUGING_MSG}</strong>{debug_r.BACKTRACE}</div>
+				</div>
+			<!-- ELSE -->
+				<div class="debug notice">
+					<div><strong>{L_PHPBB_DEBUG} {debug_r.U_DEBUGING_ERN}</strong>: {L_DEBUG_IN_FILE} {debug_r.U_DEBUGING_ERF} {L_DEBUG_ON_LINE} <strong>{debug_r.U_DEBUGING_ERL}</strong>: <strong>{debug_r.U_DEBUGING_MSG}</strong>{debug_r.BACKTRACE}</div>
+				</div>
+			<!-- ENDIF -->
+		<!-- END debug_r -->
 			<ul>
 			<!-- BEGIN top_nav -->
 				<li<!-- IF top_nav.S_SELECTED --> id="activetab"<!-- ENDIF -->><a href="{top_nav.U_TITLE}"><span>{top_nav.L_TITLE}</span></a></li>

@@ -249,7 +249,7 @@ function stk_add_lang($lang_file)
 {
 	global $template, $lang, $user;
 
-	if (empty($user->data))
+	if (empty($user->data) || !$user->data['user_lang'])
 	{
 		if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
 		{
@@ -691,14 +691,19 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 				$errfile = stk_filter_root_path($errfile);
 				$msg_text = stk_filter_root_path($msg_text);
 				$error_name = ($errno === E_WARNING) ? 'PHP Warning' : 'PHP Notice';
-				echo '<b>[phpBB Debug] ' . $error_name . '</b>: in file <b>' . $errfile . '</b> on line <b>' . $errline . '</b>: <b>' . $msg_text . '</b><br />' . "\n";
+				$id = rand(1, 10000);
+				$template->assign_block_vars('debug_r', array(
+					'U_DEBUGING_ERN'	=> $error_name,
+					'U_DEBUGING_ERF'	=> $errfile,
+					'U_DEBUGING_ERL'	=> $errline,
+					'U_DEBUGING_MSG'	=> $msg_text,
+				));
 
 				// we are writing an image - the user won't see the debug, so let's place it in the log
 				if (defined('IMAGE_OUTPUT') || defined('IN_CRON'))
 				{
 					add_log('critical', 'LOG_IMAGE_GENERATION_ERROR', $errfile, $errline, $msg_text);
 				}
-				echo '<br /><br />BACKTRACE<br />' . get_backtrace() . '<br />' . "\n";
 			}
 
 			return;
@@ -944,22 +949,19 @@ function stk_filter_root_path($errfile)
 function html_entity_decode_utf8($string)
 {
 	static $trans_tbl;
-	// replace numeric entities
-	if (@phpversion() < '7.0.0')
-	{
-		$string = preg_replace('~&#x([0-9a-f]+);~ei', '_code2utf8(hexdec("\\1"))', $string);
-		$string = preg_replace('~&#([0-9]+);~e', '_code2utf8(\\1)', $string);
-	}
-	else
-	{
-		// eval() sucks, but we must use preg_replace_callback() to support
-		// PHP 7.0, and custom BBcode replacement function is stored as a string
 
-		$replacement = '_code2utf8(hexdec("\\1"))';
-		$string = preg_replace_callback('|&#x([0-9a-f]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
-		$replacement = '_code2utf8(\\1)';
-		$string = preg_replace_callback('|&#([0-9]+);|', function($matches) use($replacement) {eval('$str=' . $replacement); return $str;}, $string);
-	}
+	// replace numeric entities
+	$string = preg_replace_callback(
+		'|&#x([0-9a-f]+)|',
+		function ($matches) { return _code2utf8(hexdec($matches[1])); },
+		$string
+	);
+
+	$string = preg_replace_callback(
+		'|&#([0-9]+);|',
+		function ($matches) { return _code2utf8($matches[1]); },
+		$string
+	);
 
 	// replace literal entities
 	if (!isset($trans_tbl))
