@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CLEAR_EXTENSIONS'				=> 'Gérer les extensions',
-	'CLEAR_EXTENSIONS_EXPLAIN'		=> 'Sur cette page il est possible de gérer les extensions <b>installées</b>.',
+	'CLEAR_EXTENSIONS_EXPLAIN'		=> 'Sur cette page il est possible de gérer les extensions <strong>installées</strong>.',
 	'EXT_PATH'						=> 'Chemin relatif pour le répertoire ' . PHPBB_ROOT_PATH . 'ext/',
 	'MISSING_PATH'					=> 'Répertoire manquant',
 	'S_ACTIVE'						=> ' (activée) ',
@@ -50,6 +50,9 @@ $lang = array_merge($lang, array(
 	'CLICK_TO_OFF'					=> 'Extensions sélectionnées qui seront désactivées',
 	'OFF_EXT'						=> 'Désactiver',
 	'CLEAR_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été supprimées.',
+	'CLICK_TO_ON'					=> 'Les extensions sélectionnées seront activées.',
+	'ON_EXT'						=> 'Activer',
+	'ON_EXT_SUCCESS'				=> 'Les extensionnées sélectionnées ont été activées avec succès !',
 	'OFF_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été désactivées.',
 	'NO_EXT_SELECTED'				=> 'Aucune extension sélectionnée !',
 	'EXT_DELETE'					=> 'Supprimer les extensions',
