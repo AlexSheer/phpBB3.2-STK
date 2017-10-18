@@ -3,7 +3,6 @@
 *
 * @package Support Toolkit - Add User
 * @version $Id$
-* @copyright (c) 2009 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -185,7 +184,7 @@ class add_user
 	*/
 	function validate_data($data, &$error)
 	{
-		global $config, $user;
+		global $config, $user, $lang;
 
 		if (!function_exists('validate_data'))
 		{
@@ -208,7 +207,7 @@ class add_user
 		));
 		if ($data['new_password'] != $data['password_confirm'])
 		{
-			$error[] = $user->lang['NEW_PASSWORD_ERROR'];
+			$error[] = $lang['NEW_PASSWORD_ERROR'];
 		}
 	}
 
