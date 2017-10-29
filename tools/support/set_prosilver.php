@@ -71,7 +71,7 @@ class set_prosilver
 			$config->set('guest_style', $id);
 			$db->sql_query('UPDATE ' . USERS_TABLE . ' SET user_style = ' . $id);
 
-			trigger_error($lang['RESET_STYLE_COMPLETE']);
+			trigger_error($lang['SET_PROSILVER_RESET']);
 		}
 
 		if ($style_id == $config['default_style'])
@@ -82,6 +82,13 @@ class set_prosilver
 				trigger_error($lang['SET_PROSILVER_ACTIVATED']);
 			}
 			trigger_error($lang['SET_PROSILVER_ALLREADY_ASSIGNED']);
+		}
+		else
+		{
+			$db->sql_query('UPDATE ' . STYLES_TABLE . ' SET style_active = 1 WHERE style_id = ' . $style_id . '');
+			$config->set('default_style', $style_id);
+			$config->set('guest_style', $style_id);
+			trigger_error($lang['SET_PROSILVER_RESET']);
 		}
 	}
 }
