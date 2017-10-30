@@ -103,7 +103,7 @@ class extensions
 					$data .= "            \"name\": \"" . $author . "\"";
 					$data .= ($homepage) ? ",\r\n            \"homepage\": \"" . $homepage . "\"" : '';
 					$data .= ($role) ? ",\r\n            \"role\": \"" . $role . "\"" : '';
-					$data .= "\r\n        }\r\n    ],\r\n    \"require\": {\r\n        \"php\": \">=5.3.3,\"\r\n        \"composer/installers\": \"~1.0\"\r\n    },\r\n";
+					$data .= "\r\n        }\r\n    ],\r\n    \"require\": {\r\n        \"php\": \">=5.3.3\",\r\n        \"composer/installers\": \"~1.0\"\r\n    },\r\n";
 					$data .= "    \"extra\": {\r\n        \"display-name\": \"" . $display_name . "\",\r\n        \"soft-require\": {\r\n            \"phpbb/phpbb\": \"3.2.0\"\r\n        }\r\n    }\r\n";
 					$data .= "}\r\n";
 					if (!($fp = fopen($new_dir . '/composer.json', 'w')))
