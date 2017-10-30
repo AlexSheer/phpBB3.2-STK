@@ -44,8 +44,8 @@ $lang = array_merge($lang, array(
 	'DBMS'				=> 'Type de la base de données',
 	'PHP_INFO'			=> 'Informations concernant PHP',
 	'PHP_VERSION'		=> 'Version de PHP',
-	'STK_VERSION'		=> 'Version de STK (Support Tookit)',
-	'MBSTRING_LOADED'	=> 'Fonctions sur les chaînes de caractères multi-octets (l’extension PHP <b> mbstring </b>) est chargée',
-	'MBSTRING_NOT_LOADED'				=> 'Fonctions sur les chaînes de caractères multi-octets (l’extension PHP <b> mbstring </b>) n’est pas chargée',
-	'ERROR_MBSTRING_NOT_LOADED_EXPLAIN'	=> 'mbstring n’est pas incluse dans la liste des extensions qui sont installées par défaut. Cela signifie que cette extension est par défaut désactivée. Pour utiliser les fonctionnalités de cette extension, il est nécessaire de définir sur « enable » ce module dans la configuration de PHP. Besoin de consulter la documentation de <a href="http://php.net/manual/ru/mbstring.configuration.php">PHP</a>.',
+	'STK_VERSION'		=> 'Version de Support Tookit',
+	'MBSTRING_LOADED'	=> 'La fonctionnalité des chaînes de caractères multi-octets (module PHP <strong>mbstring</strong>) est chargée.',
+	'MBSTRING_NOT_LOADED'				=> 'La fonctionnalité des chaînes de caractères multi-octets (module PHP <strong>mbstring</strong>) n’est pas chargée.',
+	'ERROR_MBSTRING_NOT_LOADED_EXPLAIN'	=> 'Le module PHP <strong>mbstring</strong> ne fait pas partie de la liste des module chargés par défaut. Cela signifie que ce module est désactivé par défaut. Pour utiliser les fonctionnalités de ce module il est nécessaire de définir ce dernier sur « enable » dans la configuration de PHP. Si besoin, merci de consulter la documentation du <a href="http://php.net/manual/ru/mbstring.configuration.php">langage PHP</a>.',
 ));

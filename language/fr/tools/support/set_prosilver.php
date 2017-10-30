@@ -1,16 +1,17 @@
 <?php
 /**
-*
-* @package Support Toolkit - Set prosilver as default style English language Sheer
-* @version $Id$
-* @copyright (c) 2009 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-*/
+ *
+ * @package Support Toolkit - Set prosilver as default style French language
+ * French translation by Galixte (http://www.galixte.com)
+ *
+ * @copyright (c) 2017 phpBB Limited <https://www.phpbb.com>
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -34,14 +35,14 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
 $lang = array_merge($lang, array(
-	'SET_PROSILVER'						=> 'Assigning prosilver to the default style',
-	'SET_PROSILVER_CONFIRM'				=> 'Allows set Prosilver and assign it as the default style for all users.',
-	'SET_PROSILVER_ALLREADY_ASSIGNED'	=> 'Prosilver is already assigned as the default style. No action is taken.',
-	'SET_PROSILVER_ACTIVATED'			=> 'Prosilver was successfully activated.',
-	'SET_PROSILVER_RESET'				=> 'Prosilver was assigned as the default style.',
-	'SET_PROSILVER_DOES_NOT_EXIST'		=> 'Prosilver does not exist. Please upload a copy of prosilver from the <a href="https://www.phpbb.com/downloads/">3.2.1 Full Package</a>.',
+	'SET_PROSILVER'						=> 'Définir « prosilver » par défaut',
+	'SET_PROSILVER_CONFIRM'				=> 'Permet de définir le style « prosilver » par défaut pour tous les utilisateurs du forum.',
+	'SET_PROSILVER_ALLREADY_ASSIGNED'	=> 'Le style « prosilver » est déjà le style par défaut du forum. Aucune action n’est nécessaire.',
+	'SET_PROSILVER_ACTIVATED'			=> 'Le style « prosilver » a été activé avec succès !',
+	'SET_PROSILVER_RESET'				=> 'Le style « prosilver » a été féfini comme le style par défaut pour tous les utilisateurs du forum.',
+	'SET_PROSILVER_DOES_NOT_EXIST'		=> 'Le style « prosilver » n’existe pas. Merci d’envoyer une copie des fichiers depuis l’archive originale disponible sur : <a href="https://www.phpbb.com/downloads/">phpBB.com</a> (Archive originale de phpBB 3.2.1) ou <a href="http://www.phpbb-fr.com/telechargements/">phpBB-fr.com</a> (Archive originale française de phpBB 3.2.1).',
 ));
