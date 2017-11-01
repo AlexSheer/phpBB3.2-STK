@@ -1,0 +1,50 @@
+<!-- INCLUDE overall_header.html -->
+<div id="main">
+
+	<a name="maincontent"></a>
+
+	<h1>{L_USERS_NOGROUPS}</h1>
+	<p>{L_USERS_NOGROUPS_EXPLAIN}</p>
+
+	<!-- IF .users -->
+	<form id="stk_assighn_groups" method="post" action="{U_ASSIGHN_GROUPS}">
+		<fieldset>
+		<legend>{L_LOST_GROUPS_USERS}</legend>
+		<!-- BEGIN users -->
+		<dl>
+			<dt><label for="users[{users.S_ROW_COUNT}]">{users.L_USER_FULL}</label></dt>
+			<dd><input type="checkbox" id="founder_{users.S_ROW_COUNT}" name="users[{users.USER_ID}]" /></dd>
+		</dl>
+		<!-- END users -->
+		</fieldset>
+		<div class="rightside pagination"><a href="#" onclick="marklist('stk_assighn_groups', 'users', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('stk_assighn_groups', 'users', false); return false;">{L_UNMARK_ALL}</a></div>
+
+		<fieldset>
+			<legend>{L_ADD_USER_GROUP}</legend>
+				<dl>
+					<dt><label for="defaultgroup">{L_DEFAULT_GROUP}{L_COLON}</label></dt>
+					<dd><select id="defaultgroup" name="defaultgroup">{S_GROUPS}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="usergroups">{L_USER_GROUPS}{L_COLON}</label></dt>
+				<dd><select id="usergroups" name="usergroups[]" multiple="multiple">{S_GROUPS}</select></dd>
+			</dl>
+			<p class="submit-buttons">
+				<input type="submit" name="submit" id="submit" value="{L_SUBMIT}" class="button1" />&nbsp;
+			</p>
+		</fieldset>
+
+		{S_HIDDEN_FIELDS}
+		{S_FORM_TOKEN}
+	</form>
+	<!-- ELSE -->
+	<fieldset>
+		<legend>{L_LOST_GROUPS_USERS}</legend>
+		<dl>
+			<b>{L_NO_USERS_FOUND}</b>
+		</dl>
+	</fieldset>
+	<!-- ENDIF -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->
