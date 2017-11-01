@@ -147,7 +147,7 @@ class reparse_bbcode
 		$cnt				= 0;
 		$sql_forum_where	= '';
 
-		if (sizeof($reparse_forum_ids))
+		if (sizeof($reparse_forum_ids) && !$all)
 		{
 			$reparse_id = '';
 			$sql_forum_where = ' WHERE ' . $db->sql_in_set('forum_id', $reparse_forum_ids);
