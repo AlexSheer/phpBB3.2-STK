@@ -328,7 +328,7 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 
 			if ($config['version'] < '3.2.0')
 			{
-				trigger_error(sprintf($lang['STK_INCOMPARTIBLE'], $config['version']), E_USER_WARNING);
+				trigger_error(sprintf($lang['STK_INCOMPATIBLE'], $config['version']), E_USER_WARNING);
 			}
 
 			$_version_number = $cache->get('_stk_phpbb_version_number');
