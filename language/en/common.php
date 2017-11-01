@@ -144,7 +144,7 @@ $lang = array_merge($lang, array(
 	'FORUM_INDEX'						=> 'Board index',
 
 	'FILE_WRITE_FAIL'					=> 'Failed to write file',
-	'STK_INCOMPARTIBLE'					=> 'This version of STK for phpBB 3.2.x, while your version is %1$s',
+	'STK_INCOMPATIBLE'					=> 'This STK version is dedicated to phpBB 3.2.x boards, while your phpBB version is %1$s.',
 
 	'PHPBB_DEBUG'					=> '[phpBB Debug]',
 	'DEBUG_IN_FILE'					=> 'in file',

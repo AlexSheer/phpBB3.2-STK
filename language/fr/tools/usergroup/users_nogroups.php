@@ -1,16 +1,17 @@
 <?php
 /**
-*
-* @package Support Toolkit - User Options English language Sheer
-* @version $Id$
-* @copyright (c) 2009 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @
-*/
+ *
+ * @package Support Toolkit - Users no groups French language
+ * French translation by Galixte (http://www.galixte.com)
+ *
+ * @copyright (c) 2017 phpBB Limited <https://www.phpbb.com>
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -34,15 +35,15 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
 $lang = array_merge($lang, array(
-	'USERS_NOGROUPS'			=> 'Users without groups',
-	'USERS_NOGROUPS_EXPLAIN'	=> 'This is a list of users who for some reason do not belong to any of the groups established at the conference.
-								You can mark any user and assign him a default group, as well as another group or groups, in which the user will enter.',
-	'LOST_GROUPS_USERS'			=> 'Users who do not belong to any groups',
-	'NO_USERS_FOUND'			=> 'No users were found belonging to any groups',
-	'NO_USERS_SELECTED'			=> 'You must select at least one user.',
-	'ASSIGHN_GROUPS_SUCCESS'	=> 'Selected users were successfully added to the group (s).',
+	'USERS_NOGROUPS'			=> 'Utilisateurs sans groupes',
+	'USERS_NOGROUPS_EXPLAIN'	=> 'Permet de consulter la liste des utilisateurs n’appartenant à aucun groupe.
+								Il est possible de sélectionner ces utilisateurs pour leur attribuer un groupe par défaut, ou davantage de groupes, dans lesquels ils seront placés.',
+	'LOST_GROUPS_USERS'			=> 'Utilisateurs n’appartenant à aucun groupe',
+	'NO_USERS_FOUND'			=> 'Aucun utilisateur n’est sans groupe.',
+	'NO_USERS_SELECTED'			=> 'Au moins un utilisateur doit être sélectionné.',
+	'ASSIGHN_GROUPS_SUCCESS'	=> 'Les utilisateurs sélectionnés ont été ajoutés au(x) groupe(s) avec succès !',
 ));

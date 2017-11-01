@@ -145,7 +145,7 @@ $lang = array_merge($lang, array(
 	'FORUM_INDEX'						=> 'Index du forum',
 
 	'FILE_WRITE_FAIL'					=> 'Impossible d’écrire dans le fichier',
-	'STK_INCOMPARTIBLE'					=> 'Cette version de STK est dédiée à phpBB 3.2.x, alors que vous utilisez phpBB %1$s',
+	'STK_INCOMPATIBLE'					=> 'Cette version de STK est dédiée aux forums phpBB 3.2.x, alors que la version du forum phpBB utilisé est %1$s.',
 
 	'PHPBB_DEBUG'						=> '[Débogueur phpBB]',
 	'DEBUG_IN_FILE'						=> 'dans le fichier',
