@@ -385,6 +385,14 @@ class datafile_3_2_0
 		'use_system_cron'				=> array('config_value' => '0', 'is_dynamic' => '0'),
 	);
 
+
+	/**
+	* @var Array Config entries that were removed in initital setup
+	*/
+	var $removed_config = array(
+		// No config entries in initital setup
+	);
+
 	/**
 	* @var Array All default permission settings
 	*/
