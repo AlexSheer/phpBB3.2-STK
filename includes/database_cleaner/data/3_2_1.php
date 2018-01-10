@@ -17,7 +17,7 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* phpBB 3.2.0 data file
+* phpBB 3.2.1 data file
 */
 class datafile_3_2_1
 {
@@ -25,56 +25,56 @@ class datafile_3_2_1
 	* @var Array The bots
 	*/
 	var $bots = array(
-		// No bots changes 3.1.2 -> 3.2.0
+		// No bots changes 3.2.0 -> 3.2.1
 	);
 
 	/**
-	* @var Array 3.2.0 config data
+	* @var Array 3.2.1 config data
 	*/
 	var $config = array(
 		'load_user_activity_limit'				=> array('config_value' => '5000', 'is_dynamic' => '0'),
 	);
 
 	/**
-	* @var Array Config entries that were removed by the 3.2.0 update
+	* @var Array Config entries that were removed by the 3.2.1 update
 	*/
 	var $removed_config = array(
-		// No config entries removed 3.1.2 -> 3.2.0
+		// No config entries removed 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default permission settings
 	*/
 	var $acl_options = array(
-		// No permission changes 3.1.2 -> 3.2.0
+		// No permission changes 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default roles
 	*/
 	var $acl_roles = array(
-		// No role changes 3.1.2 -> 3.2.0
+		// No role changes 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default role data
 	*/
 	var $acl_role_data = array(
-		// No role data changes 3.1.2 -> 3.2.0
+		// No role data changes 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default extension groups
 	*/
 	var $extension_groups = array(
-		// No extension group changes 3.1.2 -> 3.2.0
+		// No extension group changes 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default extensions
 	*/
 	var $extensions = array(
-		// No extension changes 3.1.2 -> 3.2.0
+		// No extension changes 3.2.0 -> 3.2.1
 	);
 
 	/**
@@ -82,32 +82,32 @@ class datafile_3_2_1
 	* needing to hard-code module_id values
 	*/
 	var $module_categories = array(
-		// No Module categories changes 3.1.2 -> 3.2.0
+		// No Module categories changes 3.2.0 -> 3.2.1
 	);
 
 	var $module_extras = array(
-		// No Module extra changes 3.1.2 -> 3.2.0
+		// No Module extra changes 3.2.0 -> 3.2.1
 	);
 
 	var $module_categories_basenames = array(
-		// No Categories basenames changes 3.1.2 -> 3.2.0
+		// No Categories basenames changes 3.2.0 -> 3.2.1
 	);
 
 	/**
 	* @var Array All default groups
 	*/
 	var $groups = array(
-		// No Group changes 3.1.2 -> 3.2.0
+		// No Group changes 3.2.0 -> 3.2.1
 	);
 	/**
 	* @var Array All default report reasons
 	*/
 	var $report_reasons = array(
-		// No reason changes 3.1.2 -> 3.2.0
+		// No reason changes 3.2.0 -> 3.2.1
 	);
 
 	var $acp_modules = array(
-		// No ACP modules changes 3.1.2 -> 3.2.0
+		// No ACP modules changes 3.2.0 -> 3.2.1
 	);
 
 	/**
