@@ -81,7 +81,7 @@ class config_list
 
 		$config_cron = array(
 			'cache_gc', 'cache_last_gc', 'database_gc', 'database_last_gc', 'plupload_last_gc', 'read_notification_gc', 'queue_interval', 'cron_lock',
-			'read_notification_last_gc', 'search_gc', 'search_last_gc', 'session_gc', 'session_last_gc', 'warnings_gc', 'warnings_last_gc',
+			'read_notification_last_gc', 'search_gc', 'search_last_gc', 'session_gc', 'session_last_gc', 'warnings_gc', 'warnings_last_gc', 'update_hashes_last_cron', 'update_hashes_lock',
 		);
 
 		$config_attachments = array(
@@ -152,11 +152,11 @@ class config_list
 
 		$config_email = array(
 			'email_enable', 'board_email_form', 'email_function_name', 'email_package_size', 'board_contact', 'board_contact_name', 'board_email', 'board_email_sig',
-			'board_hide_emails', 'smtp_delivery', 'smtp_host', 'smtp_port', 'smtp_auth_method', 'smtp_username', 'email_max_chunk_size', 'smtp_password'
+			'board_hide_emails', 'smtp_delivery', 'smtp_host', 'smtp_port', 'smtp_auth_method', 'smtp_username', 'email_max_chunk_size', 'smtp_password', 'email_force_sender', 'smtp_allow_self_signed', 'smtp_verify_peer', 'smtp_verify_peer_name',
 		);
 
 		$config_config_jabber = array(
-			'jab_enable', 'jab_host', 'jab_port', 'jab_username', 'jab_password', 'jab_package_size', 'jab_use_ssl',
+			'jab_enable', 'jab_host', 'jab_port', 'jab_username', 'jab_password', 'jab_package_size', 'jab_use_ssl', 'jab_allow_self_signed', 'jab_verify_peer', 'jab_verify_peer_name'
 		);
 
 		$config_cookies = array(
@@ -346,14 +346,14 @@ class config_list
 		$not_bool = array('assets_version', 'form_token_mintime', 'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width', 'max_attachments_pm', 'max_autologin_time', 'max_post_img_height',
 			'max_post_img_width', 'max_post_smilies', 'max_post_urls', 'max_sig_img_height', 'max_sig_img_width', 'max_sig_smilies', 'num_files', 'default_style', 'cron_lock', 'upload_dir_size',
 			'num_posts', 'num_topics', 'num_users', 'pm_edit_time', 'pm_max_recipients', 'search_interval', 'search_anonymous_interval', 'search_indexing_state', 'plupload_last_gc', 'warnings_expire_days',
-			'last_queue_run', 'text_reparser.user_signature_last_cron',
+			'last_queue_run', 'text_reparser.user_signature_last_cron', 'update_hashes_last_cron'
 		);
 		$ex_time_gc = array('database_gc', 'cache_gc', 'session_gc', 'search_gc', 'warnings_gc', 'read_notification_gc');
 
 		$human_date = array(
 			'board_startdate',
 			'text_reparser.pm_text_last_cron', 'text_reparser.poll_option_last_cron', 'text_reparser.poll_title_last_cron',
-			'text_reparser.post_text_last_cron', 'text_reparser.user_signature_last_cron',
+			'text_reparser.post_text_last_cron', 'text_reparser.user_signature_last_cron', 'update_hashes_last_cron'
 		);
 
 		while ($row = $db->sql_fetchrow($result))
@@ -363,7 +363,7 @@ class config_list
 			if (!in_array($row['config_name'], $not_bool) && is_numeric($row['config_value']) || $row['config_name'] == 'enable_confirm')
 			{
 				// Value is boolean?
-				if ($row['config_value'] == 0 || $row['config_value'] == 1 )
+				if ($row['config_value'] == 0 || $row['config_value'] == 1)
 				{
 					$is_bool = true;
 					// If value not set imagine it equal NULL
