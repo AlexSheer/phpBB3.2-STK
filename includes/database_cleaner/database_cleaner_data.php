@@ -98,6 +98,11 @@ class database_cleaner_data
 	var $module_categories_basenames = array();
 
 	/**
+	* @var Array Config entries that were removed
+	*/
+	var $removed_config = array();
+
+	/**
 	* Some data needs to be adjusted in certain cases
 	*/
 	function init()
