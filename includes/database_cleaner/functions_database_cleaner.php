@@ -425,6 +425,7 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 		// Set the data
 		$data->bots					= array_merge($data->bots, $_datafile->bots);
 		$data->config				= array_merge($data->config, $_datafile->config);
+		$data->removed_config		= array_merge($data->removed_config, $_datafile->removed_config);
 		$data->acl_options			= array_merge($data->acl_options, $_datafile->acl_options);
 		$data->acl_roles			= array_merge($data->acl_roles, $_datafile->acl_roles);
 		$data->acl_role_data		= array_merge_recursive($data->acl_role_data, $_datafile->acl_role_data);
