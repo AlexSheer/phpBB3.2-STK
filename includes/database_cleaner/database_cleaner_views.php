@@ -311,7 +311,9 @@ class database_cleaner_views
 			'reparse_lock', 'text_reparser.pm_text_cron_interval', 'text_reparser.pm_text_last_cron', 'text_reparser.poll_option_cron_interval',
 			'text_reparser.poll_option_last_cron', 'text_reparser.poll_title_cron_interval', 'text_reparser.poll_title_last_cron',
 			'text_reparser.post_text_cron_interval', 'text_reparser.post_text_last_cron', 'text_reparser.user_signature_cron_interval',
-			'text_reparser.user_signature_last_cron', 'cookie_notice', 'load_font_awesome_url',
+			'text_reparser.user_signature_last_cron', 'cookie_notice', 'load_font_awesome_url', 'smtp_allow_self_signed', 'smtp_verify_peer',
+			'smtp_verify_peer_name', 'update_hashes_lock', 'update_hashes_last_cron', 'jab_allow_self_signed', 'jab_verify_peer', 'jab_verify_peer_name', 'enable_update_hashes',
+			'auth_oauth_bitly_key', 'auth_oauth_bitly_secret', 'auth_oauth_facebook_key', 'auth_oauth_facebook_secret', 'auth_oauth_google_key', 'auth_oauth_google_secret', 'fulltext_sphinx_id'
 		);
 
 		$config_rows = $existing_config = array();
@@ -319,7 +321,7 @@ class database_cleaner_views
 		foreach ($config_rows as $name)
 		{
 			// Skip ones that are in the default install and are in the existing config, or if it was removed by a later update
-			if ((isset($this->db_cleaner->data->config[$name]) && in_array($name, $existing_config)) || in_array($name, $removed_config) || in_array($name, $ignored_congig))
+			if ((isset($this->db_cleaner->data->config[$name]) && in_array($name, $existing_config)) || in_array($name, $this->db_cleaner->data->removed_config) || in_array($name, $ignored_congig))
 			{
 				continue;
 			}
