@@ -29,24 +29,24 @@ class datafile_3_2_2
 	);
 
 	/**
-	* @var Array 3.2.0 config data
+	* @var Array 3.2.2 config data
 	*/
 	var $config = array(
-		// No config changes 3.2.1 -> 3.2.2
+		'email_force_sender'				=> array('email_force_sender' => '0', 'is_dynamic' => '0'),
 	);
 
 	/**
-	* @var Array Config entries that were removed by the 3.2.0 update
+	* @var Array Config entries that were removed by the 3.2.2 update
 	*/
 	var $removed_config = array(
-		// No config entries removed 3.2.1 -> 3.2.2
+		'email_function_name'
 	);
 
 	/**
 	* @var Array All default permission settings
 	*/
 	var $acl_options = array(
-		// No permission changes 3.2.1 -> 3.2.2
+		'f_list_topics'				=> array('is_global' => '0', 'is_local' => '1', 'founder_only' => '0'),
 	);
 
 	/**
