@@ -309,7 +309,7 @@ class database_cleaner_views
 		$removed_config = ($db->get_sql_layer() == 'mysql4' || $db->get_sql_layer() == 'mysqli') ? array('auth_oauth_bitly_key', 'auth_oauth_bitly_secret', 'auth_oauth_facebook_key', 'auth_oauth_facebook_secret', 'auth_oauth_google_key', 'auth_oauth_google_secret', 'fulltext_sphinx_id') : array();
 		$ignored_congig = array(
 			'reparse_lock', 'text_reparser.pm_text_cron_interval', 'text_reparser.pm_text_last_cron', 'text_reparser.poll_option_cron_interval',
-			'text_reparser.poll_option_last_cron', 'text_reparser.poll_title_cron_interval', 'text_reparser.poll_title_last_cron',
+			'text_reparser.poll_option_last_cron', 'text_reparser.poll_title_cron_interval', 'text_reparser.poll_title_last_cron', 'auth_oauth_twitter_key', 'auth_oauth_twitter_secret',
 			'text_reparser.post_text_cron_interval', 'text_reparser.post_text_last_cron', 'text_reparser.user_signature_cron_interval',
 			'text_reparser.user_signature_last_cron', 'cookie_notice', 'load_font_awesome_url', 'smtp_allow_self_signed', 'smtp_verify_peer',
 			'smtp_verify_peer_name', 'update_hashes_lock', 'update_hashes_last_cron', 'jab_allow_self_signed', 'jab_verify_peer', 'jab_verify_peer_name', 'enable_update_hashes',
