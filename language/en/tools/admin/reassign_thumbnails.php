@@ -47,4 +47,6 @@ $lang = array_merge($lang, array(
 	'REBUILT_THUMB'					=> 'Create Thumbnails',
 	'NO_NEED_REBUILT'				=> '<strong style="color: #aaa;">No need thumbnal</strong> for ',
 	'SOURCE_UNAVAILABLE'			=> 'File not found: ',
+	'NO_EXTENSIONS'					=> 'There are no file extensions for group extensions <strong>Images</ strong> .',
+	'NO_EXTENSIONS_GROUP'			=> 'Еxtension group <strong>Images</ strong> Dыoes not exist.',
 ));
