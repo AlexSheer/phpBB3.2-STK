@@ -118,17 +118,36 @@ class reassign_thumbnails
 
 	function count_total_images()
 	{
-		global $db, $config;
+		global $db, $config, $lang;
+
+		$extensions = array();
+
+		$sql = 'SELECT group_id
+			FROM ' . EXTENSION_GROUPS_TABLE . '
+			WHERE group_name = \'IMAGES\'';
+		$result = $db->sql_query($sql);
+		$group_id = (int) $db->sql_fetchfield('group_id');
+		$db->sql_freeresult($result);
+
+		if (!$group_id)
+		{
+			trigger_error($lang['NO_EXTENSIONS_GROUP'], E_USER_WARNING);
+		}
 
 		$sql = 'SELECT extension
 			FROM ' . EXTENSIONS_TABLE . '
-			WHERE group_id = (SELECT group_id FROM ' . EXTENSION_GROUPS_TABLE . ' WHERE group_name = \'IMAGES\')';
+			WHERE group_id = ' . $group_id;
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$extensions[] = $row['extension'];
 		}
 		$db->sql_freeresult($result);
+
+		if (!$extensions)
+		{
+			trigger_error($lang['NO_EXTENSIONS'], E_USER_WARNING);
+		}
 
 		$sql_where = '';
 		foreach($extensions as $extension)
