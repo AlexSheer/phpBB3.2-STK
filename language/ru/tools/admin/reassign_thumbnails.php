@@ -48,5 +48,5 @@ $lang = array_merge($lang, array(
 	'THUMB'							=> '<strong>миниатюра</strong>',
 	'SOURCE_UNAVAILABLE'			=> 'Файл не найден: ',
 	'NO_EXTENSIONS'					=> 'Для группы расширений <strong>Изображения</strong> нет назначенных расширений файлов.',
-	'NO_EXTENSIONS_GROUP'			=> 'Группы расширений <strong>Изображения</strong> не существует.',
+	'NO_EXTENSIONS_GROUP'			=> 'Группа расширений <strong>Изображения</strong> не существует.',
 ));
