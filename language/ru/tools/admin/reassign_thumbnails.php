@@ -47,4 +47,6 @@ $lang = array_merge($lang, array(
 	'NO_NEED_REBUILT'				=> '<strong style="color: #aaa;">Не требуется</strong> создание миниатюры для файла ',
 	'THUMB'							=> '<strong>миниатюра</strong>',
 	'SOURCE_UNAVAILABLE'			=> 'Файл не найден: ',
+	'NO_EXTENSIONS'					=> 'Для группы расширений <strong>Изображения</strong> нет назначенных расширений файлов.',
+	'NO_EXTENSIONS_GROUP'			=> 'Не существует группы <strong>Изображения</strong>.',
 ));
