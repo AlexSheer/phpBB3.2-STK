@@ -49,4 +49,5 @@ $lang = array_merge($lang, array(
 	'SOURCE_UNAVAILABLE'			=> 'File not found: ',
 	'NO_EXTENSIONS'					=> 'There are no file extensions for group extensions <strong>Images</ strong> .',
 	'NO_EXTENSIONS_GROUP'			=> 'Еxtension group <strong>Images</ strong> does not exist.',
+	'IMAGES'						=> 'Images',
 ));
