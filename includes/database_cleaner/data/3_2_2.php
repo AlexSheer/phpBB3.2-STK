@@ -17,64 +17,64 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* phpBB 3.2.1 data file
+* phpBB 3.2.2 data file
 */
-class datafile_3_2_1
+class datafile_3_2_2
 {
 	/**
 	* @var Array The bots
 	*/
 	var $bots = array(
-		// No bots changes 3.2.0 -> 3.2.1
+		// No bots changes 3.2.1 -> 3.2.2
 	);
 
 	/**
-	* @var Array 3.2.1 config data
+	* @var Array 3.2.2 config data
 	*/
 	var $config = array(
-		'load_user_activity_limit'				=> array('config_value' => '5000', 'is_dynamic' => '0'),
+		'email_force_sender'				=> array('email_force_sender' => '0', 'is_dynamic' => '0'),
 	);
 
 	/**
-	* @var Array Config entries that were removed by the 3.2.1 update
+	* @var Array Config entries that were removed by the 3.2.2 update
 	*/
 	var $removed_config = array(
-		// No config entries removed 3.2.0 -> 3.2.1
+		'email_function_name'
 	);
 
 	/**
 	* @var Array All default permission settings
 	*/
 	var $acl_options = array(
-		// No permission changes 3.2.0 -> 3.2.1
+		'f_list_topics'				=> array('is_global' => '0', 'is_local' => '1', 'founder_only' => '0'),
 	);
 
 	/**
 	* @var Array All default roles
 	*/
 	var $acl_roles = array(
-		// No role changes 3.2.0 -> 3.2.1
+		// No role changes 3.2.1 -> 3.2.2
 	);
 
 	/**
 	* @var Array All default role data
 	*/
 	var $acl_role_data = array(
-		// No role data changes 3.2.0 -> 3.2.1
+		// No role data changes 3.2.1 -> 3.2.2
 	);
 
 	/**
 	* @var Array All default extension groups
 	*/
 	var $extension_groups = array(
-		// No extension group changes 3.2.0 -> 3.2.1
+		// No extension group changes 3.2.1 -> 3.2.2
 	);
 
 	/**
 	* @var Array All default extensions
 	*/
 	var $extensions = array(
-		// No extension changes 3.2.0 -> 3.2.1
+		// No extension changes 3.2.1 -> 3.2.2
 	);
 
 	/**
@@ -82,32 +82,32 @@ class datafile_3_2_1
 	* needing to hard-code module_id values
 	*/
 	var $module_categories = array(
-		// No Module categories changes 3.2.0 -> 3.2.1
+		// No Module categories changes 3.2.1 -> 3.2.2
 	);
 
 	var $module_extras = array(
-		// No Module extra changes 3.2.0 -> 3.2.1
+		// No Module extra changes 3.2.1 -> 3.2.2
 	);
 
 	var $module_categories_basenames = array(
-		// No Categories basenames changes 3.2.0 -> 3.2.1
+		// No Categories basenames changes 3.2.1 -> 3.2.2
 	);
 
 	/**
 	* @var Array All default groups
 	*/
 	var $groups = array(
-		// No Group changes 3.2.0 -> 3.2.1
+		// No Group changes 3.2.1 -> 3.2.2
 	);
 	/**
 	* @var Array All default report reasons
 	*/
 	var $report_reasons = array(
-		// No reason changes 3.2.0 -> 3.2.1
+		// No reason changes 3.2.1 -> 3.2.2
 	);
 
 	var $acp_modules = array(
-		// No ACP modules changes 3.2.0 -> 3.2.1
+		// No ACP modules changes 3.2.1 -> 3.2.2
 	);
 
 	/**
@@ -144,10 +144,6 @@ class datafile_3_2_1
 	*/
 	function get_schema_struct(&$schema_data)
 	{
-		$schema_data['phpbb_topics']['KEYS']['latest_topics']					= array('INDEX', 'latest_topics');
-		$schema_data['phpbb_user_notifications']['KEYS']['itm_usr_mthd']		= array('INDEX', 'itm_usr_mthd');
-		$schema_data['phpbb_user_notifications']['KEYS']['uid_itm_id']			= array('INDEX', 'uid_itm_id');
-		$schema_data['phpbb_user_notifications']['KEYS']['usr_itm_tpe']			= array('INDEX', 'usr_itm_tpe');
-		$schema_data['phpbb_user_notifications']['KEYS']['user_id']				= array('INDEX', 'user_id');
+		// No schema changes 3.2.1 -> 3.2.2
 	}
 }
