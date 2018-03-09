@@ -49,4 +49,7 @@ $lang = array_merge($lang, array(
 	'REBUILT_THUMB'					=> 'Créer des miniatures',
 	'NO_NEED_REBUILT'				=> '<strong style="color: #aaa;">Aucun besoin de miniatures</strong> for ',
 	'SOURCE_UNAVAILABLE'			=> 'Fichier non trouvé : ',
+	'NO_EXTENSIONS'					=> 'Il n’y a aucune extension de fichier pour le groupe d’extensions « <strong>Images</ strong> ».',
+	'NO_EXTENSIONS_GROUP'			=> 'Le groupe d’extensions « <strong>Images</ strong> » n’existe pas.',
+	'IMAGES'						=> 'Images',
 ));
