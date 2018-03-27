@@ -180,6 +180,7 @@ $lang = array_merge($lang, array(
 	'email_force_sender'				=> 'email_force_sender',
 	'email_max_chunk_size'				=> '',
 	'email_package_size'				=> '',
+	'enable_accurate_pm_button'			=> 'Enable accurate PM indicator in topic pages',
 	'enable_confirm'					=> '',
 	'enable_mod_rewrite'				=> '',
 	'enable_pm_icons'					=> '',
