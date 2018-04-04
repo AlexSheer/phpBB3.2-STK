@@ -178,7 +178,7 @@ class config_list
 			'limit_load', 'session_length', 'active_sessions', 'load_online_time', 'read_notification_expire_days', 'load_notifications', 'load_db_track',
 			'load_db_lastread', 'load_anon_lastread', 'load_online', 'load_online_guests', 'load_onlinetrack', 'load_birthdays', 'load_unreads_search',
 			'load_moderators', 'load_jumpbox', 'load_user_activity', 'load_tplcompile', 'allow_cdn', 'allow_live_searches', 'load_cpf_memberlist',
-			'load_cpf_pm', 'load_cpf_viewprofile', 'load_cpf_viewtopic', 'load_user_activity_limit',
+			'load_cpf_pm', 'load_cpf_viewprofile', 'load_cpf_viewtopic', 'load_user_activity_limit', 'enable_accurate_pm_button',
 		);
 
 		$config_search = array(
