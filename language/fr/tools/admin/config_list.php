@@ -182,6 +182,7 @@ $lang = array_merge($lang, array(
 	'email_force_sender'				=> 'Forcer l’adresse courriel de réponse',
 	'email_max_chunk_size'				=> '',
 	'email_package_size'				=> 'Taille des paquets d’e-mails',
+	'enable_accurate_pm_button'			=> 'Activer le bouton des MP dans le mini-profil sur les pages des sujets',
 	'enable_confirm'					=> 'Activer la confirmation visuelle pour les enregistrements',
 	'enable_mod_rewrite'				=> 'Activer la réécriture d’URL',
 	'enable_pm_icons'					=> 'Autoriser les icônes de sujet dans les messages privés',
