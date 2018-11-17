@@ -2863,7 +2863,7 @@ class umil
 	*
 	* @return array|string Error Message if there was any error, or an array (each line in the file as a value)
 	*/
-	function version_check($url, $path, $file, $timeout = 10, $port = 80)
+	function version_check($url, $path, $file, $timeout = 10, $port = 443)
 	{
 		if (!function_exists('get_remote_file'))
 		{
