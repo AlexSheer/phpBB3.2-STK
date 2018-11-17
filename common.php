@@ -44,6 +44,10 @@ require STK_ROOT_PATH . 'includes/umil.' . PHP_EXT;
 // support toolkit. Therefore we unset the `$phpbb_hook` object here
 unset($phpbb_hook);
 
+// Disable event dispatcer.
+// Some extensions can cause fatal errors, so all extensions should be disabled.
+$phpbb_dispatcher->disable();
+
 // When not in the ERK we setup the user at this point
 // and load UML.
 if (!defined('IN_ERK'))
