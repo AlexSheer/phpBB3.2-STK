@@ -1537,7 +1537,7 @@ class datafile_3_2_0
 				'forum_rules_bitfield'	=> array('VCHAR:255', ''),
 				'forum_rules_options'	=> array('UINT:11', 7),
 				'forum_rules_uid'		=> array('VCHAR:8', ''),
-				'forum_topics_per_page'	=> array('TINT:4', 0),
+				'forum_topics_per_page'	=> array('USINT', 0),
 				'forum_type'			=> array('TINT:4', 0),
 				'forum_status'			=> array('TINT:4', 0),
 				'forum_last_post_id'		=> array('UINT', 0),
