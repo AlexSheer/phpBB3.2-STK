@@ -2869,7 +2869,7 @@ class umil
 		{
 			global $phpbb_root_path, $phpEx;
 
-			include($phpbb_root_path . 'includes/functions_admin.' . $phpEx);
+			include($phpbb_root_path . 'includes/functions_compatibility.php.' . $phpEx);
 		}
 
 		$errstr = $errno = '';
