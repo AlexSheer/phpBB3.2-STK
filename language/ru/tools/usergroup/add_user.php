@@ -59,4 +59,5 @@ $lang = array_merge($lang, array(
 	'TOO_SHORT_EMAIL'			=> 'Адрес email слишком короткий.',
 	'EMAIL_INVALID_EMAIL'		=> 'Введённый адрес email неверен.',
 	'NEW_PASSWORD_ERROR'		=> 'Введённые вами пароли не совпадают.',
+	'DOMAIN_NO_MX_RECORD'	=> 'Введённый домен email не имеет корректной почтовой записи в DNS (MX record).',
 ));
