@@ -17,6 +17,14 @@ if (!defined('STK_INDEX')) { define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_
 
 require STK_ROOT_PATH . 'common.' . PHP_EXT;
 
+// phpBBs common.php registers hooks, these hooks tend to cause problems with the
+// support toolkit. Therefore we unset the `$phpbb_hook` object here
+unset($phpbb_hook);
+
+// Disable event dispatcer.
+// Some extensions can cause fatal errors, so all extensions should be disabled.
+$phpbb_dispatcher->disable();
+
 // Setup the user
 $user->session_begin();
 $auth->acl($user->data);
