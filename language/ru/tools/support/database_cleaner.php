@@ -40,6 +40,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_EXTENSION_GROUPS'			=> 'Группы расширений файлов',
 	'ACP_MODULES_SETTINGS'			=> 'Поиск дополнительных модулей',
+
 	'BOARD_DISABLE_REASON'			=> 'Конференция в настоящее время отключена в связи с профилактикой Базы Данных. Пожалуйста, попробуйте зайти позже!',
 	'BOARD_DISABLE_SUCCESS'			=> 'Конференция временно отключена!',
 
@@ -59,8 +60,8 @@ $lang = array_merge($lang, array(
 	'DATABASE_INDEXES_SUCCESS'		=> 'Индексы таблиц успешно обновлены!',
 	'DATABASE_TABLES'				=> 'Таблицы базы данных',
 	'DATABASE_TABLES_SUCCESS'		=> 'Таблицы базы данных успешно обновлены!',
-	'DATABASE_ROLE_DATA_SUCCESS'	=> 'Системные роли phpBB были успешно восстановлены!',
 	'DATABASE_ROLE_DATA_SKIP'		=> 'Переустановка системных ролей пропущена',
+	'DATABASE_ROLE_DATA_SUCCESS'	=> 'Системные роли phpBB были успешно восстановлены!',
 	'DATABASE_ROLES_SUCCESS'		=> 'Роли были успешно обновлены!',
 	'DATAFILE_NOT_FOUND'			=> 'Инструмент не может найти требуемый файл данных для текущей версии phpBB! (файл должен находиться в папке /stk/includes/database_cleaner/data)',
 
@@ -74,18 +75,18 @@ $lang = array_merge($lang, array(
 	'EXTENSION_GROUPS_SUCCESS'		=> 'Настройки группы расширений файлов были успешно восстановлены до уровня "По умолчанию"',
 	'EXTENSIONS_SUCCESS'			=> 'Настройки расширений файлов успешно восстановлены',
 
-	'GO_TO_ACP'						=> ' --&raquo; в управление модулем ',
-
 	'FINAL_STEP'					=> 'Это завершающий шаг.<br /><br />Сейчас будет очищен кеш и возобновлен доступ к конференции',
+
+	'GO_TO_ACP'						=> ' --&raquo; в управление модулем ',
 
 	'INSTRUCTIONS'					=> 'Инструкции',
 	'INTRODUCTION'					=> 'Начать сначала',
 	'INDEXES'						=> 'Индексы таблиц БД',
 
 	'MISSING'						=> 'Поврежден',
-	'MODULE_UPDATE_SUCCESS'			=> 'Модули успешно обновлены!',
 	'MODULE_ADD'					=> 'Добавление модуля',
 	'MODULE_ALREADY_EXIST'			=> 'Модуль уже существует',
+	'MODULE_UPDATE_SUCCESS'			=> 'Модули успешно обновлены!',
 
 	'NEXT_STEP'						=> 'Следующий шаг',
 	'NO_BOT_GROUP'					=> 'Боты не переустановлены, отсутствует группа Ботов.',

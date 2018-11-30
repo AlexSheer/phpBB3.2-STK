@@ -394,6 +394,7 @@ $lang = array_merge($lang, array(
 	'remote_upload_verify'				=> '',
 	'allow_board_notifications' 		=> 'Activer les notifications du forum',
 	'allowed_schemes_links'				=> '',
+
 	'REPARSING'							=> 'ré-analyse',
 	'reparse_lock'								=> 'Ré-analyse verrouillée',
 	'text_reparser.pm_text_cron_interval'		=> 'Intervalle du cron pour ré-analyser les textes des MP',

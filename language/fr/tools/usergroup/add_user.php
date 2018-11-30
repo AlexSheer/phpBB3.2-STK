@@ -60,5 +60,5 @@ $lang = array_merge($lang, array(
 	'TOO_SHORT_EMAIL'			=> 'L’adresse e-mail saisie est trop courte.',
 	'EMAIL_INVALID_EMAIL'		=> 'L’adresse e-mail saisie est incorrecte.',
 	'NEW_PASSWORD_ERROR'		=> 'Les mots de passe saisis ne correspondent pas.',
-
+	'DOMAIN_NO_MX_RECORD'	=> 'Le domaine de messagerie saisi n’a pas d’enregistrement de messagerie valide dans les DNS (enregistrement MX).',
 ));
