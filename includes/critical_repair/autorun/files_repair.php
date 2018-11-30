@@ -56,7 +56,8 @@ class erk_files_repair
 
 		// Find .htaccess
 		$info = $this->find_file($paths_htaccess, '.htaccess');
-		if(sizeof($info))
+
+		if ($info)
 		{
 			// Not found, try to repair
 			$this->repair_file($info);
@@ -65,7 +66,7 @@ class erk_files_repair
 		// Find index.htm
 		$info = $this->find_file($paths_index, 'index.htm');
 
-		if(sizeof($info))
+		if ($info)
 		{
 			// Not found, try to repair
 			$this->repair_file($info);
@@ -91,7 +92,7 @@ class erk_files_repair
 				return $file_path;
 			}
 		}
-		return array();
+		return false;
 	}
 
 	/**
