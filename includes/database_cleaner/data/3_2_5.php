@@ -39,7 +39,7 @@ class datafile_3_2_5
 	* @var Array Config entries that were removed by the 3.2.5 update
 	*/
 	var $removed_config = array(
-		// // No config entries removed 3.2.4 -> 3.2.5
+		// No config entries removed 3.2.4 -> 3.2.5
 	);
 
 	/**
