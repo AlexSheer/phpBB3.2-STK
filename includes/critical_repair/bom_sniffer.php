@@ -77,16 +77,18 @@ class erk_bom_sniffer
 	/**
 	* Constructor. Prep the tool
 	*/
-	function erk_bom_sniffer()
+	function __construct()
 	{
-		global $critical_repair, $stk_config, $user;
+		global $critical_repair, $stk_config, $user, $lang;
 
 		$user = $critical_repair->user_setup($user);
+
+		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
 
 		// "Store" must be writable
 		if (@is_writable(PHPBB_ROOT_PATH . 'store') !== true)
 		{
-			$critical_repair->trigger_error($user->lang['ERK_STORE_WRITE']);
+			$critical_repair->trigger_error($lang['ERK_STORE_WRITE']);
 		}
 
 		// Make sure the BOM sniffer dir store dir doesn't exist
@@ -98,7 +100,7 @@ class erk_bom_sniffer
 				// Not empty try to remove the store dir
 				if ($this->recursively_remove_dir(PHPBB_ROOT_PATH . 'store/bom_sniffer') === false)
 				{
-					$critical_repair->trigger_error(sprintf($user->lang['ERK_REMOVE_DIR'], PHPBB_ROOT_PATH . "store/bom_sniffer/"));
+					$critical_repair->trigger_error(sprintf($lang['ERK_REMOVE_DIR'], PHPBB_ROOT_PATH . "store/bom_sniffer/"));
 				}
 			}
 		}
@@ -106,7 +108,7 @@ class erk_bom_sniffer
 		// Read the whitelist
 		if (!file_exists(STK_ROOT_PATH . 'includes/critical_repair/whitelist.txt'))
 		{
-			$critical_repair->trigger_error(sprintf($user->lang['ERK_NO_WHITELIST'], 'http://www.phpbb.com/community/viewforum.php?f=46'));
+			$critical_repair->trigger_error(sprintf($lang['ERK_NO_WHITELIST'], 'https://www.phpbb.com/community/viewforum.php?f=46'));
 		}
 		$this->whitelist = file(STK_ROOT_PATH . 'includes/critical_repair/whitelist.txt', FILE_IGNORE_NEW_LINES);
 
@@ -155,7 +157,11 @@ class erk_bom_sniffer
 	*/
 	function run()
 	{
-		global $critical_repair, $stk_config;
+		global $critical_repair, $stk_config, $user, $lang;
+
+		$user = $critical_repair->user_setup($user);
+
+		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
 
 		// Get all the files
 		$filelist = filelist(PHPBB_ROOT_PATH, '', PHP_EXT);
@@ -214,7 +220,7 @@ class erk_bom_sniffer
 		// Inform the user what to do if we've created files
 		if (is_dir(PHPBB_ROOT_PATH . 'store/bom_sniffer'))
 		{
-			$critical_repair->trigger_error($user->lang['ERK_ISSUE_FOUND']);
+			$critical_repair->trigger_error($lang['ERK_ISSUE_FOUND']);
 		}
 	}
 
@@ -989,11 +995,13 @@ class _erk_bom_sniffer_cache
 	/**
 	* Construct the sniffer cache
 	*/
-	function _erk_bom_sniffer_cache($bom_sniffer)
+	function __construct($bom_sniffer)
 	{
-		global $critical_repair, $user;
+		global $critical_repair, $lang, $user;
 
 		$user = $critical_repair->user_setup($user);
+
+		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
 
 		$this->bom_sniffer = $bom_sniffer;
 
@@ -1002,7 +1010,7 @@ class _erk_bom_sniffer_cache
 		// Dir exists and is writable
 		if (@is_writable($this->_cache_path) !== true)
 		{
-			$critical_repair->trigger_error($user->lang['BOM_SNIFFER_WRITABLE']);
+			$critical_repair->trigger_error($lang['BOM_SNIFFER_WRITABLE']);
 		}
 
 		// If we've got data cached for this load it.

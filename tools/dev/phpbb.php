@@ -25,13 +25,13 @@ class phpbb
 	*/
 	function display_options()
 	{
-		global $template, $user, $request;
+		global $template, $user, $request, $lang;
 		$file_name = $request->variable('f', '');
 
 		page_header(user_lang('SUPPORT_TOOL_KIT'));
 		$dir = PHPBB_ROOT_PATH;
 
-		if($file_name)
+		if ($file_name)
 		{
 			$template->assign_vars(array(
 				'S_CONTENTS'	=> true,
@@ -47,7 +47,7 @@ class phpbb
 			}
 			else
 			{
-				trigger_error($user->lang['FILE_NOT_FOUND']);
+				trigger_error($lang['FILE_NOT_FOUND']);
 			}
 
 			$template->assign_vars(array(
@@ -56,8 +56,9 @@ class phpbb
 		}
 		else
 		{
-			$time_start = $this->microtime_float();
 			global $list_dir_count, $filecount, $list, $root_path, $exclude_paths, $exclude_ext, $root_dir_files, $root_dir_folders, $dirs;
+
+			$time_start = $this->microtime_float();
 			$list_dir_count = $filecount = 0;
 			$dirs = $list = array();
 			$root_path = $dir;
@@ -70,7 +71,7 @@ class phpbb
 			$list = $this->list_dir($root_path);
 			$reversed = array_reverse($list);
 			$code = '';
-			foreach($reversed as $item)
+			foreach ($reversed as $item)
 			{
 				$code .= "\t\t$item\n";
 			}
@@ -96,7 +97,7 @@ class phpbb
 		$folders = array();
 		$files = array();
 
-		if ($handle = opendir($path))
+		if ($handle = @opendir($path))
 		{
 			while (false !== ($file = readdir($handle)))
 			{
@@ -137,21 +138,23 @@ class phpbb
 				$this->list_dir($folders[$i], $list_dir_count);
 			}
 			closedir($handle);
+			return $list;
 		}
-		return $list;
+		return false;
 	}
 
 	function dir_count($path, $exclude_paths)
 	{
 		global $dirs;
-		foreach($exclude_paths as $ex)
+
+		foreach ($exclude_paths as $ex)
 		{
 			$exclude[] = PHPBB_ROOT_PATH . '/' . $ex . '';
 		}
 		if (!in_array($path, $exclude))
 		{
 			$files = glob($path . '/*', GLOB_ONLYDIR);
-			foreach($files as $dir)
+			foreach ($files as $dir)
 			{
 				$dirs[] = $dir;
 				$this->dir_count($dir, $exclude_paths);
@@ -163,9 +166,9 @@ class phpbb
 	{
 		$files = scandir($path);
 		$f_count = 0;
-		foreach($files as $unit)
+		foreach ($files as $unit)
 		{
-			if(!is_dir($unit))
+			if (!is_dir($unit))
 			{
 				$f_count++;
 			}

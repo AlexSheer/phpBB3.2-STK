@@ -24,6 +24,8 @@ class add_user
 	*/
 	function display_options()
 	{
+		global $config;
+
 		return array(
 			'title'	=> 'ADD_USER',
 			'vars'	=> array(
@@ -32,8 +34,8 @@ class add_user
 				'new_password'		=> array('lang' => 'PASSWORD', 'explain' => false, 'type' => 'password:40:255'),
 				'password_confirm'	=> array('lang' => 'PASSWORD_CONFIRM', 'explain' => false, 'type' => 'password:40:255'),
 				'email'				=> array('lang' => 'EMAIL_ADDRESS', 'explain' => false, 'type' => 'text:40:255'),
-				'lang'				=> array('lang' => 'LANGUAGE', 'explain' => false, 'type' => 'select', 'function' => 'language_select'),
-				'tz'				=> array('lang' => 'TIMEZONE', 'explain' => false, 'type' => 'select', 'function' => 'tz_select'),
+				'lang'				=> array('lang' => 'LANGUAGE', 'explain' => false, 'type' => 'select', 'function' => 'language_select', 'params' => array($config['default_lang'])),
+				'tz'				=> array('lang' => 'TIMEZONE', 'explain' => false, 'type' => 'select', 'function' => 'tz_select', 'params' => array($config['board_timezone'])),
 
 				'legend2'			=> 'ADD_USER_GROUP',
 				'usergroups'		=> array('lang' => 'USER_GROUPS', 'explain' => true, 'type' => 'select_multiple', 'function' => 'get_groups'),

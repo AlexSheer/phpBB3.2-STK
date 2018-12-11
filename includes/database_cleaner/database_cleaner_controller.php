@@ -844,7 +844,7 @@ class database_cleaner_controller
 
 								UPDATE " . REPORTS_TABLE . '
 									SET reason_id = ' . (int) $other_reason_id . '
-								WHERE reason_id = ' . (int) $reason_id;
+								WHERE reason_id = ' . (int) $row['reason_id'];
 					break;
 
 					// Teh standard
@@ -1051,8 +1051,9 @@ class database_cleaner_controller
 			if (!class_exists('acp_modules'))
 			{
 				include(STK_ROOT_PATH . 'includes/acp_modules.' . $phpEx);
-				$acp_tools = new acp_modules();
 			}
+
+			$acp_tools = new acp_modules();
 
 			$module_ids = $class = array();
 
@@ -1067,7 +1068,7 @@ class database_cleaner_controller
 				ORDER BY module_id ASC';
 
 			$result = $db->sql_query($sql);
-			while($row = $db->sql_fetchrow($result))
+			while ($row = $db->sql_fetchrow($result))
 			{
 				$class[$row['module_id']] = $row['module_class'];
 			}
@@ -1075,7 +1076,7 @@ class database_cleaner_controller
 
 			foreach (array_keys($selected) as $module_id)
 			{
-				if(is_numeric($module_id))
+				if (is_numeric($module_id))
 				{
 					// Delete module
 					$this->delete_module($module_id, $acp_tools, $class[$module_id]);
@@ -1085,7 +1086,7 @@ class database_cleaner_controller
 					// Add module
 					$module_langname = strtoupper($module_id);
 					$key = array_find($this->db_cleaner->data->acp_modules, $module_langname);
-					if($key)
+					if ($key)
 					{
 						$sql = 'SELECT module_class, module_id
 							FROM ' . MODULES_TABLE . '
@@ -1116,7 +1117,7 @@ class database_cleaner_controller
 							$module = $info->module();
 							unset($info);
 
-							foreach($module['modes'] as $key => $value)
+							foreach ($module['modes'] as $key => $value)
 							{
 								if ($value['title'] == $module_langname)
 								{
@@ -1153,12 +1154,12 @@ class database_cleaner_controller
 		if (sizeof($branch))
 		{
 			// Yes, module has a childrens
-			foreach($branch as $module)
+			foreach ($branch as $module)
 			{
 				if ($module['module_id'] != $module_id)
 				{
 					// Try to delete childrens
-					if($this->get_module_row($module['module_id'], $class))
+					if ($this->get_module_row($module['module_id'], $class))
 					{
 						$acp_tools->delete_module($module['module_id']);
 					}
@@ -1166,7 +1167,7 @@ class database_cleaner_controller
 				}
 			}
 			// Try to delete parent
-			if($this->get_module_row($module_id, $class)) // module exits?
+			if ($this->get_module_row($module_id, $class)) // module exits?
 			{
 				$acp_tools->delete_module($module_id);
 			}
@@ -1175,7 +1176,7 @@ class database_cleaner_controller
 		{
 			// No, hasn't childrens
 			// Try to delete, but first check if module exists
-			if($this->get_module_row($module_id, $class)) // module exits?
+			if ($this->get_module_row($module_id, $class)) // module exits?
 			{
 				$acp_tools->delete_module($module_id);
 			}

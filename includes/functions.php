@@ -319,7 +319,7 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 			setcookie('stk_token', '', (time() - 31536000));
 			$user->unset_admin();
 			meta_refresh(3, append_sid(PHPBB_ROOT_PATH . 'index.' . PHP_EXT));
-			trigger_error('STK_LOGOUT_SUCCESS');
+			trigger_error($lang['STK_LOGOUT_SUCCESS']);
 		break;
 
 		// Can't rely on phpBB to get the phpBB version.
