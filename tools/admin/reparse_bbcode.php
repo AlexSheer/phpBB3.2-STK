@@ -313,7 +313,7 @@ class reparse_bbcode
 		switch ($mode)
 		{
 			case BBCODE_REPARSE_POSTS :
-				if(sizeof($reparse_posts))
+				if (sizeof($reparse_posts))
 				{
 					$sql_where = ' AND ' . $db->sql_in_set('p.post_id', $reparse_posts);
 				}
