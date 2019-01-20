@@ -145,13 +145,6 @@ class reparse_bbcode
 		$step				= $request->variable('step', 0);
 		$start				= $step * $this->step_size;
 		$cnt				= 0;
-		$sql_forum_where	= '';
-
-		if (sizeof($reparse_forum_ids) && !$all)
-		{
-			$reparse_id = '';
-			$sql_forum_where = ' WHERE ' . $db->sql_in_set('forum_id', $reparse_forum_ids);
-		}
 
 		if (!sizeof($reparse_forum_ids) && !$reparse_id && !$reparse_pm_id && !$all && $step == 0)
 		{
@@ -161,6 +154,21 @@ class reparse_bbcode
 		// If post IDs or PM IDs were specified, we need to make sure the list is valid.
 		$reparse_posts = array();
 		$reparse_pms = array();
+
+		if ($reparse_forum_ids)
+		{
+			$reparse_id = '';
+
+			$sql = 'SELECT post_id
+				FROM ' . POSTS_TABLE . '
+					WHERE ' . $db->sql_in_set('forum_id', $reparse_forum_ids);
+			$result = $db->sql_query($sql);
+			while ($row = $db->sql_fetchrow())
+			{
+				$reparse_id .= $row['post_id'] . ',';
+			}
+			$db->sql_freeresult($result);
+		}
 
 		if (!empty($reparse_id))
 		{
@@ -286,7 +294,7 @@ class reparse_bbcode
 
 				$sql = "SELECT COUNT({$ccol}) AS cnt
 					FROM {$ctab}
-					{$sql_where}{$sql_forum_where}";
+					{$sql_where}";
 				$result		= $db->sql_query($sql);
 				$this->max	= $db->sql_fetchfield('cnt', false, $result);
 				$db->sql_freeresult($result);
@@ -299,24 +307,13 @@ class reparse_bbcode
 
 				// Make sure that the loop is finished
 				$last_batch = true;
-				if(!$reparse_id && empty($reparse_forum_ids))
-				{
-					// Done!
-					$cache->destroy('_stk_reparse_posts');
-					$cache->destroy('_stk_reparse_pms');
-					trigger_error(user_lang('REPARSE_BBCODE_COMPLETE'));
-				}
 			}
 		}
 
 		switch ($mode)
 		{
 			case BBCODE_REPARSE_POSTS :
-				if(sizeof($reparse_forum_ids))
-				{
-					$sql_where = ' AND ' . $db->sql_in_set('f.forum_id', $reparse_forum_ids);
-				}
-				else if(sizeof($reparse_posts))
+				if(sizeof($reparse_posts))
 				{
 					$sql_where = ' AND ' . $db->sql_in_set('p.post_id', $reparse_posts);
 				}
