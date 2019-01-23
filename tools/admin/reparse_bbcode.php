@@ -119,6 +119,7 @@ class reparse_bbcode
 				'create_backup'		=> array('lang' => 'CREATE_BACKUP_TABLE', 'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 				'reparseids'		=> array('lang'	=> 'REPARSE_POST_IDS', 'type' => 'textarea:3:255', 'explain' => 'true'),
 				'reparsepms'		=> array('lang' => 'REPARSE_PM_IDS', 'type' => 'textarea:3:255', 'explain' => 'true'),
+				'reparsesig'		=> array('lang' => 'REPARSE_SIG', 'type' => 'checkbox', 'explain' => true),
 				'reparseforums'		=> array('lang' => 'REPARSE_FORUMS', 'explain' => true, 'type' => 'select_multiple', 'function' => 'get_forums'),
 				'reparseall'		=> array('lang' => 'REPARSE_ALL', 'type' => 'checkbox', 'explain' => true),
 			),
@@ -145,8 +146,14 @@ class reparse_bbcode
 		$step				= $request->variable('step', 0);
 		$start				= $step * $this->step_size;
 		$cnt				= 0;
+		$reparse_sig		= $request->variable('reparsesig', false);
 
-		if (!sizeof($reparse_forum_ids) && !$reparse_id && !$reparse_pm_id && !$all && $step == 0)
+		if ($reparse_sig)
+		{
+			$mode = BBCODE_REPARSE_SIGS;
+		}
+
+		if (!sizeof($reparse_forum_ids) && !$reparse_id && !$reparse_pm_id && !$all && !$reparse_sig && $step == 0)
 		{
 			trigger_error(user_lang('REPARSE_IDS_EMPTY'), E_USER_WARNING);
 		}
