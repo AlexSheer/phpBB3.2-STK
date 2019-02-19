@@ -63,6 +63,8 @@ $lang = array_merge($lang, array(
 	'REPARSE_PM_IDS_EXPLAIN'		=> 'To reparse specific PMs only, specify PM IDs in a comma-separated list (e.g. 1,2,3,5,8,13).',
 	'REPARSE_FORUMS'				=> 'Reparse Posts from specific forums',
 	'REPARSE_FORUMS_EXPLAIN'		=> 'To select multiple forums some or all of the proper use for your computer and browser combination of mouse and keyboard.',
+	'REPARSE_SIG'					=> 'Reparse only user signatures',
+	'REPARSE_SIG_EXPLAIN'			=> 'if checked, BBcodes will be reparsed only in user data.',
 	'CREATE_BACKUP_TABLE'			=> 'Create Backup',
 	'CREATE_BACKUP_TABLE_EXPLAIN'	=> 'The database table will be created from which you can restore messages in case of failure or emergency shutdown.'
 ));
