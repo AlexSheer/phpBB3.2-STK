@@ -61,6 +61,8 @@ $lang = array_merge($lang, array(
 	'REPARSE_PM_IDS_EXPLAIN'		=> 'Réanalyse seulement les messages privés spécifiques. Chaque ID doit être séparé par une virgule (exemple : 1,2,3,5,8,13).',
 	'REPARSE_FORUMS'				=> 'Réanalyser les messages de forums spécifiques',
 	'REPARSE_FORUMS_EXPLAIN'		=> 'Sélectionner plusieurs forums tout ou partie en utilisant la combinaison de la souris et du clavier.',
+	'REPARSE_SIG'					=> 'Réanalyser uniquement les signatures des membres',
+	'REPARSE_SIG_EXPLAIN'			=> 'Permet de réanalyser uniquement les BBCodes présents dans les données utilisateur.',
 	'CREATE_BACKUP_TABLE'			=> 'Créer une sauvegarde',
 	'CREATE_BACKUP_TABLE_EXPLAIN'	=> 'La table de la base de données sera créée, à partir de laquelle il sera possible de restaurer les messages en cas de panne ou d’arrêt d’urgence.'
 ));
