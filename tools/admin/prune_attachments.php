@@ -45,7 +45,7 @@ class prune_attachments
 
 			$dir = '' . PHPBB_ROOT_PATH . '' . $config['upload_path'];
 			$files_list = $cache->get('_stk_prune_attachments'); // Try get data from cache
-			if(!$files_list)
+			if (!$files_list)
 			{
 				// No data in cache
 				$files = scan($dir, $files);
@@ -53,9 +53,9 @@ class prune_attachments
 					FROM ' . ATTACHMENTS_TABLE;
 				$result = $db->sql_query($sql);
 
-				while($data = $db->sql_fetchrow($result))
+				while ($data = $db->sql_fetchrow($result))
 				{
-					if($subfolders)
+					if ($subfolders)
 					{
 						// Attachments in subfolders
 						$ais_folder_1 = substr(substr($data['attach_id'] + 1000000, -6), 0, 2);
@@ -101,7 +101,7 @@ class prune_attachments
 					sort($files);
 					$count++;
 				}
-				if($count > ($this->_batch_size - 1))
+				if ($count > ($this->_batch_size - 1))
 				{
 					$cache->destroy('_stk_prune_attachments');
 					$cache->put('_stk_prune_attachments', $files);
@@ -109,7 +109,7 @@ class prune_attachments
 				}
 			}
 
-			if(sizeof($delete_list))
+			if (sizeof($delete_list))
 			{
 				$list .= implode('<br />', $delete_list);
 				$exit = false;
@@ -120,12 +120,12 @@ class prune_attachments
 				$exit = true;
 			}
 
-			if(sizeof($unsuccess))
+			if (sizeof($unsuccess))
 			{
 				$list .= '' . user_lang('PRUNE_ATTACHMENTS_FAIL') . '<br />' . implode('<br />', $unsuccess) . '';
 			}
 
-			if($exit)
+			if ($exit)
 			{
 				$cache->destroy('_stk_prune_attachments');
 				if ((sizeof($unsuccess)))
@@ -148,10 +148,6 @@ class prune_attachments
 
 		$template->assign_vars(array(
 			'U_DISPLAY_ACTION'	=> append_sid(STK_INDEX, 't=prune_attachments&amp;go=1'),
-/*
-			'L_PRUNE_ATTACHMENTS'			=> user_lang('PRUNE_ATTACHMENTS'),
-			'L_PRUNE_ATTACHMENTS_EXPLAIN'	=> user_lang('PRUNE_ATTACHMENTS_EXPLAIN'),
-*/
 		));
 
 		$template->set_filenames(array(
@@ -164,16 +160,24 @@ class prune_attachments
 
 function scan($path,&$res)
 {
+	global $config;
+
 	$mass = scandir($path);
-	for($i = 0; $i <= count($mass) - 1; $i++)
+
+	if ($path == '' . PHPBB_ROOT_PATH . '' . $config['upload_path'] .'/phpbbgallery')
 	{
-		if($mass[$i] != '..' && $mass[$i] != '.' && $mass[$i] != 'index.htm' && $mass[$i] != '.htaccess')
+		return;
+	}
+
+	for ($i = 0; $i <= count($mass) - 1; $i++)
+	{
+		if ($mass[$i] != '..' && $mass[$i] != '.' && $mass[$i] != 'index.htm' && $mass[$i] != '.htaccess')
 		{
 			array_push($res, '' . $path . '/' . $mass[$i] . '');
 		}
-		if(!strstr($mass[$i], '.'))
+		if (!strstr($mass[$i], '.'))
 		{
-			if(is_dir($path . '/' . $mass[$i]))
+			if (is_dir($path . '/' . $mass[$i]))
 			{
 				scan($path . '/' . $mass[$i], $res);
 			}
