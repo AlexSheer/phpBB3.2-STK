@@ -42,7 +42,7 @@ class prune_avatars
 
 			$dir = '' . PHPBB_ROOT_PATH . '' . $config['avatar_path'] . '/';
 			$files = $cache->get('_stk_prune_avatar'); // Try get data from cache
-			if(!$files)
+			if (!$files)
 			{
 				// No data in cache
 				$files = array_diff(scandir($dir), array('..', '.', '.htaccess', 'index.htm'));
@@ -52,7 +52,7 @@ class prune_avatars
 						WHERE user_avatar_type = \'avatar.driver.upload\'';
 				$result = $db->sql_query($sql);
 
-				while($data = $db->sql_fetchrow($result))
+				while ($data = $db->sql_fetchrow($result))
 				{
 					$ext = explode('.', $data['user_avatar']);
 					$filename = explode('_', $data['user_avatar']);
@@ -84,7 +84,7 @@ class prune_avatars
 					sort($files);
 					$count++;
 				}
-				if($count > ($this->_batch_size - 1))
+				if ($count > ($this->_batch_size - 1))
 				{
 					$cache->destroy('_stk_prune_avatar');
 					$cache->put('_stk_prune_avatar', $files);
@@ -92,7 +92,7 @@ class prune_avatars
 				}
 			}
 
-			if(sizeof($delete_list))
+			if (sizeof($delete_list))
 			{
 				$list .= implode('<br />', $delete_list);
 				$exit = false;
@@ -103,12 +103,12 @@ class prune_avatars
 				$exit = true;
 			}
 
-			if(sizeof($unsuccess))
+			if (sizeof($unsuccess))
 			{
 				$list .= '' . user_lang('PRUNE_AVATARS_FAIL') . '<br />' . implode('<br />', $unsuccess) . '';
 			}
 
-			if($exit)
+			if ($exit)
 			{
 				$cache->destroy('_stk_prune_avatar');
 				if ((sizeof($unsuccess)))
