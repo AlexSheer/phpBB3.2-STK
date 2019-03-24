@@ -112,6 +112,11 @@ class srt_generator
 					'p_callback'	=> PHP_VERSION,
 				),
 				array(
+					'name'			=> 'gzip',
+					'type'			=> 'text',
+					'p_callback'	=> array($this, '_prefill_gzip'),
+				),
+				array(
 					'name'			=> 'host_name',
 					'type'			=> 'text',
 				),
@@ -540,20 +545,12 @@ class srt_generator
 		return implode("\n", $_languages);
 	}
 
-	/**
-	 * If the user has AutoMOD installed prefill the "Mods installed" field
-	 * with all MODs know by AutoMOD.
-	 *
-	 * @return	BooleanString	False if no AutoMOD was found or when no
-	 *							MODs where installed with it. Otherwise all the
-	 *							MODs that where found in the db
-	 * @access	private
-	 */
 	function _prefill_installed_mods()
 	{
 		global $db;
-		$_extensions = array();
 
+		$_extensions = array();
+		$dir = '' . PHPBB_ROOT_PATH . 'ext/';
 		$sql = 'SELECT ext_name
 			FROM ' . EXT_TABLE . '
 			WHERE ext_active = 1';
@@ -561,7 +558,10 @@ class srt_generator
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$_extensions[] = ''. $row['ext_name'] .' (active)';
+			$file = $dir . $row['ext_name'] . '/composer.json';
+			$url = $this->get_ext_url($row['ext_name']);
+
+			$_extensions[] = '' . $row['ext_name'] . ' (active) ' . '' . $url . '';
 		}
 
 		$sql = 'SELECT ext_name
@@ -571,11 +571,11 @@ class srt_generator
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$_extensions[] = ''. $row['ext_name'] .' (disabled)';
+			$_extensions[] = '' . $row['ext_name'] . ' (disabled)';
 		}
 
 		$db->sql_freeresult($result);
-		$ex =   implode("\n", $_extensions);
+		$ex = implode("\n", $_extensions);
 
 		return implode("\n", $_extensions);
 	}
@@ -615,7 +615,7 @@ class srt_generator
 	 */
 	function _prefill_phpbb_version()
 	{
-		global $config;
+		global $config, $lang;
 
 		if (version_compare(strtolower($config['version']), strtolower(PHPBB_VERSION), 'eq'))	// use strtolower as my local php installation seems to think that x.y.z-PL1 != x.y.z-pl1
 		{
@@ -624,5 +624,29 @@ class srt_generator
 		}
 
 		return false;
+	}
+
+	function _prefill_gzip()
+	{
+		global $config, $lang;
+
+		return ($config['gzip_compress']) ? $lang['YES'] : $lang['NO'];
+
+	}
+
+	function get_ext_url($ext)
+	{
+		$url = false;
+		$dir = '' . PHPBB_ROOT_PATH . 'ext/';
+		$file = $dir . $ext . '/composer.json';
+		if (file_exists($file))
+		{
+			$content = file_get_contents($file);
+			if (preg_match('/"homepage": "(.*?)",/', $content, $matches))
+			{
+				$url = $matches[1];
+			}
+		}
+		return $url;
 	}
 }
