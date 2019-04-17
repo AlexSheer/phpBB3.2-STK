@@ -313,13 +313,13 @@ class config_list
 				case 'load'				:
 					$where = $config_load;
 				break;
-				case 'search'		:
+				case 'search'			:
 					$where = $config_search;
 				break;
-				case 'reparsing'	:
+				case 'reparsing'		:
 					$where = $config_reparsing;
 				break;
-				case 'misc'		:
+				case 'misc'				:
 					$where = $config_misc;
 				break;
 				default:
@@ -332,7 +332,7 @@ class config_list
 
 		$sql = 'SELECT COUNT(config_name) as count
 				FROM ' . CONFIG_TABLE . '
-				' . $sql_where ;
+				' . $sql_where;
 		$result = $db->sql_query($sql);
 		$count = $db->sql_fetchfield('count');
 		$db->sql_freeresult($result);
@@ -346,7 +346,8 @@ class config_list
 		$not_bool = array('assets_version', 'form_token_mintime', 'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width', 'max_attachments_pm', 'max_autologin_time', 'max_post_img_height',
 			'max_post_img_width', 'max_post_smilies', 'max_post_urls', 'max_sig_img_height', 'max_sig_img_width', 'max_sig_smilies', 'num_files', 'default_style', 'cron_lock', 'upload_dir_size',
 			'num_posts', 'num_topics', 'num_users', 'pm_edit_time', 'pm_max_recipients', 'search_interval', 'search_anonymous_interval', 'search_indexing_state', 'plupload_last_gc', 'warnings_expire_days',
-			'last_queue_run', 'text_reparser.user_signature_last_cron', 'update_hashes_last_cron', 'warnings_last_gc', 'session_last_gc', 'cache_last_gc'
+			'last_queue_run', 'text_reparser.user_signature_last_cron', 'update_hashes_last_cron',
+			'warnings_last_gc', 'session_last_gc', 'cache_last_gc', 'database_last_gc', 'read_notification_last_gc', 'search_last_gc',
 		);
 		$ex_time_gc = array('database_gc', 'cache_gc', 'session_gc', 'search_gc', 'warnings_gc', 'read_notification_gc');
 
@@ -384,7 +385,7 @@ class config_list
 				'S_NO_CHECKED'			=> (!$row['config_value'] && $is_bool) ? 'checked="checked"' : '',
 				'NO_DINAMIC_CHECKED'	=> (!$row['is_dynamic']) ? 'checked="checked"' : '',
 				'S_BOOL'				=> ($is_bool) ? true : false,
-				'HUMAN_DATE'			=> (!in_array($row['config_name'], $ex_time_gc) && ((substr($row['config_name'], -3, 3) === '_gc') || $row['config_name'] === 'last_queue_run' || $row['config_name'] === 'rand_seed_last_update') || $row['config_name'] == 'record_online_date' || $row['config_name'] == 'help_send_statistics_time' || (in_array($row['config_name'], $human_date))) ? $user->format_date($row['config_value'], '|d M Y|, H:i:s'): ''
+				'HUMAN_DATE'			=> (!in_array($row['config_name'], $ex_time_gc) && ((substr($row['config_name'], -3, 3) === '_gc') && $row['config_value'] || $row['config_name'] === 'last_queue_run' || $row['config_name'] === 'rand_seed_last_update') || $row['config_name'] == 'record_online_date' || $row['config_name'] == 'help_send_statistics_time' || (in_array($row['config_name'], $human_date))) ? $user->format_date($row['config_value'], '|d M Y|, H:i:s'): ''
 			));
 		}
 		$db->sql_freeresult($result);
