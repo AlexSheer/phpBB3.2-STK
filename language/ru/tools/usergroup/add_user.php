@@ -60,4 +60,5 @@ $lang = array_merge($lang, array(
 	'EMAIL_INVALID_EMAIL'		=> 'Введённый адрес email неверен.',
 	'NEW_PASSWORD_ERROR'		=> 'Введённые вами пароли не совпадают.',
 	'DOMAIN_NO_MX_RECORD'	=> 'Введённый домен email не имеет корректной почтовой записи в DNS (MX record).',
+	'USERNAME_TAKEN'		=> 'Извините, пользователь с таким именем уже существует',
 ));
