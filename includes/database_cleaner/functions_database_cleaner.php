@@ -450,46 +450,35 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 		}
 	}
 
-	// Perform some actions that only have to be done on given versions or on all
-	switch($phpbb_version)
+	// The extension group names have been changed, remove the old ones
+	foreach ($data->extension_groups as $key => $null)
 	{
-		case '3_2_0'	:
-		case '3_2_1'	:
-		case '3_2_2'	:
-		case '3_2_3'	:
-		case '3_2_4'	:
-		case '3_2_5'	:
-			// The extension group names have been changed, remove the old ones
-			foreach ($data->extension_groups as $key => $null)
-			{
-				if (strpos($key, 'EXT_') === 0)
-				{
-					unset($data->extension_groups[$key]);
-				}
-			}
-
-			// Same for the extensions
-			foreach ($data->extensions as $key => $null)
-			{
-				if (strpos($key, 'EXT_') === 0)
-				{
-					unset($data->extensions[$key]);
-				}
-			}
-
-			// If $config['questionnaire_unique_id] exists add it to the config data array
-			if (isset($config['questionnaire_unique_id']))
-			{
-				$data->config['questionnaire_unique_id'] = array('config_value' => $config['questionnaire_unique_id'], 'is_dynamic' => '0');
-			}
-
-			// Need to force do some ordering on $module_extras
-			$extra_add = array('ACP_FORUM_PERMISSIONS_COPY');
-			array_splice($data->module_extras['acp']['ACP_FORUM_BASED_PERMISSIONS'], 1, 0, $extra_add);
-
-			$data->config['version'] = $phpbb_version;		// We always need to set the version afterwards
-		break;
+		if (strpos($key, 'EXT_') === 0)
+		{
+			unset($data->extension_groups[$key]);
+		}
 	}
+
+	// Same for the extensions
+	foreach ($data->extensions as $key => $null)
+	{
+		if (strpos($key, 'EXT_') === 0)
+		{
+			unset($data->extensions[$key]);
+		}
+	}
+
+	// If $config['questionnaire_unique_id] exists add it to the config data array
+	if (isset($config['questionnaire_unique_id']))
+	{
+		$data->config['questionnaire_unique_id'] = array('config_value' => $config['questionnaire_unique_id'], 'is_dynamic' => '0');
+	}
+
+	// Need to force do some ordering on $module_extras
+	$extra_add = array('ACP_FORUM_PERMISSIONS_COPY');
+	array_splice($data->module_extras['acp']['ACP_FORUM_BASED_PERMISSIONS'], 1, 0, $extra_add);
+
+	$data->config['version'] = $phpbb_version;		// We always need to set the version afterwards
 
 	// Call init
 	$data->init();
