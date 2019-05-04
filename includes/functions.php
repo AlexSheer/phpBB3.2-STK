@@ -1184,3 +1184,95 @@ function get_groups()
 
 	return $option_list;
 }
+
+function delete_style($style)
+{
+	global $db, $lang, $config;
+
+	$id = $style['style_id'];
+	$path = $style['style_path'];
+	$default_style = $config['default_style'];
+
+	// Check if style has child styles
+	$sql = 'SELECT style_id, style_path, style_name, style_parent_id
+		FROM ' . STYLES_TABLE . '
+		WHERE style_parent_id = ' . (int) $id . " OR style_parent_tree = '" . $db->sql_escape($path) . "'";
+	$result = $db->sql_query($sql);
+
+	$conflict = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
+
+	if ($conflict !== false)
+	{
+		// try to delete parent
+		if (!delete_style($conflict))
+		{
+			return sprintf($lang['STYLE_UNINSTALL_DEPENDENT'], $style['style_name']);
+		}
+	}
+
+	// Change default style for users
+	$sql = 'UPDATE ' . USERS_TABLE . '
+		SET user_style = ' . (int) $default_style . '
+		WHERE user_style = ' . $id;
+	$db->sql_query($sql);
+
+	// Uninstall style
+	$sql = 'DELETE FROM ' . STYLES_TABLE . '
+		WHERE style_id = ' . $id;
+	$db->sql_query($sql);
+
+	delete_files($path);
+	return true;
+}
+
+function delete_files($path, $dir = '')
+{
+	$styles_path = '' . PHPBB_ROOT_PATH . 'styles/';
+	$dirname = $styles_path . $path . $dir;
+	$result = true;
+
+	$dp = @opendir($dirname);
+
+	if ($dp)
+	{
+		while (($file = readdir($dp)) !== false)
+		{
+			if ($file == '.' || $file == '..')
+			{
+				continue;
+			}
+			$filename = $dirname . '/' . $file;
+			if (is_dir($filename))
+			{
+				if (!delete_files($path, $dir . '/' . $file))
+				{
+					$result = false;
+				}
+			}
+			else
+			{
+				if (!@unlink($filename))
+				{
+					$result = false;
+				}
+			}
+		}
+		closedir($dp);
+	}
+	if (!@rmdir($dirname))
+	{
+		return false;
+	}
+
+	return $result;
+}
+function output($msg)
+{
+	global $template;
+
+	$template->assign_vars(array(
+		'OUTPUT'	=> $msg,
+	));
+}
+

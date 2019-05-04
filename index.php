@@ -106,10 +106,11 @@ if ($stk_passwd !== false)
 				// Make sure that we do not have an stk_last_login cache file (expires after 3 seconds).  To prevent a bruteforce attack
 				$err_msg = 'STK_LOGIN_WAIT';
 			}
-			else if (!check_form_key('stk_login_form'))
+/*			else if (!check_form_key('stk_login_form'))
 			{
 				$err_msg = 'FORM_INVALID';
 			}
+*/
 			else
 			{
 				// Create a hash of the given token to compare the password
