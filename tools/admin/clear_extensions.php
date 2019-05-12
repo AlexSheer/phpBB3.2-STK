@@ -110,7 +110,7 @@ class clear_extensions
 				WHERE ' . $db->sql_in_set('ext_name', $uids, false);
 			$db->sql_query($sql);
 			$cache->purge(); // Purge the cache
-			trigger_error('ON_EXT_SUCCESS');
+			trigger_error($lang['ON_EXT_SUCCESS']);
 		}
 
 		$sql = 'SELECT *
