@@ -27,15 +27,18 @@ class users_nogroups
 	* Output the options available
 	*/
 	function display_options()
-	{		global $db, $template;
+	{
+		global $db, $template;
 
 		$sql = 'SELECT user_id, username, user_colour
 			FROM ' . USERS_TABLE . '
 				WHERE user_id NOT IN(SELECT user_id FROM ' . USER_GROUP_TABLE . ')';
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
-		{			if ($row['user_id'] == 1)
-			{				$sql = 'INSERT INTO ' . USER_GROUP_TABLE . ' (group_id, user_id, group_leader, user_pending) VALUES (1, 1, 0, 0)';
+		{
+			if ($row['user_id'] == 1)
+			{
+				$sql = 'INSERT INTO ' . USER_GROUP_TABLE . ' (group_id, user_id, group_leader, user_pending) VALUES (1, 1, 0, 0)';
 				$db->sql_query($sql);
 			}
 			else
@@ -68,17 +71,14 @@ class users_nogroups
 	*/
 
 	function run_tool()
-	{		global $lang, $request;
-
-		if (!check_form_key('users_nogroups'))
-		{
-			trigger_error('FORM_INVALID');
-		}
+	{
+		global $lang, $request;
 
 		$users = $request->variable('users', array(0));
 
 		if (empty($users))
-		{			trigger_error($lang['NO_USERS_SELECTED'], E_USER_WARNING);
+		{
+			trigger_error($lang['NO_USERS_SELECTED'], E_USER_WARNING);
 		}
 
 		include(PHPBB_ROOT_PATH . 'includes/functions_user.' . PHP_EXT);
@@ -90,8 +90,10 @@ class users_nogroups
 		);
 
 		foreach ($users as $user_id => $usr)
-		{			foreach ($groups['groups'] as $group_id)
-			{				$default = $leader = false;
+		{
+			foreach ($groups['groups'] as $group_id)
+			{
+				$default = $leader = false;
 
 				if ($groups['default'] == $group_id)
 				{
@@ -106,6 +108,7 @@ class users_nogroups
 					return false;
 				}
 			}
-		}		trigger_error($lang['ASSIGHN_GROUPS_SUCCESS']);
+		}
+		trigger_error($lang['ASSIGHN_GROUPS_SUCCESS']);
 	}
 }
