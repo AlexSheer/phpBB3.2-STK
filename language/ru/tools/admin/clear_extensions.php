@@ -62,4 +62,5 @@ $lang = array_merge($lang, array(
 	'NO_COMPOSER'					=> 'Запрашиваемый файл не найден: ' . PHPBB_ROOT_PATH . 'ext/%s/composer.json',
 	'NO_EXTENSIONS_TITLE'			=> 'Расширения',
 	'NO_EXTENSIONS_TEXT'			=> 'Не найдено ни одного установленного расширения',
+	'VERSION_CHECK_FAIL'			=> 'Не удалось получить сведения о последней версии'
 ));
