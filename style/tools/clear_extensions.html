@@ -7,14 +7,21 @@
 		<table cellspacing="1">
 			<tr>
 				<th>{L_EXT_NAME}</th>
-				<th>{L_EXT_PATH}</th>
+				<th>{L_CLEAN_NAME}</th>
+				<th>{L_DETAILS}</th>
 				<th>{L_MISSING_PATH}</th>
 				<th class="mark">{L_MARK}</th>
 			</tr>
 			<!-- BEGIN row -->
 			<tr <!-- IF row.MISSING_PATH or row.NO_COMPOSER -->style="background-color: #BC2A4D; color: #FFF" <!-- ENDIF -->class="<!-- IF row.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
-				<td<!-- IF row.S_ACTIVE --> style="font-weight: bold;"<!-- ENDIF -->><!-- IF row.EXT_MISSING_PATH -->{row.EXT_MISSING_PATH}<!-- ENDIF --> {row.DISPLAY_NAME}<span style="color: <!-- IF row.S_ACTIVE -->#007D00;">{L_S_ACTIVE}<!-- ELSE -->#F00;">{L_S_OFF}<!-- ENDIF --></span></td>
+				<td<!-- IF row.S_ACTIVE --> style="font-weight: bold;"<!-- ENDIF -->><!-- IF row.EXT_MISSING_PATH -->{row.EXT_MISSING_PATH}<!-- ENDIF --> {row.DISPLAY_NAME} <span style="color:<!-- IF row.VERSION_NOT_UP_TO_DATE -->#BC2A4D<!-- ELSEIF row.VERSION_CHECK_FAIL -->#ccc<!-- ELSE -->#007D00<!-- ENDIF -->;"> {row.VERSION} <span style="color:<!-- IF row.S_ACTIVE -->#007D00;">{L_S_ACTIVE}<!-- ELSE -->#BC2A4D;">{L_S_OFF}<!-- ENDIF --></span></td>
 				<td>{row.EXT_NAME}</td>
+				<td>
+					<!-- IF row.VERSION_CHECK and not row.VERSION_CHECK_FAIL -->
+						<a href ="{row.VERSION_CHECK}" target="_blank"><strong><span style="color:<!-- IF row.VERSION_NOT_UP_TO_DATE -->#BC2A4D;"><i class="fa fa-exclamation-circle outdated-ext" aria-hidden="true"></i>&nbsp;{row.L_NOT_UP_TO_DATE}<!-- ELSE -->#007D00;">{L_UP_TO_DATE}<!-- ENDIF --></span></strong></a>&nbsp;<!-- ENDIF --><!-- IF row.VERSION_CHECK_FAIL --><a href ="{row.VERSION_CHECK}" target="_blank"><span style="color:#BC2A4D; font-weight:bold;"><i class="fa fa-exclamation-circle outdated-ext" aria-hidden="true"></i> {L_VERSION_CHECK_FAIL}</span></a>
+					<!-- ENDIF -->
+					<!-- IF row.DOWNLOAD --><br /><a href="{row.DOWNLOAD}" target = "_blank"><strong>{L_DOWNLOAD_LATEST}</strong></a><!-- ENDIF -->
+				</td>
 				<td>{row.MISSING_PATH}</td>
 				<td class="mark"><input type="checkbox" style="cursor:default;" name="marked_name[]" value="{row.EXT_NAME}" /></td>
 			</tr>
