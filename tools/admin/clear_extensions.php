@@ -116,6 +116,7 @@ class clear_extensions
 		}
 
 		$pattern = array('"', ' ');
+		$row_set_disabled = $row_set = array();
 
 		$sql = 'SELECT ext_name, ext_active
 			FROM ' . EXT_TABLE . '
