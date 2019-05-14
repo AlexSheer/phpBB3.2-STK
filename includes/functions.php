@@ -1166,7 +1166,7 @@ function get_groups()
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$selected	= ($row['group_name'] == 'REGISTERED') ? 'selected=selected' : '';
-			$group_name = ($row['group_type'] == GROUP_SPECIAL) ? $lang['G_' . $row['group_name']] : $row['group_name'];
+			$group_name = (($row['group_type'] == GROUP_SPECIAL) && isset($lang['G_' . $row['group_name']])) ? $lang['G_' . $row['group_name']] : $row['group_name'];
 			$option_list .= "<option value='{$row['group_id']}'{$selected}>{$group_name}</option>";
 		}
 
