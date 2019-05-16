@@ -113,6 +113,7 @@ class profile_list
 				switch ($db->get_sql_layer())
 				{
 					case 'mssql'		:
+					case 'mssqli'		:
 					case 'mssqlnative'	:
 						if ($option == 'user_sig')
 						{

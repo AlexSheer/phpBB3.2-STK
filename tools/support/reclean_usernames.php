@@ -49,7 +49,7 @@ class reclean_usernames
 	*/
 	function run_tool()
 	{
-		global $db, $template, $user, $phpbb_root_path, $phpEx, $request;
+		global $db, $template, $user, $phpbb_root_path, $phpEx, $request, $lang;
 
 		$part = $request->variable('part', 0);
 		$limit = 500;
@@ -76,7 +76,7 @@ class reclean_usernames
 				{
 					$url = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=users&amp;mode=overview&amp;u=' . $duplicate['user_id'] . '&amp;sid='. $user->data['session_id']);
 					$problem = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=users&amp;mode=overview&amp;u=' . $row['user_id'] . '&amp;sid='. $user->data['session_id']);
-					trigger_error(sprintf($user->lang['USER_ALREADY_EXISTS'], $duplicate['username'], $url, $row['username'], $problem), E_USER_WARNING);
+					trigger_error(sprintf($lang['USER_ALREADY_EXISTS'], $duplicate['username'], $url, $row['username'], $problem), E_USER_WARNING);
 				}
 
 				$db->sql_query('UPDATE ' . USERS_TABLE . " SET username_clean = '$username_clean' WHERE user_id = {$row['user_id']}");

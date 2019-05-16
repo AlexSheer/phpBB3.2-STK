@@ -7,6 +7,7 @@
 <!-- IF META -->{META}<!-- ENDIF -->
 <title>{PAGE_TITLE}</title>
 
+<link href="{T_FONT_AWESOME_LINK}" rel="stylesheet">
 <link href="style/style.css" rel="stylesheet" type="text/css" media="screen" />
 
 <script type="text/javascript">
@@ -152,48 +153,52 @@ function switch_menu()
 	}
 }
 
-function selectCode(a)
-{
+function selectCode(a) {
+	'use strict';
+
 	// Get ID of code block
 	var e = a.parentNode.parentNode.getElementsByTagName('CODE')[0];
+	var s, r;
 
-	// Not IE
-	if (window.getSelection)
-	{
-		var s = window.getSelection();
-		// Safari
-		if (s.setBaseAndExtent)
-		{
-			s.setBaseAndExtent(e, 0, e, e.innerText.length - 1);
+	// Not IE and IE9+
+	if (window.getSelection) {
+		s = window.getSelection();
+		// Safari and Chrome
+		if (s.setBaseAndExtent) {
+			var l = (e.innerText.length > 1) ? e.innerText.length - 1 : 1;
+			try {
+				s.setBaseAndExtent(e, 0, e, l);
+			} catch (error) {
+				r = document.createRange();
+				r.selectNodeContents(e);
+				s.removeAllRanges();
+				s.addRange(r);
+			}
 		}
 		// Firefox and Opera
-		else
-		{
+		else {
 			// workaround for bug # 42885
-			if (window.opera && e.innerHTML.substring(e.innerHTML.length - 4) == '<BR>')
-			{
+			if (window.opera && e.innerHTML.substring(e.innerHTML.length - 4) === '<BR>') {
 				e.innerHTML = e.innerHTML + '&nbsp;';
 			}
 
-			var r = document.createRange();
+			r = document.createRange();
 			r.selectNodeContents(e);
 			s.removeAllRanges();
 			s.addRange(r);
 		}
 	}
 	// Some older browsers
-	else if (document.getSelection)
-	{
-		var s = document.getSelection();
-		var r = document.createRange();
+	else if (document.getSelection) {
+		s = document.getSelection();
+		r = document.createRange();
 		r.selectNodeContents(e);
 		s.removeAllRanges();
 		s.addRange(r);
 	}
 	// IE
-	else if (document.selection)
-	{
-		var r = document.body.createTextRange();
+	else if (document.selection) {
+		r = document.body.createTextRange();
 		r.moveToElementText(e);
 		r.select();
 	}
@@ -209,7 +214,7 @@ function selectCode(a)
 		<h1>{L_SUPPORT_TOOL_KIT}</h1>
 		<p><a href="{U_STK_INDEX}">{L_SUPPORT_TOOL_KIT_INDEX}</a> &bull; <!-- IF not S_STK_LOGIN --><a href="{U_ADM_INDEX}">{L_ACP}</a> &bull;<!-- ENDIF --> <a href="{U_INDEX}">{L_FORUM_INDEX}</a></p>
 	</div>
-
+{OUTPUT}
 	<!-- IF STK_LOGIN_DISABLE_MSG -->
 	<div class="errorbox">
 		<h3>{L_NOTICE}</h3>

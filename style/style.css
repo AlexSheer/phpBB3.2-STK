@@ -1277,7 +1277,6 @@ li.pagination ul {
 }*/
 
 .clearfix, #tabs, .row, #content, fieldset dl, #page-body {
-	height: 1%;
 	overflow: hidden;
 }
 

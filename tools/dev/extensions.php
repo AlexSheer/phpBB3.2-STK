@@ -39,21 +39,21 @@ class extensions
 
 		$ext_name = $request->variable('ext_name', '');
 
-		if($submit)
+		if ($submit)
 		{
 			if(empty($vendor))
 			{
 				$error[] = $lang['EMPTY_VENDOR'];
 			}
-			if(strlen($vendor) < 3)
+			if (strlen($vendor) < 3)
 			{
 				$error[] = $lang['VENDOR_NAME_TOO_SHORT'];
 			}
-			if(empty($ext_name))
+			if (empty($ext_name))
 			{
 				$error[] = $lang['EMPTY_EXT_NAME'];
 			}
-			if(empty($author))
+			if (empty($author))
 			{
 				$error[] = $lang['EMPTY_AUTHOR'];
 			}
@@ -61,11 +61,11 @@ class extensions
 			{
 				$error[] = $lang['EMPTY_DISPLAY_NAME'];
 			}
-			if(empty($version))
+			if (empty($version))
 			{
 				$error[] = $lang['EMPTY_VERSION'];
 			}
-			if(empty($error))
+			if (empty($error))
 			{
 				$ext_dir = '' . $phpbb_root_path . 'ext/' . $vendor;
 				$handle = @opendir($ext_dir);
@@ -74,11 +74,11 @@ class extensions
 				{
 					mkdir($ext_dir);
 				}
-				if(@opendir($new_dir))
+				if (@opendir($new_dir))
 				{
 					$error[] = $lang['ALREADY_EXISTS'];
 				}
-				if(empty($error))
+				if (empty($error))
 				{
 					mkdir($new_dir);
 					mkdir('' . $new_dir . '/event');

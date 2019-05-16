@@ -98,6 +98,7 @@ if ($stk_passwd !== false)
 	// No active session?
 	if (!$stk_session)
 	{
+		add_form_key('stk_login_form', '_LOGIN');
 		// We're trying to login
 		if (isset($_POST['login']))
 		{
@@ -137,8 +138,6 @@ if ($stk_passwd !== false)
 		// Still no session. Make the user happy and show him something to work with
 		if (!$stk_session)
 		{
-			add_form_key('stk_login_form');
-
 			$template->assign_vars(array(
 				// Password field related
 				'TITLE'			=> $lang['SUPPORT_TOOL_KIT_PASSWORD'],
