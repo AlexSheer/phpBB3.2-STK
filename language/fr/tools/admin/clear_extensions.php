@@ -52,7 +52,7 @@ $lang = array_merge($lang, array(
 	'CLEAR_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été supprimées.',
 	'CLICK_TO_ON'					=> 'Les extensions sélectionnées seront activées.',
 	'ON_EXT'						=> 'Activer',
-	'ON_EXT_SUCCESS'				=> 'Les extensionnées sélectionnées ont été activées avec succès !',
+	'ON_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été activées avec succès !',
 	'OFF_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été désactivées.',
 	'NO_EXT_SELECTED'				=> 'Aucune extension sélectionnée !',
 	'EXT_DELETE'					=> 'Supprimer les extensions',
@@ -63,4 +63,5 @@ $lang = array_merge($lang, array(
 	'NO_COMPOSER'					=> 'Fichier non trouvé : ' . PHPBB_ROOT_PATH . 'ext/%s/composer.json',
 	'NO_EXTENSIONS_TITLE'			=> 'Extensions',
 	'NO_EXTENSIONS_TEXT'			=> 'Aucune extension n’est installée',
+	'VERSION_CHECK_FAIL'			=> 'La récupération de l’information sur la dernière version n’a pas été possible.'
 ));
