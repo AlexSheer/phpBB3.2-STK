@@ -32,10 +32,10 @@ class extensions
 		$vendor = $request->variable('vendor', '');
 		$author = $request->variable('developer', '', true);
 		$version = $request->variable('version', '');
-		$description = $request->variable('description', '');
+		$description = $request->variable('description', '', true);
 		$homepage = $request->variable('homepage', '');
 		$role = $request->variable('role', '');
-		$display_name = $request->variable('display_name', '');
+		$display_name = $request->variable('display_name', '', true);
 
 		$ext_name = $request->variable('ext_name', '');
 
