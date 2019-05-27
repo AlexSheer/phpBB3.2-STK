@@ -348,6 +348,7 @@ class config_list
 			'num_posts', 'num_topics', 'num_users', 'pm_edit_time', 'pm_max_recipients', 'search_interval', 'search_anonymous_interval', 'search_indexing_state', 'plupload_last_gc', 'warnings_expire_days',
 			'last_queue_run', 'text_reparser.user_signature_last_cron', 'update_hashes_last_cron',
 			'warnings_last_gc', 'session_last_gc', 'cache_last_gc', 'database_last_gc', 'read_notification_last_gc', 'search_last_gc',
+			'pm_max_msgs',
 		);
 		$ex_time_gc = array('database_gc', 'cache_gc', 'session_gc', 'search_gc', 'warnings_gc', 'read_notification_gc');
 
