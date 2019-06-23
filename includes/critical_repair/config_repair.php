@@ -28,6 +28,7 @@ class erk_config_repair
 		}
 		return true;
 	}
+
 	function repair()
 	{
 		global $critical_repair, $user, $lang;
@@ -59,7 +60,7 @@ class erk_config_repair
 			}
 			else
 			{
-				$connect_test = $this->critical_connect_check_db($user, true, $error, $available_dbms[$data['dbms']], $data['table_prefix'], $data['dbhost'], $data['dbuser'], htmlspecialchars_decode($data['dbpasswd']), $data['dbname'], $data['dbport']);
+				$connect_test = $this->critical_connect_check_db($available_dbms, true, $error, $data['dbms'], $data['table_prefix'], $data['dbhost'], $data['dbuser'], htmlspecialchars_decode($data['dbpasswd']), $data['dbname'], $data['dbport']);
 				if (!$connect_test)
 				{
 					$error[] = $lang['CONFIG_REPAIR_CONNECT_FAIL'];
@@ -132,89 +133,88 @@ class erk_config_repair
 		{
 			header('Content-type: text/html; charset=UTF-8');
 			?>
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-		<head>
-			<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-			<meta http-equiv="content-style-type" content="text/css" />
-			<meta http-equiv="imagetoolbar" content="no" />
-			<title>Config Repair - Support Toolkit</title>
-			<link href="<?php echo STK_ROOT_PATH; ?>style/style.css" rel="stylesheet" type="text/css" media="screen" />
-			<link href="<?php echo STK_ROOT_PATH; ?>style/erk_style.css" rel="stylesheet" type="text/css" media="screen" />
-		</head>
-		<body id="errorpage">
-			<div id="wrap">
-				<div id="page-header">
+			<!DOCTYPE html>
+			<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+				<head>
+					<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+					<meta http-equiv="content-style-type" content="text/css" />
+					<meta http-equiv="imagetoolbar" content="no" />
+					<title><?php echo $lang['CONFIG_REPAIR']; ?> - Support Toolkit</title>
+					<link href="<?php echo STK_ROOT_PATH; ?>style/style.css" rel="stylesheet" type="text/css" media="screen" />
+					<link href="<?php echo STK_ROOT_PATH; ?>style/erk_style.css" rel="stylesheet" type="text/css" media="screen" />
+				</head>
+				<body id="errorpage">
+					<div id="wrap">
+						<div id="page-header">
 
-				</div>
-				<div id="page-body">
-					<div id="acp">
-						<div class="panel">
-							<span class="corners-top"><span></span></span>
-								<div id="content">
-									<h1><?php echo $lang['CONFIG_REPAIR']; ?></h1>
-									<br />
-									<p>
-										<?php echo $lang['CONFIG_REPAIR_EXPLAIN']; ?>
-									</p>
-									<form id="stk" method="post" action="<?php echo STK_ROOT_PATH . 'erk.' . PHP_EXT; ?>" name="support_tool_kit">
-																				<fieldset>
-											<?php if (!empty($error)) {?>
-												<div class="errorbox">
-													<h3>Error</h3>
-													<p><?php echo implode('<br />', $error); ?></p>
-												</div>
-											<?php } ?>
-											<dl>
-												<dt><label for="dbms"><?php echo $lang['DBMS']; ?>:</label></dt>
-												<dd><select name="dbms">
-													<?php foreach ($this->get_available_dbms() as $dbms => $dbms_data) { ?>
-														<option value="<?php echo $dbms; ?>" <?php if ($data['dbms'] == $dbms) { echo ' selected="selected"'; } ?>><?php echo $dbms_data['LABEL']; ?>
-													<?php } ?>
-												</select></dd>
-											</dl>
-											<dl>
-												<dt><label for="dbhost"><?php echo $lang['DB_HOST']; ?>:</label><br /><span class="explain"><?php echo $lang['DB_HOST_EXPLAIN']; ?></span></dt>
-												<dd><input id="dbhost" type="text" value="<?php echo $data['dbhost']; ?>" name="dbhost" maxlength="100" size="25"/></dd>
-											</dl>
-											<dl>
-												<dt><label for="dbport"><?php echo $lang['DB_PORT']; ?>:</label><br /><span class="explain"><?php echo $lang['DB_PORT_EXPLAIN']; ?></span></dt>
-												<dd><input id="dbport" type="text" value="<?php echo $data['dbport']; ?>" name="dbport" maxlength="100" size="25"/></dd>
-											</dl>
-											<dl>
-												<dt><label for="dbname"><?php echo $lang['DB_NAME']; ?>:</label></dt>
-												<dd><input id="dbname" type="text" value="<?php echo $data['dbname']; ?>" name="dbname" maxlength="100" size="25"/></dd>
-											</dl>
-											<dl>
-												<dt><label for="dbuser"><?php echo $lang['DB_USERNAME']; ?>:</label></dt>
-												<dd><input id="dbuser" type="text" value="<?php echo $data['dbuser']; ?>" name="dbuser" maxlength="100" size="25"/></dd>
-											</dl>
-											<dl>
-												<dt><label for="dbpasswd"><?php echo $lang['DB_PASSWORD']; ?>:</label></dt>
-												<dd><input id="dbpasswd" type="password" value="" name="dbpasswd" maxlength="100" size="25"/></dd>
-											</dl>
-											<dl>
-												<dt><label for="table_prefix"><?php echo $lang['TABLE_PREFIX']; ?>:</label></dt>
-												<dd><input id="table_prefix" type="text" value="<?php echo $data['table_prefix']; ?>" name="table_prefix" maxlength="100" size="25"/></dd>
-											</dl>
-											<p class="submit-buttons">
-												<input class="button1" type="submit" id="submit" name="submit" value="<?php echo $lang['SUBMIT']; ?>" />&nbsp;
-												<input class="button2" type="reset" id="reset" name="reset" value="<?php echo $lang['CANCEL']; ?>" />
-											</p>
-										</fieldset>
-									</form>
+						</div>
+						<div id="page-body">
+							<div id="acp">
+								<div class="panel">
+									<div id="content">
+										<h1><?php echo $lang['CONFIG_REPAIR']; ?></h1>
+										<br />
+										<p>
+											<?php echo $lang['CONFIG_REPAIR_EXPLAIN']; ?>
+										</p>
+										<form id="stk" method="post" action="<?php echo STK_ROOT_PATH . 'erk.' . PHP_EXT; ?>" name="support_tool_kit">
+											<fieldset>
+												<?php if (!empty($error)) {?>
+													<div class="errorbox">
+														<h3>Error</h3>
+														<p><?php echo implode('<br />', $error); ?></p>
+													</div>
+												<?php } ?>
+												<dl>
+													<dt><label for="dbms"><?php echo $lang['DBMS']; ?>:</label></dt>
+													<dd><select name="dbms">
+														<?php foreach ($this->get_available_dbms() as $dbms => $dbms_data) { ?>
+															<option value="<?php echo $dbms; ?>" <?php if ($data['dbms'] == $dbms) { echo ' selected="selected"'; } ?>><?php echo $dbms_data['LABEL']; ?>
+														<?php } ?>
+													</select></dd>
+												</dl>
+												<dl>
+													<dt><label for="dbhost"><?php echo $lang['DB_HOST']; ?>:</label><br /><span class="explain"><?php echo $lang['DB_HOST_EXPLAIN']; ?></span></dt>
+													<dd><input id="dbhost" type="text" value="<?php echo $data['dbhost']; ?>" name="dbhost" maxlength="100" size="25"/></dd>
+												</dl>
+												<dl>
+													<dt><label for="dbport"><?php echo $lang['DB_PORT']; ?>:</label><br /><span class="explain"><?php echo $lang['DB_PORT_EXPLAIN']; ?></span></dt>
+													<dd><input id="dbport" type="text" value="<?php echo $data['dbport']; ?>" name="dbport" maxlength="100" size="25"/></dd>
+												</dl>
+												<dl>
+													<dt><label for="dbname"><?php echo $lang['DB_NAME']; ?>:</label></dt>
+													<dd><input id="dbname" type="text" value="<?php echo $data['dbname']; ?>" name="dbname" maxlength="100" size="25"/></dd>
+												</dl>
+												<dl>
+													<dt><label for="dbuser"><?php echo $lang['DB_USERNAME']; ?>:</label></dt>
+													<dd><input id="dbuser" type="text" value="<?php echo $data['dbuser']; ?>" name="dbuser" maxlength="100" size="25"/></dd>
+												</dl>
+												<dl>
+													<dt><label for="dbpasswd"><?php echo $lang['DB_PASSWORD']; ?>:</label></dt>
+													<dd><input id="dbpasswd" type="password" value="" name="dbpasswd" maxlength="100" size="25"/></dd>
+												</dl>
+												<dl>
+													<dt><label for="table_prefix"><?php echo $lang['TABLE_PREFIX']; ?>:</label></dt>
+													<dd><input id="table_prefix" type="text" value="<?php echo $data['table_prefix']; ?>" name="table_prefix" maxlength="100" size="25"/></dd>
+												</dl>
+												<p class="submit-buttons">
+													<input class="button1" type="submit" id="submit" name="submit" value="<?php echo $lang['SUBMIT']; ?>" />&nbsp;
+													<input class="button2" type="reset" id="reset" name="reset" value="<?php echo $lang['CANCEL']; ?>" />
+												</p>
+											</fieldset>
+										</form>
+									</div>
 								</div>
-							<span class="corners-bottom"><span></span></span>
+							</div>
+						</div>
+						<div id="page-footer">
+							Support Toolkit for phpBB3.2.x &copy;</a><br />
+							Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by &copy; Sheer
 						</div>
 					</div>
-				</div>
-				<div id="page-footer">
-					Support Toolkit for phpBB3.2.x &copy;</a><br />
-					Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by &copy; Sheer
-				</div>
-			</div>
-		</body>
-	</html>
+				</body>
+			</html>
+
 			<?php
 			exit;
 		}
@@ -225,7 +225,7 @@ class erk_config_repair
 	* @param	array	$dbms should be of the format of an element of the array returned by {@link get_available_dbms get_available_dbms()}
 	*					necessary extensions should be loaded already
 	*/
-	function critical_connect_check_db($user, $error_connect, &$error, $dbms_details, $table_prefix, $dbhost, $dbuser, $dbpasswd, $dbname, $dbport, $prefix_may_exist = false, $load_dbal = true, $unicode_check = true)
+	function critical_connect_check_db($dbms_info, $error_connect, &$error, $dbms, $table_prefix, $dbhost, $dbuser, $dbpasswd, $dbname, $dbport, $prefix_may_exist = false, $load_dbal = true, $unicode_check = true)
 	{
 		// Must be globalized here for when including the DB file
 		global $phpbb_root_path, $phpEx, $lang;
@@ -236,14 +236,14 @@ class erk_config_repair
 			return false;
 		}
 
-		$dbms = $dbms_details['SCHEMA'];
+		$dbms_info = $dbms_info[$dbms];
 
 		if ($load_dbal)
 		{
 			// Include the DB layer
 			include(PHPBB_ROOT_PATH . 'phpbb/db/driver/driver_interface.' . PHP_EXT);
 			include(PHPBB_ROOT_PATH . 'phpbb/db/driver/driver.' . PHP_EXT);
-			if ($dbms === 'mysql' || $dbms === 'mssql' || $dbms === 'mssqlnative')
+			if ($dbms === 'mysqli' || $dbms === 'mysql' || $dbms === 'mssql' || $dbms === 'mssqlnative')
 			{
 				$dbms_base = $dbms;
 				if ($dbms === 'mysqli')
@@ -260,38 +260,16 @@ class erk_config_repair
 			include(PHPBB_ROOT_PATH . 'phpbb/db/tools/tools_interface.' . PHP_EXT);
 			include(PHPBB_ROOT_PATH . 'phpbb/db/tools/tools.' . PHP_EXT);
 		}
-		// Instantiate it and set return on error true
-		$sql_db = 'dbal_' . $dbms;
-		switch ($dbms_details['SCHEMA'])
-		{
-			case 'mysql':
-			case 'mysqli':
-				$db = new phpbb\db\driver\mysql();
-			break;
-			case 'mssql':
-			case 'mssqlnative':
-			case 'mssql_odbc':
-				$db = new phpbb\db\driver\mssql();
-			break;
-			case 'postgres':
-				$db = new phpbb\db\driver\postgres();
-			break;
-			case 'sqlite':
-			case 'sqlite3':
-				$db = new phpbb\db\driver\sqlite();
-			break;
-				case 'postgres':
-				$db = new phpbb\db\driver\postgres();
-			break;
-		}
 
+		// Instantiate it and set return on error true
+		$db = new $dbms_info['DRIVER'];
 		$db->sql_return_on_error(true);
 
 		// Check the prefix length to ensure that index names are not too long and does not contain invalid characters
-		switch ($dbms_details['SCHEMA'])
+		switch ($dbms_info['SCHEMA'])
 		{
 			case 'mysql':
-			case 'mysqli':
+			case 'mysql_41':
 				if (strspn($table_prefix, '-./\\') !== 0)
 				{
 					$error[] = $lang['INST_ERR_PREFIX_INVALID'];
@@ -322,7 +300,7 @@ class erk_config_repair
 
 		if (strlen($table_prefix) > $prefix_length)
 		{
-			$error[] = $lang['INST_ERR_PREFIX_TOO_LONG'];
+			$error[] = sprintf($lang['INST_ERR_PREFIX_TOO_LONG'], $prefix_length);
 			return false;
 		}
 
@@ -391,12 +369,13 @@ class erk_config_repair
 	}
 
 	function get_available_dbms()
-	{		$supported_dbms = array(
+	{
+		$supported_dbms = array(
 			// Note: php 5.5 alpha 2 deprecated mysql.
 			// Keep mysqli before mysql in this list.
 			'mysqli'	=> array(
 				'LABEL'			=> 'MySQL with MySQLi Extension',
-				'SCHEMA'		=> 'mysql',
+				'SCHEMA'		=> 'mysql_41',
 				'MODULE'		=> 'mysqli',
 				'DELIM'			=> ';',
 				'DRIVER'		=> 'phpbb\db\driver\mysqli',
@@ -409,15 +388,6 @@ class erk_config_repair
 				'MODULE'		=> 'mysql',
 				'DELIM'			=> ';',
 				'DRIVER'		=> 'phpbb\db\driver\mysql',
-				'AVAILABLE'		=> true,
-				'2.0.x'			=> true,
-			),
-			'mssql'		=> array(
-				'LABEL'			=> 'MS SQL Server 2000+',
-				'SCHEMA'		=> 'mssql',
-				'MODULE'		=> 'mssql',
-				'DELIM'			=> ';',
-				'DRIVER'		=> 'phpbb\db\driver\mssql',
 				'AVAILABLE'		=> true,
 				'2.0.x'			=> true,
 			),
@@ -443,7 +413,7 @@ class erk_config_repair
 				'LABEL'			=> 'Oracle',
 				'SCHEMA'		=> 'oracle',
 				'MODULE'		=> 'oci8',
-				'DELIM'			=> '/',
+				'DELIM'			=> ';',
 				'DRIVER'		=> 'phpbb\db\driver\oracle',
 				'AVAILABLE'		=> true,
 				'2.0.x'			=> false,
@@ -457,15 +427,6 @@ class erk_config_repair
 				'AVAILABLE'		=> true,
 				'2.0.x'			=> true,
 			),
-			'sqlite'		=> array(
-				'LABEL'			=> 'SQLite',
-				'SCHEMA'		=> 'sqlite',
-				'MODULE'		=> 'sqlite',
-				'DELIM'			=> ';',
-				'DRIVER'		=> 'phpbb\db\driver\sqlite',
-				'AVAILABLE'		=> true,
-				'2.0.x'			=> false,
-			),
 			'sqlite3'		=> array(
 				'LABEL'			=> 'SQLite3',
 				'SCHEMA'		=> 'sqlite',
@@ -477,5 +438,6 @@ class erk_config_repair
 			),
 		);
 
-		return $supported_dbms;	}
+		return $supported_dbms;
+	}
 }
