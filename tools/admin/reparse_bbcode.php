@@ -131,9 +131,9 @@ class reparse_bbcode
 	*/
 	function run_tool()
 	{
-		global $cache, $config, $db, $user, $request, $lang;
+		global $cache, $config, $db, $user, $request, $lang, $language;
 		// Prevent some errors from missing language strings.
-		$user->add_lang('posting');
+		$language->add_lang(array('posting'));
 
 		// Define some vars that we'll need
 		$last_batch			= false;
