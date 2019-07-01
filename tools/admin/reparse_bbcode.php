@@ -329,6 +329,8 @@ class reparse_bbcode
 					$sql_where = '';
 				}
 
+				$bitfield = false;
+
 				$sql_ary = array(
 					'SELECT'	=> 'f.forum_id, f.enable_indexing, f.forum_name,
 									p.post_id, p.poster_id, p.icon_id, p.post_text, p.post_subject, p.post_username, p.post_time, p.post_edit_reason, p.bbcode_uid, p.bbcode_bitfield, p.post_checksum, p.enable_sig, p.post_edit_locked, p.enable_bbcode, p.enable_magic_url, p.enable_smilies, p.post_attachment, p.post_edit_user,
@@ -340,7 +342,7 @@ class reparse_bbcode
 						TOPICS_TABLE	=> 't',
 						USERS_TABLE		=> 'u',
 					),
-					'WHERE'		=> (($bitfield) ? "p.bbcode_bitfield <> '' AND " : '') . 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where . '',
+					'WHERE'		=> 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where . '',
 				);
 			break;
 
