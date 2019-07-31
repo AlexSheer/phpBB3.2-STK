@@ -844,6 +844,7 @@ class database_cleaner_views
 
 		// Time to start going through the database and listing any extra/missing fields
 		$last_output_table = '';
+		$ignored_indexes = array('post_content', 'post_subject', 'post_text');
 		foreach ($this->db_cleaner->data->tables as $table_name => $data)
 		{
 			if ($umil->table_exists($table_name) === false)
@@ -865,6 +866,11 @@ class database_cleaner_views
 			sort($keys);
 			foreach ($keys as $key)
 			{
+				// Skip the keys added when creating search indexes of the MySQL Fulltext mechanism
+				if (in_array($key, $ignored_indexes))
+				{
+					continue;
+				}
 				if ((!isset($data['KEYS'][$key]) && in_array($key, $existing_keys)) || (isset($data['KEYS'][$key]) && !in_array($key, $existing_keys)))
 				{
 					if ($last_output_table != $table_name)
