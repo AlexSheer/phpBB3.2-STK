@@ -646,6 +646,8 @@ class database_cleaner_views
 		global $table_prefix, $template, $lang, $request;
 
 		$tables_confirm = $request->variable('tables_confirm', false);
+
+		$ignored_tables = array('' . $table_prefix . 'captcha_answers', '' . $table_prefix . 'captcha_questions' ,'' . $table_prefix . 'qa_confirm');
 		if (!$tables_confirm)
 		{
 			$found_tables	= get_phpbb_tables();
@@ -660,6 +662,11 @@ class database_cleaner_views
 
 			foreach ($tables as $table)
 			{
+				// Skip ones that are in the default install and are in the existing tables, or if it was added by settings in ACP
+				if (in_array($table, $ignored_tables))
+				{
+					continue;
+				}
 				// Table was added or removed
 				if (!isset($req_tables[$table]) && in_array($table, $found_tables) || isset($req_tables[$table]) && !in_array($table, $found_tables))
 				{
