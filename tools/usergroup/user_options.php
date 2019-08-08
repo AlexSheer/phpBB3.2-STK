@@ -60,9 +60,9 @@ class user_options
 		$db->sql_freeresult($result);
 		$s_options .= '</option>';
 
-		foreach($user_settings as $bit => $settings)
+		foreach ($user_settings as $bit => $settings)
 		{
-			if($settings)
+			if ($settings)
 			{
 				$template->assign_block_vars('settings', array(
 					'SETTINGS'		=> $settings,
@@ -83,7 +83,7 @@ class user_options
 
 		if ($submit)
 		{
-			if(!sizeof($groups) || $all_groups)
+			if (!sizeof($groups) || $all_groups)
 			{
 				$sql_where = '';
 			}
@@ -91,11 +91,11 @@ class user_options
 			{
 				$sql_where = ' WHERE ' . $db->sql_in_set('group_id', $groups). '';
 			}
-			foreach($settings_value as $bit => $settings)
+			foreach ($settings_value as $bit => $settings)
 			{
-				if($settings)
+				if ($settings)
 				{
-					if($settings == 1) // off
+					if ($settings == 1) // off
 					{
 						$sql = 'UPDATE '. USERS_TABLE . '
 							SET user_options = (user_options & '. pow(2, $bit) . ') ^ user_options'
