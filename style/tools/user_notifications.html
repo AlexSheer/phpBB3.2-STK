@@ -1,0 +1,66 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_USER_NOTIFICATIONS}</h1>
+<p>{L_USER_NOTIFICATIONS_EXPLAIN}</p>
+
+<form method="post" id="select_action" action="{U_DISPLAY_ACTION}">
+	<fieldset>
+	<legend>{L_SETTINGS}</legend>
+			<dl>
+				<dt><label for="period">{L_INACTIVE_PERIOD}{L_COLON}</label><br />{L_SELECT_EXPLAIN}</dt>
+				<dd><select id="period" name="period">{S_PERIOD_SELECT}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="period">{L_DELETE_NOTIFICATIONS}{L_COLON}</label><br />{L_DELETE_NOTIFICATIONS_EXPLAIN}</dt>
+				<dd><input class="radio" name="delete_notifications" value="1" type="checkbox"></dd>
+			</dl>
+		</fieldset>
+	<table class="table1 responsive">
+		<thead>
+			<tr>
+				<th>{L_NOTIFICATION_TYPE}</th>
+				<!-- BEGIN notification_methods -->
+					<th class="mark">{notification_methods.NAME}</th>
+				<!-- END notification_methods -->
+
+			</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN notification_types -->
+			<!-- IF notification_types.GROUP_NAME -->
+				<tr class="row3">
+					<td colspan="{NOTIFICATION_TYPES_COLS}"><strong>{notification_types.GROUP_NAME}</strong></td>
+				</tr>
+			<!-- ELSE -->
+				<tr class="<!-- IF notification_types.S_ROW_COUNT is odd -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+					<td>
+						{notification_types.NAME}
+					</td>
+					<!-- BEGIN notification_methods -->
+						<td class="mark"><input type="checkbox" name="{notification_types.TYPE}_{notification_methods.METHOD}" checked="checked"/></td>
+					<!-- END notification_methods -->
+				</tr>
+			<!-- ENDIF -->
+		<!-- END notification_types -->
+				<tr class="row3">
+					<td colspan="{NOTIFICATION_TYPES_COLS}"><strong>{L_UCP_PREFS_POST} ({L_UCP})</strong></td>
+				</tr>
+				<tr>
+					<td>{L_DEFAULT_NOTIFY}{L_COLON}<br />{L_DEFAULT_NOTIFY_EXPLAIN}</td>
+				 <td class="mark" colspan="{NOTIFICATION_TYPES_COLS}">
+						<input name="default_notify" type="radio" value="1" checked> {L_YES}&nbsp;
+						<input name="default_notify" type="radio" value="0"> {L_NO}
+					</td>
+				</tr>
+		</tbody>
+	</table>
+
+	<div class="rightside pagination"><a href="#" onclick="marklist('select_action', '', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('select_action', '', false); return false;">{L_UNMARK_ALL}</a></div>
+
+	<fieldset class="jumpbox" style="text-align: center;">
+		<input type="submit" name="sa" class="button2" value="{L_CHANGE}" />&nbsp;<input type="submit" name="del" class="button1" value="{L_DELETE}" />
+	</fieldset>
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->
