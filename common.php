@@ -2,7 +2,7 @@
 /**
 *
 * @package Support Toolkit
-* @copyright (c) 2010 phpBB Group
+* @copyright (c) 2010-2019 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -16,7 +16,7 @@ if (!defined('IN_PHPBB'))
 }
 
 // What version are we using?
-define('STK_VERSION', '1.0.12-dev');
+define('STK_VERSION', '1.0.14-dev');
 define('STK_QA', true);
 
 define('ADMIN_START', true);
