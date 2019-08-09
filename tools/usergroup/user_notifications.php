@@ -22,7 +22,7 @@ class user_notifications
 	{
 		global $template, $lang, $db, $request, $language, $user, $phpbb_container;
 
-		$language->add_lang(array('ucp'));
+		$user->add_lang(array('ucp'));
 
 		$phpbb_notifications = $phpbb_container->get('notification_manager');
 
@@ -193,11 +193,11 @@ class user_notifications
 			$db->sql_query($sql);
 			if (!$user_notify_type)
 			{
-				$sql = 'DELETE FROM phpbb_topics_watch
+				$sql = 'DELETE FROM '  . TOPICS_WATCH_TABLE . '
 					WHERE user_id > 1 ' . $sql_where;
 				$db->sql_query($sql);
 
-				$sql = 'DELETE FROM phpbb_forums_watch
+				$sql = 'DELETE FROM '  . FORUMS_WATCH_TABLE . '
 					WHERE user_id > 1 ' . $sql_where;
 				$db->sql_query($sql);
 			}
