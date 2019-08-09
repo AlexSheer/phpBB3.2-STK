@@ -159,10 +159,12 @@ class user_notifications
 
  		add_form_key('user_notificationd');
 		if ($submit || $delete)
-		{			if (!check_form_key('user_notificationd'))
+		{
+			if (!check_form_key('user_notificationd'))
 			{
 				trigger_error('FORM_INVALID', E_USER_WARNING);
-			}			$sql_where = '';
+			}
+			$sql_where = '';
 			if ($inactive_time)
 			{
 				$sql = 'SELECT user_id
@@ -185,12 +187,13 @@ class user_notifications
 			}
 
 			$user_notify_type = ($default_notify) ? 2 : 0;
-			$sql = 'UPDATE phpbb_users
+			$sql = 'UPDATE ' . USERS_TABLE . '
 				SET user_notify = ' . $default_notify . ', user_notify_pm = ' . $default_notify. ', user_notify_type = ' . $user_notify_type . '
 				WHERE user_id > 1 ' . $sql_where;
 			$db->sql_query($sql);
 			if (!$user_notify_type)
-			{				$sql = 'DELETE FROM phpbb_topics_watch
+			{
+				$sql = 'DELETE FROM phpbb_topics_watch
 					WHERE user_id > 1 ' . $sql_where;
 				$db->sql_query($sql);
 
@@ -239,12 +242,16 @@ class user_notifications
 	}
 
 	public function add_notifications($item_type, $method = null, $sql_where = '', $delete, $delete_notifications = 0)
-	{		global $db;
+	{
+		global $db;
 
 		if ($delete)
-		{			if ($delete_notifications)
-			{				$this->delete_notifications($item_type, $sql_where);
-			}			$sql = 'DELETE FROM ' . USER_NOTIFICATIONS_TABLE . "
+		{
+			if ($delete_notifications)
+			{
+				$this->delete_notifications($item_type, $sql_where);
+			}
+			$sql = 'DELETE FROM ' . USER_NOTIFICATIONS_TABLE . "
 				WHERE item_type = '" . $db->sql_escape($item_type) . "'
 					AND method = '" . $db->sql_escape($method) . "'
 					$sql_where";
@@ -277,8 +284,10 @@ class user_notifications
 	}
 
 	public function delete_notifications($item_type, $sql_where)
-	{		global $db;
-		$sql = 'SELECT notification_type_id
+	{
+		global $db;
+
+		$sql = 'SELECT notification_type_id
 			FROM ' . NOTIFICATION_TYPES_TABLE;
 		$result = $db->sql_query($sql);
 		$notification_type_id = $db->sql_fetchfield('notification_type_id');
