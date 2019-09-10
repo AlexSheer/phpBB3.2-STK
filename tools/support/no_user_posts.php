@@ -80,7 +80,8 @@ class no_user_posts
 		global $db, $lang, $request;
 
 		if (isset($_POST['reassign']))
-		{			$post_map = $request->variable('posts', array(0 => ''));
+		{
+			$post_map = $request->variable('users', array(0 => ''));
 			foreach ($post_map as $post_id => $user_id)
 			{
 				if ($user_id == '')
@@ -93,15 +94,19 @@ class no_user_posts
 			{
 				trigger_error($lang['NO_AUTHOR_SELECTED'], E_USER_WARNING);
 			}
-			foreach ($post_map as $post_id => $author)
-			{				$sql = 'SELECT user_id
+
+			foreach ($post_map as $post_id => $author)
+			{
+				$sql = 'SELECT user_id
 					FROM ' . USERS_TABLE . '
 						WHERE username_clean = \'' . $db->sql_escape(utf8_clean_string($author)) . '\'';
 				$result = $db->sql_query($sql);
 				$user_id = $db->sql_fetchfield('user_id');
 				$db->sql_freeresult($result);
 				if ($user_id)
-				{					$post_username = ($user_id == ANONYMOUS) ? $user->lang['GUEST'] : '';					$sql = 'UPDATE ' . POSTS_TABLE . '
+				{
+					$post_username = ($user_id == ANONYMOUS) ? $lang['GUEST'] : '';
+					$sql = 'UPDATE ' . POSTS_TABLE . '
 						SET poster_id = ' . $user_id . ', post_username = \'' . $post_username . '\'
 						WHERE post_id = ' . $post_id;
 						$db->sql_query($sql);
