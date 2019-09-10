@@ -44,5 +44,5 @@ $lang = array_merge($lang, array(
 	'NO_NO_USER_POSTS'				=> 'Сообщений от несуществующих авторов не обнаружено',
 	'NO_AUTHOR_SELECTED'			=> 'Ни одного автора не назначено.',
 	'POSTS_REASSIGNED_TO_GUEST'		=> 'Для %d сообщений автором назначен <b>Гость</b>',
-	'REASSIGN_ANONYMOUS'			=> 'Назначить автором Гостя для выбранных ',
+	'REASSIGN_ANONYMOUS'			=> 'Назначить автором Гостя для выбранных',
 ));
