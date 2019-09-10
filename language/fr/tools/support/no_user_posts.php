@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Support Toolkit - No User Posts Russian language
+* @package Support Toolkit - No User Posts English language
 * @version $Id$
 * @copyright (c) 2019 Sheer
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -38,8 +38,9 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'NO_USER_POSTS'					=> 'Сообщения без автора',
-	'NO_USER_POSTS_EXPLAIN'			=> 'Этот инструмент позволяет удалить сообщения несуществующих авторов (это может произойти в случае, если пользователи были удалены вручную непосредственно из базы данных, а не штатными средствами phpBB).',
-	'AUTHOR_POSTS_REASSIGNED'		=> 'Авторы назначены для %d сообщений.',
-	'NO_NO_USER_POSTS'				=> 'Сообщений от несуществующих авторов не обнаружено',
+	'NO_USER_POSTS'					=> 'Posts without author',
+	'NO_USER_POSTS_EXPLAIN'			=> 'This tool allows you to delete posts of non-existent authors (this can happen if users were manually deleted directly from the database, and not using regular phpBB tools).',
+	'AUTHOR_POSTS_REASSIGNED'		=> 'Authors assigned to %d posts.',
+	'NO_NO_USER_POSTS'				=> 'No posts from non-existent authors',
+	'NO_AUTHOR_SELECTED'			=> 'No author assigned.',
 ));
