@@ -20,7 +20,7 @@
 	<!-- BEGIN posts -->
 		<tr class="<!-- IF posts.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
 			<td>{posts.POST_ID}</td>
-			<td>{posts.POST_SUBJECT}</td>
+			<td><a href="{posts.U_TOPIC}">{posts.POST_SUBJECT}</a></td>
 			<td><a href="{posts.U_FORUM}">{posts.FORUM_NAME}</a></td>
 			<td>
 				[ <a href="{posts.U_FIND_USER}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]
@@ -30,8 +30,7 @@
 			<td class="mark"><input type="checkbox" name="posts_del[]" value="{posts.POST_ID}" /></td>
 		</tr>
 		<tr class="row3">
-			<td colspan="5">
-				{posts.POST_TEXT}
+			<td colspan="5"><div style="word-wrap: break-word;">{posts.POST_TEXT}</div>
 			</td>
 		</tr>
 	<!-- END posts -->
@@ -39,6 +38,7 @@
 
 	<div class="rightside pagination">
 		<a href="#" onclick="marklist('stk_no_user_posts', 'posts', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('stk_no_user_posts', 'posts', false); return false;">{L_UNMARK_ALL}</a><br /><br />
+		<input type="submit" name="reassign_anonymous" class="button2" value="{L_REASSIGN_ANONYMOUS}" />
 		<input type="submit" name="reassign" class="button2" value="{L_REASSIGN}" />
 		<input type="submit" name="delete" class="button2" value="{L_DELETE}" />
 	</div>
