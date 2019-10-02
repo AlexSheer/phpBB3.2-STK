@@ -23,7 +23,8 @@ define('RUN_HTMLSPECIALCHARS_DECODE', false);
 * 		 being reparsed. There is not yet an interface to restore it!
 */
 class delete_bbcode
-{	/**
+{
+	/**
 	* The message parser object
 	*/
 	var $message_parser = null;
@@ -207,7 +208,8 @@ class delete_bbcode
 			// Get the total
 			$this->max = $request->variable('rowsmax', 0);
 			if ($this->max == 0)
-			{				$sql = 'SELECT COUNT(post_id) AS cnt
+			{
+				$sql = 'SELECT COUNT(post_id) AS cnt
 					FROM ' . POSTS_TABLE . '
 					WHERE post_text '. $db->sql_like_expression(str_replace('*', $db->get_any_char(), '*' . $this->bbcodes[$bbcode] . '*')) . '';
 				$result		= $db->sql_query($sql);
@@ -260,7 +262,8 @@ class delete_bbcode
 
 		// Walk through the batch
 		foreach ($batch as $this->data)
-		{			// Update the post flags
+		{
+			// Update the post flags
 			$this->flags['enable_bbcode']		= ($config['allow_bbcode']) ? $this->data['enable_bbcode'] : false;
 			$this->flags['enable_magic_url']	= ($config['allow_post_links']) ? $this->data['enable_magic_url'] : false;
 			$this->flags['enable_smilies']		= ($this->data['enable_smilies']) ? true : false;
@@ -394,9 +397,20 @@ class delete_bbcode
 	* @param Object &$parser the parser object
 	*/
 	function _clean_message(&$parser, $bbcode)
-	{		global $request;
+	{
+		global $request;
 
 		$pattern = array('[' . $this->bbcodes[$bbcode] . ']', '[/' . $this->bbcodes[$bbcode] . ']');
+
+		$find = array(
+			'|\[' . $this->bbcodes[$bbcode] . '\](.*?)\[/' . $this->bbcodes[$bbcode] . '\]|s',
+			'|\[' . $this->bbcodes[$bbcode] . '=(.*?)\](.*?)\[/' . $this->bbcodes[$bbcode] . '\]|s',
+		);
+
+		$replace = array(
+			'$1',
+			'$1',
+		);
 
 		// Format the content as if it where *INSIDE* the posting field.
 		$parser->decode_message($this->data['bbcode_uid']);
@@ -405,8 +419,8 @@ class delete_bbcode
 		{
 			$message = htmlspecialchars_decode($message);
 		}
-		$message = html_entity_decode_utf8($message);
-		$message = str_replace($pattern, '', $message);
+		$text = html_entity_decode_utf8($message);
+		$message = preg_replace($find, $replace, $text);
 
 		// Now we'll *$request->variable* the post
 		set_var($message, $message, 'string', true);
@@ -424,7 +438,8 @@ class delete_bbcode
 	* @param Boolean $next_mode Move to the next reparse type
 	*/
 	function _next_step($step)
-	{		global $template, $request;
+	{
+		global $template, $request;
 
 		$all = $request->variable('reparseall', false);
 		$create_backup = $request->variable('create_backup', false);
@@ -502,11 +517,13 @@ class delete_bbcode
 }
 
 function get_bbcodes()
-{	$bbcodes = array('youtube', 'video', 'audio');
+{
+	$bbcodes = array('youtube', 'video', 'audio');
 	$s_bbcodes = '';
 	$i = 0;
 	foreach ($bbcodes as $bbcode)
-	{		$s_bbcodes .= '<option value="'. $i++ .'">' . $bbcode . '</option>';
+	{
+		$s_bbcodes .= '<option value="'. $i++ .'">' . $bbcode . '</option>';
 	}
 
 	return $s_bbcodes;
