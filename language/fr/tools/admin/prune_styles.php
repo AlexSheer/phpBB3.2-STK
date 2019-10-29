@@ -5,7 +5,7 @@
  * French translation by Galixte (http://www.galixte.com)
  *
  * @copyright (c) 2019 phpBBGuru Sheer
- * @license GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
  *
  */
 

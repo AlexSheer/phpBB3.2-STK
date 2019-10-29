@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Support Toolkit - User Notifycations Russian language Sheer
+* @package Support Toolkit - User Notifications Russian language Sheer
 * @version $Id$
 * @copyright (c) 2009 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License

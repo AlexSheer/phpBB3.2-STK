@@ -5,7 +5,7 @@
  * French translation by phpBB-fr http://www.phpbb-fr.com & Galixte (http://www.galixte.com)
  *
  * @copyright (c) 2017 phpBB Limited <https://www.phpbb.com>
- * @license GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
  *
  */
 
@@ -64,5 +64,5 @@ $lang = array_merge($lang, array(
 	'REPARSE_SIG'					=> 'Réanalyser uniquement les signatures des membres',
 	'REPARSE_SIG_EXPLAIN'			=> 'Permet de réanalyser uniquement les BBCodes présents dans les données utilisateur.',
 	'CREATE_BACKUP_TABLE'			=> 'Créer une sauvegarde',
-	'CREATE_BACKUP_TABLE_EXPLAIN'	=> 'La table de la base de données sera créée, à partir de laquelle il sera possible de restaurer les messages en cas de panne ou d’arrêt d’urgence.'
+	'CREATE_BACKUP_TABLE_EXPLAIN'	=> 'Une copie de la table des BBCodes de la base de données sera créée, à partir de laquelle il sera possible de restaurer les messages en cas de panne ou d’arrêt d’urgence.'
 ));

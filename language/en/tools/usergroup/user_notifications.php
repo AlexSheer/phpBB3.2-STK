@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Support Toolkit - User Notifycations Russian language Sheer
+* @package Support Toolkit - User Notifications Russian language Sheer
 * @version $Id$
 * @copyright (c) 2009 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 	'DEFAULT_NOTIFY_EXPLAIN'		=> 'If &laquo;No&raquo; is selected, information about signed forums and topics will also be deleted.',
 	'DELETE_NOTIFICATIONS'			=> 'Delete notifications',
 	'DELETE_NOTIFICATIONS_EXPLAIN'	=> 'If you delete or turn off notifications, all user notifications for the selected types will be deleted.',
-	'NOTIFICATION_GROUP_EXT'		=> 'Notifications wich add from extensions',
+	'NOTIFICATION_GROUP_EXT'		=> 'Notifications which add from extensions',
 	'SELECT_EXPLAIN'				=> 'Select a period of user inactivity. If "Everyone" is selected, the action will be applied to all users.',
 	'USER_NOTIFICATIONS'			=> 'Notification options',
 	'USER_NOTIFICATIONS_EXPLAIN'	=> 'Here you can change the default notification settings for all or inactive users for a selected period of time. The action to set or disable the notification will not be applied if the user has not configured them in his User Control Panel. If the settings are deleted, the user will receive forum notifications installed in phpBB by default, no notifications will be sent to the mail. This will be valid until he changes them in his User Control Panel..',

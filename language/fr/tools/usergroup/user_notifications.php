@@ -1,16 +1,17 @@
 <?php
 /**
-*
-* @package Support Toolkit - User Notifycations Russian language Sheer
-* @version $Id$
-* @copyright (c) 2009 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @
-*/
+ *
+ * @package Support Toolkit - User Notifications French language
+ * French translation by Galixte (http://www.galixte.com)
+ *
+ * @copyright (c) 2009 phpBB Group
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
+ *
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -38,13 +39,13 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'ALL'							=> 'Everyone',
-	'DEFAULT_NOTIFY_EXPLAIN'		=> 'If &laquo;No&raquo; is selected, information about signed forums and topics will also be deleted.',
-	'DELETE_NOTIFICATIONS'			=> 'Delete notifications',
-	'DELETE_NOTIFICATIONS_EXPLAIN'	=> 'If you delete or turn off notifications, all user notifications for the selected types will be deleted.',
-	'NOTIFICATION_GROUP_EXT'		=> 'Notifications wich add from extensions',
-	'SELECT_EXPLAIN'				=> 'Select a period of user inactivity. If "Everyone" is selected, the action will be applied to all users.',
-	'USER_NOTIFICATIONS'			=> 'Notification options',
-	'USER_NOTIFICATIONS_EXPLAIN'	=> 'Here you can change the default notification settings for all or inactive users for a selected period of time. The action to set or disable the notification will not be applied if the user has not configured them in his User Control Panel. If the settings are deleted, the user will receive forum notifications installed in phpBB by default, no notifications will be sent to the mail. This will be valid until he changes them in his User Control Panel..',
-	'USER_NORIFY_OK'				=> 'Settings have been successfully changed.',
+	'ALL'							=> 'Tout le monde',
+	'DEFAULT_NOTIFY_EXPLAIN'		=> 'Permet, si définie sur « Non », de supprimer aussi les informations sur les forums et les sujets surveillés.',
+	'DELETE_NOTIFICATIONS'			=> 'Supprimer les notifications',
+	'DELETE_NOTIFICATIONS_EXPLAIN'	=> 'Permet de sélectionner les types de notifications à supprimer si celles-ci sont définies comme à supprimer ou à désactiver.',
+	'NOTIFICATION_GROUP_EXT'		=> 'Notifications ajoutées par les extensions',
+	'SELECT_EXPLAIN'				=> 'Sélectionner une période d’inactivité des membres. Si l’option « Tout le monde » est sélectionnée, tous les membres du forum seront concernés.',
+	'USER_NOTIFICATIONS'			=> 'Préférences des notifications',
+	'USER_NOTIFICATIONS_EXPLAIN'	=> 'Permet de modifier les paramètres par défaut des notifications pour tous les membres ou ceux ayant été inactifs suivant la période définie. L’action de re-configurer ou désactiver les notifications ne sera pas appliquée si le membre n’a pas configuré les notifications depuis son « Panneau de l’utilisateur ». Si les paramètres sont supprimés, le membre continuera de recevoir les notifications par défaut du forum, mais aucune notifications ne sera envoyée par e-mail. Le membre devra définir ce comportement depuis son « Panneau de l’utilisateur ». Aussi, cet outil ne supprime pas les notifications non lues des membres.',
+	'USER_NORIFY_OK'				=> 'Les paramètres ont été sauvegardés avec succès !',
 ));
