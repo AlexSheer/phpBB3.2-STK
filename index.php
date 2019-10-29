@@ -379,13 +379,20 @@ if ($plugin->get_part('t'))
 		}
 		else if (is_string($options))
 		{
-			if (confirm_box(true))
+			if (@phpversion() < '7.0.0')
 			{
-				$tool->run_tool();
+				if (confirm_box(true))
+				{
+					$tool->run_tool();
+				}
+				else
+				{
+					confirm_box(false, $lang[$options . '_CONFIRM'], '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . $plugin->url_arg(true));
+				}
 			}
 			else
 			{
-				confirm_box(false, $lang[$options . '_CONFIRM'], '', 'confirm_body.html', STK_DIR_NAME . '/index.' . PHP_EXT . $plugin->url_arg(true));
+				$tool->run_tool();
 			}
 		}
 		else

@@ -70,7 +70,7 @@ class database_cleaner_views
 	*/
 	function display()
 	{
-		global $error, $template, $user, $request, $config, $lang;
+		global $error, $template, $request, $config, $lang;
 
 		$did_run = $request->variable('did_run', false);
 
@@ -395,9 +395,6 @@ class database_cleaner_views
 	*/
 	function extensions()
 	{
-		global $user;
-		$user->add_lang('acp/attachments');
-
 		// Build the output
 		$last_extension_group = '';
 		foreach ($this->db_cleaner->data->extensions as $group => $data)
@@ -459,11 +456,12 @@ class database_cleaner_views
 	*/
 	function groups()
 	{
-		global $template, $lang, $user;
+		global $template, $lang, $language;
+		$language->add_lang(array('acp/common'));
 
 		// Display the system groups that are missing or aren't from a vanilla installation
 		$this->_section_data['groups'] = array(
-			'NAME'		=> $user->lang['ACP_GROUPS_MANAGEMENT'],
+			'NAME'		=> $language->lang('ACP_GROUPS_MANAGEMENT'),
 			'TITLE'		=> 'ROWS',
 		);
 
@@ -478,7 +476,7 @@ class database_cleaner_views
 			}
 
 			$this->_section_data['groups']['ITEMS'][] = array(
-				'NAME'			=> $name,
+				'NAME'			=> $lang['G_' . $name],
 				'FIELD_NAME'	=> $name,
 				'MISSING'		=> (!in_array($name, $existing_groups)) ? true : false,
 			);
@@ -648,6 +646,8 @@ class database_cleaner_views
 		global $table_prefix, $template, $lang, $request;
 
 		$tables_confirm = $request->variable('tables_confirm', false);
+
+		$ignored_tables = array('' . $table_prefix . 'captcha_answers', '' . $table_prefix . 'captcha_questions' ,'' . $table_prefix . 'qa_confirm');
 		if (!$tables_confirm)
 		{
 			$found_tables	= get_phpbb_tables();
@@ -662,6 +662,11 @@ class database_cleaner_views
 
 			foreach ($tables as $table)
 			{
+				// Skip ones that are in the default install and are in the existing tables, or if it was added by settings in ACP
+				if (in_array($table, $ignored_tables))
+				{
+					continue;
+				}
 				// Table was added or removed
 				if (!isset($req_tables[$table]) && in_array($table, $found_tables) || isset($req_tables[$table]) && !in_array($table, $found_tables))
 				{
@@ -718,8 +723,8 @@ class database_cleaner_views
 	*/
 	function acp_modules()
 	{
-		global $db, $lang, $template, $phpEx, $phpbb_root_path, $user;
-		$user->add_lang(array('ucp', 'mcp'));
+		global $db, $lang, $template, $phpEx, $phpbb_root_path, $user, $language;
+		$language->add_lang(array('ucp', 'mcp', 'acp/common'));
 
 		$this->_section_data['acp_modules'] = array(
 			'NAME'		=> 'ACP_MODULES_SETTINGS',
@@ -756,7 +761,7 @@ class database_cleaner_views
 			if ($parent)
 			{
 				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '&parent_id='. $parent_id .'');
-				$module_mame = (isset($lang[$parent])) ? '<b>' . $lang[$parent] . '</b>' : '<i>' . $lang['UNDEFINED'] . '</i>';
+				$module_mame = ($language->lang($parent) != null) ? '<b>' . $language->lang($parent) . '</b>' : '<i>' . $lang['UNDEFINED'] . '</i>';
 			}
 			else
 			{
@@ -815,8 +820,8 @@ class database_cleaner_views
 
 				// Link to ACP manage module
 				$link = ($parent_id) ? '<a style="color:#70AED3;" href="'. append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $mode . '&parent_id=' . $parent_id . '') .'" " target="_blank">' : '';
-				$module_langname = $user->lang[$module];
-				$parent_module_langname = $user->lang[$key];
+				$module_langname = $language->lang($module);
+				$parent_module_langname = $language->lang($key);
 
 				$this->_section_data['acp_modules']['ITEMS'][] = array(
 					'NAME'			=> '' . $module_langname . ' (' . $module . ')' . $lang['GO_TO_ACP'] .  $link . '' . $parent_module_langname . '</a>',
@@ -846,6 +851,7 @@ class database_cleaner_views
 
 		// Time to start going through the database and listing any extra/missing fields
 		$last_output_table = '';
+		$ignored_indexes = array('post_content', 'post_subject', 'post_text');
 		foreach ($this->db_cleaner->data->tables as $table_name => $data)
 		{
 			if ($umil->table_exists($table_name) === false)
@@ -867,6 +873,11 @@ class database_cleaner_views
 			sort($keys);
 			foreach ($keys as $key)
 			{
+				// Skip the keys added when creating search indexes of the MySQL Fulltext mechanism
+				if (in_array($key, $ignored_indexes))
+				{
+					continue;
+				}
 				if ((!isset($data['KEYS'][$key]) && in_array($key, $existing_keys)) || (isset($data['KEYS'][$key]) && !in_array($key, $existing_keys)))
 				{
 					if ($last_output_table != $table_name)

@@ -10,8 +10,7 @@
 <link href="{T_FONT_AWESOME_LINK}" rel="stylesheet">
 <link href="style/style.css" rel="stylesheet" type="text/css" media="screen" />
 
-<script type="text/javascript">
-// <![CDATA[
+<script>
 var jump_page = '{LA_JUMP_PAGE}:';
 var on_page = '{ON_PAGE}';
 var per_page = '{PER_PAGE}';
@@ -203,11 +202,10 @@ function selectCode(a) {
 		r.select();
 	}
 }
-// ]]>
 </script>
 </head>
 
-<body class="{S_CONTENT_DIRECTION}">
+<body class="{S_CONTENT_DIRECTION} {BODY_CLASS} nojs">
 
 <div id="wrap">
 	<div id="page-header">
@@ -236,7 +234,6 @@ function selectCode(a) {
 	<!-- ENDIF -->
 
 	<div id="page-body">
-		<div id="tabs">
 		<!-- BEGIN debug_r -->
 			<!-- IF debug_r.U_DEBUGING_ERN == 'PHP Warning' -->
 				<div class="debug warning">
@@ -248,9 +245,10 @@ function selectCode(a) {
 				</div>
 			<!-- ENDIF -->
 		<!-- END debug_r -->
+		<div id="tabs">
 			<ul>
 			<!-- BEGIN top_nav -->
-				<li<!-- IF top_nav.S_SELECTED --> id="activetab"<!-- ENDIF -->><a href="{top_nav.U_TITLE}"><span>{top_nav.L_TITLE}</span></a></li>
+				<li class="tab <!-- IF top_nav.S_SELECTED -->activetab<!-- ENDIF -->"><a href="{top_nav.U_TITLE}"><span>{top_nav.L_TITLE}</span></a></li>
 			<!-- END top_nav -->
 			</ul>
 		</div>
@@ -271,3 +269,4 @@ function selectCode(a) {
 				</div>
 
 				<div id="main">
+					<div class="main">

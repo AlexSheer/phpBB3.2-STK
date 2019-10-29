@@ -131,9 +131,9 @@ class reparse_bbcode
 	*/
 	function run_tool()
 	{
-		global $cache, $config, $db, $user, $request, $lang;
+		global $cache, $config, $db, $user, $request, $lang, $language;
 		// Prevent some errors from missing language strings.
-		$user->add_lang('posting');
+		$language->add_lang(array('posting'));
 
 		// Define some vars that we'll need
 		$last_batch			= false;
@@ -340,7 +340,7 @@ class reparse_bbcode
 						TOPICS_TABLE	=> 't',
 						USERS_TABLE		=> 'u',
 					),
-					'WHERE'		=> (($bitfield) ? "p.bbcode_bitfield <> '' AND " : '') . 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where . '',
+					'WHERE'		=> 't.topic_id = p.topic_id AND u.user_id = p.poster_id AND f.forum_id = t.forum_id' . $sql_where . '',
 				);
 			break;
 

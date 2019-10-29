@@ -193,6 +193,11 @@ class srt_generator
 	{
 		global $cache, $template, $lang;
 
+		if (@phpversion() >= '7.0.0')
+		{
+			$template->assign_var('S_PHP7', true);
+		}
+
 		// Step 0 is easy
 		if ($this->step == 0)
 		{

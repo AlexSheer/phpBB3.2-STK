@@ -78,7 +78,7 @@ class delete_users
 		}
 		$db->sql_freeresult($result);
 
-		if(!empty($uids))
+		if (!empty($uids))
 		{
 			if (!function_exists('user_delete'))
 			{
@@ -103,9 +103,9 @@ class delete_users
 	*/
 	function display_options()
 	{
-		global $template, $lang, $request, $user;
+		global $template, $lang, $request, $language;
 
-		$user->add_lang('memberlist');
+		$language->add_lang(array('memberlist'));
 
 		$delete = $request->variable('delete', false);
 		$period = $request->variable('period', 3);
@@ -113,7 +113,7 @@ class delete_users
 		$period_ary = array(0 => $lang['7_DAYS'], 1 => $lang['1_MONTH'], 2 => $lang['3_MONTHS'], 3 => $lang['6_MONTHS'], 4 => $lang['1_YEAR']);
 		$times = array(0 => 7, 1 => 30, 2 => 90, 3 => 180, 4 => 365);
 		$s_options = '';
-		foreach($period_ary as $key => $value)
+		foreach ($period_ary as $key => $value)
 		{
 			$selected = ($period == $key) ? ' selected="selected"' : '';
 			$s_options .= '<option value="' . $times[$key]  . '"' . $selected . '>' . $period_ary[$key];
@@ -125,7 +125,7 @@ class delete_users
 			'U_DISPLAY_ACTION'	=> append_sid(STK_INDEX, array('c' => 'user_group', 't' => 'delete_users')),
 		));
 
-		if($delete)
+		if ($delete)
 		{
 			if (confirm_box(true))
 			{

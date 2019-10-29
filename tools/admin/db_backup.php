@@ -33,7 +33,7 @@ class db_backup
 
 		$sql_layer = $db->get_sql_layer();
 
-		if($format === $lang['NO'])
+		if ($format === $lang['NO'])
 		{
 			$format = 'text';
 		}
@@ -130,11 +130,12 @@ class db_backup
 		}
 		$db->sql_freeresult($result);
 
+		$time = time();
 		if ($submit && !empty($tables))
 		{
-			$filename = 'back_' . $user->format_date(time(), 'Y_m_d_H_i_s');
+			$filename = 'backup_' . $time . '_' . unique_id();
 
-			if($format == 'screen')
+			if ($format == 'screen')
 			{
 				$template->assign_vars(array(
 					'DUMP'	=> true,
@@ -144,7 +145,6 @@ class db_backup
 			}
 			else
 			{
-				$time = time();
 				if ($sql_layer == 'mysqli' || $sql_layer == 'mysql4' || $sql_layer == 'mysql')
 				{
 					$extractor = new mysql_dumper_extractor($format, $filename, $time, $download, $store);

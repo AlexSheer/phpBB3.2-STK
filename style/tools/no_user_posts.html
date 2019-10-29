@@ -1,0 +1,58 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_NO_USER_POSTS}</h1>
+
+<p>{L_NO_USER_POSTS_EXPLAIN}</p>
+
+<!-- IF .posts -->
+<form id="stk_no_user_posts" method="post" action="{U_NO_USER_POSTS}">
+	<fieldset>
+	<legend>{L_NO_USER_POSTS}</legend>
+
+	<table cellspacing="1">
+		<tr>
+			<th width="70px">{L_POST_ID}</th>
+			<th>{L_POST_SUBJECT}</th>
+			<th>{L_FORUM_NAME}</th>
+			<th>{L_AUTHOR}</th>
+			<th class="mark">{L_MARK}</th>
+		</tr>
+	<!-- BEGIN posts -->
+		<tr class="<!-- IF posts.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
+			<td>{posts.POST_ID}</td>
+			<td><a href="{posts.U_TOPIC}">{posts.POST_SUBJECT}</a></td>
+			<td><a href="{posts.U_FORUM}">{posts.FORUM_NAME}</a></td>
+			<td>
+				[ <a href="{posts.U_FIND_USER}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]
+				<input id="username_{posts.POST_ID}" type="text" size="20" maxlength="255" name="users[{posts.POST_ID}]" /><br />
+				<input type="checkbox" class="radio" id="anonymous" name="users[{posts.POST_ID}]" value="Anonymous"> {L_SELECT_ANONYMOUS}
+			</td>
+			<td class="mark"><input type="checkbox" name="posts_del[]" value="{posts.POST_ID}" /></td>
+		</tr>
+		<tr class="row3">
+			<td colspan="5"><div style="word-wrap: break-word;">{posts.POST_TEXT}</div>
+			</td>
+		</tr>
+	<!-- END posts -->
+	</table>
+
+	<div class="rightside pagination">
+		<a href="#" onclick="marklist('stk_no_user_posts', 'posts', true); return false;">{L_MARK_ALL}</a> :: <a href="#" onclick="marklist('stk_no_user_posts', 'posts', false); return false;">{L_UNMARK_ALL}</a><br /><br />
+		<input type="submit" name="reassign_anonymous" class="button2" value="{L_REASSIGN_ANONYMOUS}" />
+		<input type="submit" name="reassign" class="button2" value="{L_REASSIGN}" />
+		<input type="submit" name="delete" class="button2" value="{L_DELETE}" />
+	</div>
+	</fieldset>
+
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+</form>
+<!-- ELSE -->
+<fieldset>
+	<legend>{L_NO_USER_POSTS}</legend>
+	<dl>
+		<dd><b>{L_NO_NO_USER_POSTS}</b></dd>
+	</dl>
+</fieldset>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->
