@@ -1,16 +1,17 @@
 <?php
 /**
-*
-* @package Support Toolkit - No User Posts English language
-* @version $Id$
-* @copyright (c) 2019 Sheer
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-*/
+ *
+ * @package Support Toolkit - No User Posts French language
+ * French translation by Galixte (http://www.galixte.com)
+ *
+ * @copyright (c) 2019 phpBBGuru Sheer
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
+ *
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -38,11 +39,11 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'NO_USER_POSTS'					=> 'Posts without author',
-	'NO_USER_POSTS_EXPLAIN'			=> 'This tool allows you to delete posts of non-existent authors (this can happen if users were manually deleted directly from the database, and not using regular phpBB tools).',
-	'AUTHOR_POSTS_REASSIGNED'		=> 'Authors assigned to %d posts.',
-	'NO_NO_USER_POSTS'				=> 'No posts from non-existent authors',
-	'NO_AUTHOR_SELECTED'			=> 'No author assigned.',
-	'POSTS_REASSIGNED_TO_GUEST'		=> 'For %d posts, <b>Anonymous</b> has been assigned as author.',
-	'REASSIGN_ANONYMOUS'			=> 'Assign Anonymous as author to selected posts',
+	'NO_USER_POSTS'					=> 'Messages sans auteur',
+	'NO_USER_POSTS_EXPLAIN'			=> 'Permet de supprimer les messages sans auteur (ce peut se produire lorsque l’utilisateur a été supprimé manuellement directement depuis la base de données du forum, sans utiliser l’outil de phpBB prévu à cet effet dans son panneau d’administration).',
+	'AUTHOR_POSTS_REASSIGNED'		=> 'Membre(s) assigné(s) comme auteur de %d message(s).',
+	'NO_NO_USER_POSTS'				=> 'Aucun message sans auteur n’a été trouvé.',
+	'NO_AUTHOR_SELECTED'			=> 'Aucun membre n’a été sélectionné.',
+	'POSTS_REASSIGNED_TO_GUEST'		=> 'L’utilisateur <b>Anonymous</b> a été assigné comme auteur de %d message(s).',
+	'REASSIGN_ANONYMOUS'			=> 'Assigner l’utilisateur « Anonymous » comme auteur des messages sélectionnés',
 ));

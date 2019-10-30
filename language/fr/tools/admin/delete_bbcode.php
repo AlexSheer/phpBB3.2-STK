@@ -1,9 +1,11 @@
 <?php
 /**
  *
- * @package Support Toolkit - Prune Styles Russian language Sheer
+ * @package Support Toolkit - Delete BBCodes French language
+ * French translation by Galixte (http://www.galixte.com)
+ *
  * @copyright (c) 2019 phpBBGuru Sheer
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
  *
  */
 
@@ -37,19 +39,19 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DELETE_BBCODE'						=> 'Removing bb-codes',
-	'DELETE_BBCODE_PROGRESS'			=> 'Processed %1$d from %2$d ...',
-	'DELETE_BBCODES'					=> 'Removing bb-codes in progress',
-	'DELETE_BBCODE_COMPLETE'			=> 'Removing bb-codes completed.',
-	'IDS_EMPTY'							=> 'You have not selected any bb-codes clearing mode. If you don\'t know how to choose a mode, check the box <strong>Cleaning BBCode everywhere</strong>. ',
-	'DELETE_BBCODE_POST_IDS'			=> 'Perform removing bb-codes only among the listed messages',
-	'DELETE_BBCODE_POST_IDS_EXPLAIN'	=> 'Specify post IDs in a comma-separated list (e.g. 1,2,3,5,8,13).',
-	'DELETE_BBCODE_FORUMS'				=> 'Perform removing bb-codes only in selected forums',
-	'DELETE_BBCODE_FORUMS_EXPLAIN'		=> 'To select multiple forums some or all of the proper use for your computer and browser combination of mouse and keyboard.',
+	'DELETE_BBCODE'						=> 'Suppression de BBCodes',
+	'DELETE_BBCODE_PROGRESS'			=> '%1$d BBCodes traités sur %2$d…',
+	'DELETE_BBCODES'					=> 'Suppression de BBCodes en cours',
+	'DELETE_BBCODE_COMPLETE'			=> 'Suppression de BBCodes terminée.',
+	'IDS_EMPTY'							=> 'Aucun mode de suppression de BBCodes n’a été sélectionné. Si vous ne savez pas quel mode choisir, merci de cocher la case « <strong>Suppression de BBCodes partout</strong> ». ',
+	'DELETE_BBCODE_POST_IDS'			=> 'Supprimer les BBCodes uniquement parmi les messages listés',
+	'DELETE_BBCODE_POST_IDS_EXPLAIN'	=> 'Permet de spécifier les ID des messages dans lesquels les BBCodes seront supprimés, séparés par une virgule, tels que par exemple : 1,2,3,5,8,13.',
+	'DELETE_BBCODE_FORUMS'				=> 'Supprimer les BBCodes uniquement parmi les forums sélectionnées',
+	'DELETE_BBCODE_FORUMS_EXPLAIN'		=> 'Permet de sélectionner plusieurs forums dans lesquels les BBCodes seront supprimés. Pour sélectionner plusieurs forums merci d’utiliser la combinaison de la touche CTRL (CMD sous macOS) & du clic gauche de la souris.',
 
-	'DELETE_BBCODE_SELECT'				=> 'Select the desired bb-code',
-	'DELETE_BBCODE_ALL'					=> 'Cleaning BBCode everywhere',
-	'DELETE_BBCODE_ALL_EXPLAIN'			=> 'If checked, removal of BBCode will be done everywhere. This option will be ignored if specific posts or forums are specified above. Please note that this tool has the potential to damage your database beyond repair; therefore, <strong>be sure to backup your database before proceeding</strong>. Moreover, note that this tool may take some time to complete.',
+	'DELETE_BBCODE_SELECT'				=> 'Sélectionner les BBCodes concernés par la suppression',
+	'DELETE_BBCODE_ALL'					=> 'Suppression de BBCodes partout',
+	'DELETE_BBCODE_ALL_EXPLAIN'			=> 'Permet de supprimer les BBCodes partout sur le forum. Cette option sera ignorée si des messages ou forums sont spécifiés ci-dessus. Merci de noter que cet outil peut potentiellement endommager votre base de données au-delà de toute réparation ; c’est pourquoi, <strong>il est nécessaire d’effectuer une sauvegarde de la base de données du forum avant d’utiliser cet outil</strong>. Aussi, cet outil peut mettre un certain temps afin d’effectuer les tâches demandées selon la cible sélectionnée (quelques messages, forums ou le forum au complet).',
 
 
 

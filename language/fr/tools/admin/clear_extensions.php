@@ -5,7 +5,7 @@
  * French translation by Galixte (http://www.galixte.com)
  *
  * @copyright (c) 2017 phpBB Limited <https://www.phpbb.com>
- * @license GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0-only)
  *
  */
 
@@ -40,14 +40,14 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CLEAR_EXTENSIONS'				=> 'Gérer les extensions',
-	'CLEAR_EXTENSIONS_EXPLAIN'		=> 'Sur cette page il est possible de gérer les extensions <strong>installées</strong>.',
+	'CLEAR_EXTENSIONS_EXPLAIN'		=> 'Depuis cette page il est possible de gérer les extensions <strong>installées</strong>.',
 	'EXT_PATH'						=> 'Chemin relatif pour le répertoire ' . PHPBB_ROOT_PATH . 'ext/',
 	'MISSING_PATH'					=> 'Répertoire manquant',
 	'S_ACTIVE'						=> ' (activée) ',
 	'S_OFF'							=> ' (désactivée) ',
 	'EXT_NAME'						=> 'Nom de l’extension',
 	'CLICK_TO_CLEAR'				=> 'Les données des extensions installées et sélectionnées seront supprimées de la base de données et les extensions seront désactivées, mais les données liées à ces extensions, telles que les tables ou les valeurs de configuration, ne seront pas supprimées. Pour les supprimer, utiliser <b>OUTILS DE SUPPORT</b> -> Nettoyeur de base de données',
-	'CLICK_TO_OFF'					=> 'Extensions sélectionnées qui seront désactivées',
+	'CLICK_TO_OFF'					=> 'Les extensions sélectionnées qui seront désactivées',
 	'OFF_EXT'						=> 'Désactiver',
 	'CLEAR_EXT_SUCCESS'				=> 'Les extensions sélectionnées ont été supprimées.',
 	'CLICK_TO_ON'					=> 'Les extensions sélectionnées seront activées.',
