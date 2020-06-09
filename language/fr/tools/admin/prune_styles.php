@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'PRUNE_STYLES'				=> 'Vérification des fichiers de style',
-	'PRUNE_STYLES_EXPLAIN'		=> 'Permet de contrôler la présente des éléments nécessaires aux styles installés. Si certains éléments s’avèrent manquants le style sera supprimé. Cliquer pour confirmer cette action.',
+	'PRUNE_STYLES_EXPLAIN'		=> 'Permet de contrôler la présence des éléments nécessaires aux styles installés. Si certains éléments s’avèrent manquants le style sera supprimé. Cliquer pour confirmer cette action.',
 	'PRUNE_STYLES_SUCCESS'		=> 'Suppression effectuée.',
 	'STYLE_UNINSTALL_DEPENDENT'	=> 'Le style « %s » ne peut être désinstallé car il possède un ou plusieurs styles enfants (hérités).',
 	'STYLE_UNINSTALL_SUCESS'	=> 'Le style « %s » a été désinstallé avec succès !',
