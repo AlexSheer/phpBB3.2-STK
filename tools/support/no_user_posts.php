@@ -27,31 +27,30 @@ class no_user_posts
 	{
 		global $db, $template;
 
-			$sql = 'SELECT post_id, post_subject, post_text, bbcode_uid, bbcode_bitfield, p.forum_id, f.forum_name, p.topic_id
-				FROM ' . POSTS_TABLE . ' p
-				JOIN ' . FORUMS_TABLE . ' f ON (p.forum_id = f.forum_id)
-				JOIN ' . TOPICS_TABLE . ' t ON (p.topic_id = t.topic_id)
-				LEFT JOIN ' . USERS_TABLE . ' u ON (p.poster_id = u.user_id)
-				WHERE u.user_id IS NULL
-				ORDER BY post_id';
-			$result = $db->sql_query($sql);
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$post_id = $row['post_id'];
-				$parse_flags = OPTION_FLAG_BBCODE | OPTION_FLAG_SMILIES;
-				$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true);
+		$sql = 'SELECT post_id, post_subject, post_text, bbcode_uid, bbcode_bitfield, p.forum_id, f.forum_name, p.topic_id
+			FROM ' . POSTS_TABLE . ' p
+			JOIN ' . FORUMS_TABLE . ' f ON (p.forum_id = f.forum_id)
+			JOIN ' . TOPICS_TABLE . ' t ON (p.topic_id = t.topic_id)
+			LEFT JOIN ' . USERS_TABLE . ' u ON (p.poster_id = u.user_id)
+			WHERE u.user_id IS NULL
+			ORDER BY post_id';
+		$result = $db->sql_query($sql);
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$post_id = $row['post_id'];
+			$parse_flags = OPTION_FLAG_BBCODE | OPTION_FLAG_SMILIES;
+			$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $parse_flags, true);
 
-				$template->assign_block_vars('posts', array(
-					'POST_ID'		=> $row['post_id'],
-					'TOPIC_ID'		=> $row['topic_id'],
-					'POST_SUBJECT'	=> $row['post_subject'],
-					'POST_TEXT'		=> $message,
-					'FORUM_NAME'	=> $row['forum_name'],
-					'U_TOPIC'		=> append_sid(PHPBB_ROOT_PATH . 'viewtopic.' . PHP_EXT, array('t' => ''.$row['topic_id'])),
-					'U_FORUM'		=> append_sid(PHPBB_ROOT_PATH . 'viewforum.' . PHP_EXT, array('f' => ''.$row['forum_id'])),
-					'U_FIND_USER'	=> append_sid(PHPBB_ROOT_PATH . 'memberlist.' . PHP_EXT, array('mode' => 'searchuser', 'form' => 'select_user', 'field' => 'username_' .$row['post_id'], 'select_single' => 'true', 'form' => 'stk_no_user_posts')),
-				));
-			}
+			$template->assign_block_vars('posts', array(
+				'POST_ID'		=> $row['post_id'],
+				'TOPIC_ID'		=> $row['topic_id'],
+				'POST_SUBJECT'	=> $row['post_subject'],
+				'POST_TEXT'		=> $message,
+				'FORUM_NAME'	=> $row['forum_name'],
+				'U_TOPIC'		=> append_sid(PHPBB_ROOT_PATH . 'viewtopic.' . PHP_EXT, array('t' => ''.$row['topic_id'])),
+				'U_FORUM'		=> append_sid(PHPBB_ROOT_PATH . 'viewforum.' . PHP_EXT, array('f' => ''.$row['forum_id'])),
+				'U_FIND_USER'	=> append_sid(PHPBB_ROOT_PATH . 'memberlist.' . PHP_EXT, array('mode' => 'searchuser', 'form' => 'select_user', 'field' => 'username_' .$row['post_id'], 'select_single' => 'true', 'form' => 'stk_no_user_posts')),
+			));
 		}
 		$db->sql_freeresult($result);
 
