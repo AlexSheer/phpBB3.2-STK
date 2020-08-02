@@ -714,12 +714,12 @@ class datafile_3_2_0
 	* @var Array All default extension groups
 	*/
 	var $extension_groups = array(
-		'IMAGES'			=> array(1, 1, 1, '', 0, ''),
-		'ARCHIVES'			=> array(0, 1, 1, '', 0, ''),
-		'PLAIN_TEXT'		=> array(0, 0, 1, '', 0, ''),
-		'DOCUMENTS'			=> array(0, 0, 1, '', 0, ''),
-		'FLASH_FILES'		=> array(5, 0, 1, '', 0, ''),
-		'DOWNLOADABLE_FILES'=> array(0, 0, 1, '', 0, ''),
+		'IMAGES'			=> array(1, 1, 1, '', 0, '', 0),
+		'ARCHIVES'			=> array(0, 1, 1, '', 0, '', 0),
+		'PLAIN_TEXT'		=> array(0, 0, 1, '', 0, '', 0),
+		'DOCUMENTS'			=> array(0, 0, 1, '', 0, '', 0),
+		'FLASH_FILES'		=> array(5, 0, 1, '', 0, '', 0),
+		'DOWNLOADABLE_FILES'=> array(0, 0, 1, '', 0, '', 0),
 	);
 
 	/**
