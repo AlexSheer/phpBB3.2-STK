@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 *
 * @package Support Toolkit - Profile List
@@ -224,7 +224,7 @@ class profile_list
 					$inactive_reason = $user->lang['INACTIVE_REASON_REMIND'];
 				break;
 			}
-			
+
 			$template_vars = array(
 				'AOL'				=> $row['pf_phpbb_aol'],
 				'SKYPE'				=> $row['pf_phpbb_skype'],
