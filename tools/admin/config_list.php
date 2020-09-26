@@ -88,7 +88,7 @@ class config_list
 			'allow_attachments', 'allow_pm_attach', 'upload_path', 'display_order', 'attachment_quota', 'max_filesize', 'max_filesize_pm', 'max_attachments',
 			'secure_downloads', 'max_attachments_pm', 'secure_allow_deny', 'secure_allow_empty_referer', 'check_attachment_content', 'img_display_inlined',
 			'img_create_thumbnail', 'img_max_thumb_width', 'img_min_thumb_filesize', 'img_imagick', 'img_max', 'img_link', 'mime_triggers',
-			'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width',
+			'img_link_height', 'img_link_width', 'img_max_height', 'img_max_width', 'img_strip_metadata', 'img_quality',
 		);
 
 		$config_avatras = array(
@@ -127,7 +127,8 @@ class config_list
 
 		$config_feed = array(
 			'feed_enable', 'feed_item_statistics', 'feed_http_auth', 'feed_limit_post', 'feed_overall', 'feed_forum', 'feed_topic', 'feed_limit_topic',
-			'feed_topics_new', 'feed_topics_active', 'feed_news_id', 'feed_overall_forums',
+			'feed_topics_new', 'feed_topics_active', 'feed_news_id', 'feed_overall_forums', 'feed_limit', 'feed_overall_forums_limit',
+			'feed_overall_topics', 'feed_overall_topics_limit',
 		);
 
 		$config_user_register = array(
@@ -139,6 +140,8 @@ class config_list
 		$config_anti_spam = array(
 			'enable_confirm', 'max_reg_attempts', 'max_login_attempts', 'enable_post_confirm', 'confirm_refresh', 'captcha_gd', 'captcha_gd_foreground_noise',
 			'captcha_gd_x_grid', 'captcha_gd_y_grid', 'captcha_gd_wave', 'captcha_gd_3d_noise', 'captcha_gd_fonts', 'captcha_plugin',
+			'recaptcha_v3_key', 'recaptcha_v3_secret', 'recaptcha_v3_domain', 'recaptcha_v3_method', 'recaptcha_v3_threshold_default',
+			'recaptcha_v3_threshold_register', 'recaptcha_v3_threshold_login', 'recaptcha_v3_threshold_post', 'recaptcha_v3_threshold_report',
 		);
 
 		$config_contact_admin = array(
@@ -147,7 +150,8 @@ class config_list
 
 		$config_auth = array(
 			'auth_method', 'ldap_server', 'ldap_port', 'ldap_dn', 'ldap_uid', 'ldap_user_filter', 'ldap_email', 'ldap_user', 'ldap_password',
-			'auth_oauth_bitly_key', 'auth_oauth_bitly_secret', 'auth_oauth_facebook_key', 'auth_oauth_facebook_secret', 'auth_oauth_google_key', 'auth_oauth_google_secret'
+			'auth_oauth_bitly_key', 'auth_oauth_bitly_secret', 'auth_oauth_facebook_key', 'auth_oauth_facebook_secret', 'auth_oauth_google_key',
+			'auth_oauth_google_secret', 'auth_oauth_twitter_key', 'auth_oauth_twitter_secret',
 		);
 
 		$config_email = array(
@@ -184,7 +188,7 @@ class config_list
 		$config_search = array(
 			'load_search', 'search_interval', 'search_anonymous_interval', 'limit_search_load', 'min_search_author_chars', 'max_num_search_keywords',
 			'search_store_results', 'search_type', 'search_block_size', 'fulltext_mysql_max_word_len', 'fulltext_mysql_min_word_len', 'fulltext_native_load_upd',
-			'search_fulltext_mysql_settings', 'fulltext_native_min_chars', 'fulltext_native_max_chars', 'fulltext_native_common_thres',
+			'search_fulltext_mysql_settings', 'fulltext_native_min_chars', 'fulltext_native_max_chars', 'fulltext_native_common_thres', 'default_search_return_chars',
 			'fulltext_postgres_ts_name', 'fulltext_postgres_max_word_len', 'fulltext_postgres_min_word_len', 'fulltext_postgres_ts_name',
 			'fulltext_sphinx_id', 'fulltext_sphinx_data_path', 'fulltext_sphinx_indexer_mem_limit', 'fulltext_sphinx_host', 'fulltext_sphinx_port', 'fulltext_sphinx_stopwords',
 		);
