@@ -407,5 +407,31 @@ $lang = array_merge($lang, array(
 	'text_reparser.user_signature_cron_interval'=> 'Интервал репарсинга подписей пользователей',
 	'text_reparser.user_signature_last_cron'	=> 'Дата последнего репарсинга подписей пользователей',
 
-	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Назначение неизвестно, параметр не входит в набор стандартных для phpBB3.2.x</em></span>',
+	'img_strip_metadata'						=> 'Удалять метаданные изображения',
+	'img_quality'								=> 'Качество загружаемых изображений',
+
+	'recaptcha_v3_key'							=> 'Ключ сайта',
+	'recaptcha_v3_secret'						=> 'Секретный ключ',
+	'recaptcha_v3_domain'						=> 'Домен, с которого будет загружен скрипт для проверки запроса',
+	'recaptcha_v3_method'						=> 'Метод, который будет использован для проверки запроса',
+	'recaptcha_v3_threshold_default'			=> 'Порог по умолчанию используется, когда другие пороги неприменимы',
+	'recaptcha_v3_threshold_register'			=> 'Порог при регистрации',
+	'recaptcha_v3_threshold_login'				=> 'Порог при входе',
+	'recaptcha_v3_threshold_post'				=> 'Порог при отправке сообщений',
+	'recaptcha_v3_threshold_report'				=> 'Порог при жалобе',
+
+	'default_search_return_chars'				=> 'Количество символов, которым будет ограничен текст сообщений в результатах поиска',
+
+	'feed_limit'								=> 'Максимальное количество элементов канала новостей для отображения',
+	'feed_overall_forums_limit'					=> 'Максимальное количество элементов канала новостей для отображения (форумы)',
+	'feed_overall_topics'						=> 'Включить канал новых тем',
+	'feed_overall_topics_limit'					=> 'Максимальное количество элементов канала новостей для отображения (темы)',
+
+	'auth_oauth_twitter_key'					=> 'Ключ Twitter',
+	'auth_oauth_twitter_secret'					=> 'Секретный код Twitter',
+
+	'load_font_awesome_url'						=> 'URL для загрузки шрифта «Font Awesome»',
+	'display_unapproved_posts'					=> 'Показывать авторам их сообщения, ожидающие одобрения',
+
+	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Назначение неизвестно, параметр не входит в набор стандартных для phpBB3.2.x или phpBB3.3.x</em></span>',
 ));
