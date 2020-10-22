@@ -117,7 +117,8 @@ class config_list
 			'allow_topic_notify', 'allow_forum_notify', 'allow_bbcode', 'allow_post_flash', 'allow_smilies', 'allow_post_links', 'allow_nocensors', 'allow_bookmarks',
 			'enable_post_confirm', 'allow_quick_reply', 'edit_time', 'delete_time', 'display_last_edited', 'flood_interval', 'bump_interval', 'bump_type',
 			'topics_per_page', 'posts_per_page', 'smilies_per_page', 'hot_threshold', 'max_poll_options', 'max_post_chars', 'min_post_chars', 'max_post_smilies',
-			'max_post_urls', 'max_post_font_size', 'max_quote_depth', 'max_post_img_width', 'max_post_img_height',
+			'max_post_urls', 'max_post_font_size', 'max_quote_depth', 'max_post_img_width', 'max_post_img_height', 'enable_queue_trigger', 'queue_trigger_posts',
+			'display_unapproved_posts',
 		);
 
 		$config_signatures = array(
