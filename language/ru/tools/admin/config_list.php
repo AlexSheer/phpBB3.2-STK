@@ -432,6 +432,8 @@ $lang = array_merge($lang, array(
 
 	'load_font_awesome_url'						=> 'URL для загрузки шрифта «Font Awesome»',
 	'display_unapproved_posts'					=> 'Показывать авторам их сообщения, ожидающие одобрения',
+	'queue_trigger_posts'						=> 'Не используется в версиях phpBB выше 3.0.5',
+	'enable_queue_trigger'						=> 'Не используется в версиях phpBB выше 3.0.5',
 
 	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Назначение неизвестно, параметр не входит в набор стандартных для phpBB3.2.x или phpBB3.3.x</em></span>',
 ));
