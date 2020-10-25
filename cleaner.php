@@ -304,7 +304,7 @@ if (!defined('IN_PHPBB'))
 							<legend><? echo($lang['EMERGENCY_LOGIN_NAME']); ?></legend>
 								<dl>
 									<dt><label for="pass"><? echo($lang['STK_PASSWORD']); ?>:</label></dt>
-									<dd><input id="pass" type="text" size="60" maxlength="255" name="pass"  value=""></dd>
+									<dd><input id="pass" type="password" size="60" maxlength="255" name="pass"  value=""></dd>
 								</dl>
 								<input type="submit" name="enter" class="button2" value="<? echo($lang['SUBMIT']); ?>">
 							</fieldset>
