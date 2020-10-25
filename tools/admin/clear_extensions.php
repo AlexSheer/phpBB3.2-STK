@@ -66,7 +66,7 @@ class clear_extensions
 	{
 		global $db, $template, $lang, $cache, $request, $phpbb_extension_manager, $config, $user;
 		$this->ext_manager = $phpbb_extension_manager;
- 		//print_r($user->lang);
+
 		$user->add_lang('acp/extensions');
 		$off = $request->variable('off', false);
 		$on = $request->variable('on', false);
@@ -251,18 +251,18 @@ class clear_extensions
 
 			$template->assign_block_vars('row', array(
 				'EXT_NAME'				=> $row['ext_name'],
-				'VERSION'				=> $meta['version'],
-				'VERSION_CHECK_FAIL'	=> $version_check_fail,
-				'VERSION_NOT_UP_TO_DATE'=> ($updates_available) ? true : false,
-				'VERSION_CHECK'			=> $version_check_url,
-				'DOWNLOAD'				=> $download,
+				'VERSION'				=> (isset($meta)) ? $meta['version'] : null,
+				'VERSION_CHECK_FAIL'	=> (isset($version_check_fail)) ? $version_check_fail : null,
+				'VERSION_NOT_UP_TO_DATE'=> (isset($meta) && $updates_available) ? true : false,
+				'VERSION_CHECK'			=> (isset($meta)) ? $version_check_url : null,
+				'DOWNLOAD'				=> (isset($meta)) ? $download : null,
 				'MISSING_PATH'			=> ($missing_path) ? $missing_path : '',
 				'NO_COMPOSER'			=> ($no_composer) ? true : false,
 				'DISPLAY_NAME'			=> ($display_name) ? $display_name : sprintf($lang['NO_COMPOSER'], $row['ext_name']),
 				'NO_COMPOSER'			=> ($display_name) ? false : true,
 				'S_ACTIVE'				=> $row['ext_active'],
 				'EXT_MISSING_PATH'		=> ($missing_path) ? sprintf($lang['EXT_MISSING_PATH'], $row['ext_name']) : '',
-				'L_NOT_UP_TO_DATE'		=> sprintf($user->lang['NOT_UP_TO_DATE'], $current),
+				'L_NOT_UP_TO_DATE'		=> (isset($meta)) ?  sprintf($user->lang['NOT_UP_TO_DATE'], $current) : null,
 			));
 			$version_check_fail = false;
 		}
