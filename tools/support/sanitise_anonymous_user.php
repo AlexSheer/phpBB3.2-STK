@@ -25,7 +25,7 @@ class sanitise_anonymous_user
 	*/
 	function display_options()
 	{
-		global $db, $plugin, $user, $lang;
+		global $db, $plugin, $user, $lang, $action;
 
 		// Grep the anonymous user
 		$sql = 'SELECT *
@@ -38,14 +38,14 @@ class sanitise_anonymous_user
 		// No anonymous user
 		if (!$anon)
 		{
-			$plugin->set_part('a', 'missing');
+			$action = 'missing';
 			return 'ANONYMOUS_MISSING';
 		}
 
 		// Make sure that the anonymous user doesn't has an e-mail and correct usernames
 		if ($anon['username'] != 'Anonymous' || $anon['username_clean'] != 'anonymous' || $anon['user_password'] != '' || $anon['user_email'] != '')
 		{
-			$plugin->set_part('a', 'clean');
+			$action = 'clean';
 			return 'ANONYMOUS_WRONG_DATA';
 		}
 
@@ -56,7 +56,7 @@ class sanitise_anonymous_user
 
 		if ($_in_guests === false || !empty($_other))
 		{
-			$plugin->set_part('a', 'groups');
+			$action = 'groups';
 			return 'ANONYMOUS_WRONG_GROUPS';
 		}
 
@@ -70,7 +70,7 @@ class sanitise_anonymous_user
 	*/
 	function run_tool()
 	{
-		global $config, $db, $plugin, $lang, $request;
+		global $config, $db, $plugin, $lang, $request, $action;
 
 		// Collect all the information a clean "Anonymous" should have
 		$sql = 'SELECT group_id, group_rank, group_colour
@@ -120,7 +120,7 @@ class sanitise_anonymous_user
 		$msg = '';
 
 		// Do those thangs
-		$action = $request->variable('a', '');
+		//$action = $request->variable('a', '');
 		switch ($action)
 		{
 			case 'clean' :
@@ -177,7 +177,7 @@ class sanitise_anonymous_user
 			break;
 
 			default :
-				trigger_error('NO_MODE');
+				trigger_error($lang['NO_MODE']);
 		}
 
 		// Inform the user
