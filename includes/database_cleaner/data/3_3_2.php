@@ -17,76 +17,64 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* phpBB 3.3.1 data file
+* phpBB 3.3.2 data file
 */
-class datafile_3_3_1
+class datafile_3_3_2
 {
 	/**
 	* @var Array The bots
 	*/
 	var $bots = array(
-		'DuckDuckGo [Bot]'	=> array('DuckDuckBot/', '')
+
+		// No bots changes 3.3.1 -> 3.3.2
 	);
 
 	/**
-	* @var Array  3.3.1 config data
+	* @var Array  3.3.2 config data
 	*/
 	var $config = array(
-		'default_search_return_chars'		=> array('config_value' => '300', 'is_dynamic' => '0'),
-		'display_unapproved_posts'			=> array('config_value' => '1', 'is_dynamic' => '0'),
-		'recaptcha_v3_key'					=> array('config_value' => '', 'is_dynamic' => '0'),
-		'recaptcha_v3_secret'				=> array('config_value' => '', 'is_dynamic' => '0'),
-		'recaptcha_v3_domain'				=> array('config_value' => 'google.com', 'is_dynamic' => '0'),
-		'recaptcha_v3_method'				=> array('config_value' => 'post', 'is_dynamic' => '0'),
-		'recaptcha_v3_threshold_default'	=> array('config_value' => '0.5', 'is_dynamic' => '0'),
-		'recaptcha_v3_threshold_register'	=> array('config_value' => '0.5', 'is_dynamic' => '0'),
-		'recaptcha_v3_threshold_login'		=> array('config_value' => '0.5', 'is_dynamic' => '0'),
-		'recaptcha_v3_threshold_post'		=> array('config_value' => '0.5', 'is_dynamic' => '0'),
-		'recaptcha_v3_threshold_report'		=> array('config_value' => '0.5', 'is_dynamic' => '0'),
-		'enable_queue_trigger'				=> array('config_value' => '0', 'is_dynamic' => '0'),
-		'feed_overall_forums_limit'			=> array('config_value' => '15', 'is_dynamic' => '0'),
 	);
 
 	/**
-	* @var Array Config entries that were removed by the 3.3.0 update
+	* @var Array Config entries that were removed by the 3.3.2 update
 	*/
 	var $removed_config = array(
-		// No config entries removed  3.3.0 -> 3.3.1
+		// No config entries removed  3.3.1 -> 3.3.2
 	);
 
 	/**
 	* @var Array All default permission settings
 	*/
 	var $acl_options = array(
-		// No permission changes 3.3.0 -> 3.3.1
+		// No permission changes 3.3.1-> 3.3.2
 	);
 
 	/**
 	* @var Array All default roles
 	*/
 	var $acl_roles = array(
-		// No role changes  3.3.0 ->  3.3.1
+		// No role changes  3.3.1 -> 3.3.2
 	);
 
 	/**
 	* @var Array All default role data
 	*/
 	var $acl_role_data = array(
-		// No role data changes  3.3.0 ->  3.3.1
+		// No role data changes  3.3.1-> 3.3.2
 	);
 
 	/**
 	* @var Array All default extension groups
 	*/
 	var $extension_groups = array(
-		// No extension group changes  3.3.0 ->  3.3.1
+		// No extension group changes  3.3.1-> 3.3.2
 	);
 
 	/**
 	* @var Array All default extensions
 	*/
 	var $extensions = array(
-		// No extension changes  3.3.0 ->  3.3.1
+		// No extension changes  3.3.1-> 3.3.2
 	);
 
 	/**
@@ -94,32 +82,32 @@ class datafile_3_3_1
 	* needing to hard-code module_id values
 	*/
 	var $module_categories = array(
-		// No Module categories changes  3.3.0 ->  3.3.1
+		// No Module categories changes  3.3.1-> 3.3.2
 	);
 
 	var $module_extras = array(
-		// No Module extra changes  3.3.0 ->  3.3.1
+		// No Module extra changes  3.3.1-> 3.3.2
 	);
 
 	var $module_categories_basenames = array(
-		// No Categories basenames changes  3.3.0 ->  3.3.1
+		// No Categories basenames changes  3.3.1-> 3.3.2
 	);
 
 	/**
 	* @var Array All default groups
 	*/
 	var $groups = array(
-		// No Group changes  3.3.0 ->  3.3.1
+		// No Group changes  3.3.1-> 3.3.2
 	);
 	/**
 	* @var Array All default report reasons
 	*/
 	var $report_reasons = array(
-		// No reason changes  3.3.0 ->  3.3.1
+		// No reason changes  3.3.1-> 3.3.2
 	);
 
 	var $acp_modules = array(
-		// No ACP modules changes  3.3.0 ->  3.3.1
+		// No ACP modules changes  3.3.1-> 3.3.2
 	);
 
 	/**
@@ -154,20 +142,9 @@ class datafile_3_3_1
 	*	VCHAR_UNI	=> varchar(255) BINARY
 	*	VCHAR_CI	=> varchar_ci for postgresql, others VCHAR
 	*/
+
 	function get_schema_struct(&$schema_data)
 	{
-		// Add table
-		$schema_data['phpbb_notification_emails'] = array(
-			'COLUMNS'		=> array(
-				'notification_type_id'	=> array('USINT', 0),
-				'item_id'				=> array('ULINT', 0),
-				'item_parent_id'		=> array('ULINT', 0),
-				'user_id'				=> array('ULINT', 0)
-			),
-			'PRIMARY_KEY'	=> array('notification_type_id', 'item_id', 'item_parent_id', 'user_id')
-		);
-
-		// Remove table
-		unset($schema_data['phpbb_email_notifications']);
+		// No schema changes 3.3.1 -> 3.3.2
 	}
 }
