@@ -563,7 +563,7 @@ function stk_version_check()
 		$msg = sprintf($lang['STK_OUTDATED'], $version_check['latest'], $version_check['current'], $version_check['topic'], append_sid(STK_ROOT_PATH . $user->page['page_name'], $user->page['query_string'] . '&amp;force_check=1'));
 
 		// Trigger
-		trigger_error($msg, E_USER_ERROR);
+		trigger_error($msg, E_USER_WARNING);
 	}
 }
 
