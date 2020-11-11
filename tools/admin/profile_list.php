@@ -77,7 +77,6 @@ class profile_list
 		*/
 		$options = array(
 			'pf_phpbb_icq'			=> 'ICQ',
-			'pf_phpbb_aol'			=> 'AOL',
 			'pf_phpbb_skype'		=> 'SKYPE',
 			'pf_phpbb_facebook'		=> 'FACEBOOK',
 			'pf_phpbb_twitter'		=> 'TWITTER',
@@ -94,7 +93,8 @@ class profile_list
 		if (version_compare(PHPBB_VERSION, '3.3.1', '<'))
 		{
 			$options = array_merge($options, array(
-				'pf_phpbb_googleplus' => 'GOOGLEPLUS'
+				'pf_phpbb_googleplus'	=> 'GOOGLEPLUS',
+				'pf_phpbb_aol'			=> 'AOL',
 			));
 		}
 
@@ -226,7 +226,6 @@ class profile_list
 			}
 
 			$template_vars = array(
-				'AOL'				=> $row['pf_phpbb_aol'],
 				'SKYPE'				=> $row['pf_phpbb_skype'],
 				'FACEBOOK'			=> $row['pf_phpbb_facebook'],
 				'YAHOO'				=> $row['pf_phpbb_yahoo'],
@@ -260,7 +259,8 @@ class profile_list
 			if (version_compare(PHPBB_VERSION, '3.3.1', '<') && isset($row['pf_phpbb_googleplus']))
 			{
 				$template_vars = array_merge($template_vars, array(
-					'GOOGLE' => $row['pf_phpbb_googleplus']
+					'AOL'		=> $row['pf_phpbb_aol'],
+					'GOOGLE'	=> $row['pf_phpbb_googleplus'],
 				));
 			}
 
