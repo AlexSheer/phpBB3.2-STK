@@ -407,5 +407,33 @@ $lang = array_merge($lang, array(
 	'text_reparser.post_text_last_cron'			=> 'Dernière analyse lancée par le cron pour les textes des messages',
 	'text_reparser.user_signature_cron_interval'=> 'Intervalle du cron pour ré-analyser les signatures des membres',
 	'text_reparser.user_signature_last_cron'	=> 'Dernière analyse lancée par le cron pour les signatures des membres',
-	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Paramètre inconnu et/ou additionnel, celui-ci n’existe dans la configuration par défaut de phpBB 3.2.x.</em></span>',
+
+	'img_strip_metadata'						=> ' ',
+	'img_quality'								=> ' ',
+
+	'recaptcha_v3_key'							=> 'Clé du site',
+	'recaptcha_v3_secret'						=> 'Clé secrète',
+	'recaptcha_v3_domain'						=> 'Nom de domaine',
+	'recaptcha_v3_method'						=> 'Méthode',
+	'recaptcha_v3_threshold_default'			=> '',
+	'recaptcha_v3_threshold_register'			=> '',
+	'recaptcha_v3_threshold_login'				=> '',
+	'recaptcha_v3_threshold_post'				=> ' ',
+	'recaptcha_v3_threshold_report'				=> ' ',
+
+	'default_search_return_chars'				=> ' ',
+
+	'feed_limit'								=> ' ',
+	'feed_overall_forums_limit'					=> ' ',
+	'feed_overall_topics'						=> ' ',
+	'feed_overall_topics_limit'					=> ' ',
+
+	'auth_oauth_twitter_key'					=> ' ',
+	'auth_oauth_twitter_secret'					=> ' ',
+
+	'load_font_awesome_url'						=> ' ',
+	'display_unapproved_posts'					=> ' ',
+	'queue_trigger_posts'						=> 'Inutile depuis la version 3.0.5 de phpBB',
+	'enable_queue_trigger'						=> 'Inutile pour les versions supérieures à phpBB 3.0.5',
+	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Paramètre inconnu et/ou additionnel, celui-ci n’existe dans la configuration par défaut de phpBB 3.2.x ou 3.3.x.</em></span>',
 ));
