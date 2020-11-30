@@ -68,7 +68,8 @@ class plugin
 	 * Load the list with available plugins and assign them in the correct category
 	 */
 	function plugin()
-	{		global $request, $user;
+	{
+		global $request, $user;
 		// Set the path
 		$this->tool_box_path = STK_ROOT_PATH . 'tools/';
 
@@ -265,10 +266,15 @@ class plugin
 	 */
 	function gen_left_nav()
 	{
-		global $template, $lang;
+		global $template, $lang, $config;
 
 		// Grep the correct category
 		$tool_list = $this->plugin_list[$this->_parts['c']];
+
+		if ($config['version'] >= '3.3.1')
+		{
+			$tool_list = array_diff($tool_list, ["update_email_hashes"]);
+		}
 
 		// Run through the tools and collect all info we need
 		$tpl_data = array();

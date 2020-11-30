@@ -77,10 +77,8 @@ class profile_list
 		*/
 		$options = array(
 			'pf_phpbb_icq'			=> 'ICQ',
-			'pf_phpbb_aol'			=> 'AOL',
 			'pf_phpbb_skype'		=> 'SKYPE',
 			'pf_phpbb_facebook'		=> 'FACEBOOK',
-			'pf_phpbb_googleplus'	=> 'GOOGLEPLUS',
 			'pf_phpbb_twitter'		=> 'TWITTER',
 			'pf_phpbb_yahoo'		=> 'YAHOO',
 			'pf_phpbb_youtube'		=> 'YOUTUBE',
@@ -91,6 +89,14 @@ class profile_list
 			'pf_phpbb_location'		=> 'LOCATION',
 			'user_sig'				=> 'SIGNATURE',
 		);
+
+		if (version_compare(PHPBB_VERSION, '3.3.1', '<'))
+		{
+			$options = array_merge($options, array(
+				'pf_phpbb_googleplus'	=> 'GOOGLEPLUS',
+				'pf_phpbb_aol'			=> 'AOL',
+			));
+		}
 
 		$profile_where = '';
 		$extra = '';
@@ -219,12 +225,10 @@ class profile_list
 				break;
 			}
 
-			$template->assign_block_vars('users', array(
-				'AOL'				=> $row['pf_phpbb_aol'],
+			$template_vars = array(
 				'SKYPE'				=> $row['pf_phpbb_skype'],
 				'FACEBOOK'			=> $row['pf_phpbb_facebook'],
 				'YAHOO'				=> $row['pf_phpbb_yahoo'],
-				'GOOGLE'			=> $row['pf_phpbb_googleplus'],
 				'TWITTER'			=> $row['pf_phpbb_twitter'],
 				'YOUTUBE' 			=> $row['pf_phpbb_youtube'],
 
@@ -250,7 +254,17 @@ class profile_list
 				'U_USER_ADMIN'		=> append_sid(PHPBB_ROOT_PATH . 'adm/index.' . PHP_EXT, 'i=users&amp;mode=overview&amp;u=' . $row['uid'], true, $user->session_id),
 
 				'S_USER_INACTIVE'	=> ($row['user_inactive_reason']) ? true : false,
-			));
+			);
+
+			if (version_compare(PHPBB_VERSION, '3.3.1', '<') && isset($row['pf_phpbb_googleplus']))
+			{
+				$template_vars = array_merge($template_vars, array(
+					'AOL'		=> $row['pf_phpbb_aol'],
+					'GOOGLE'	=> $row['pf_phpbb_googleplus'],
+				));
+			}
+
+			$template->assign_block_vars('users', $template_vars);
 		}
 		$db->sql_freeresult($result);
 

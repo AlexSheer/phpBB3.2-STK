@@ -141,13 +141,13 @@ function get_extensions($group, &$group_id)
 
 	// # Bugfix from previous verson for phpBB 3.0
 	// # extension_id in extensions table assigned a NULL value
-	if(!sizeof($set))
+	if (!sizeof($set))
 	{
-		$sql = 'SELECT group_id FROM '. EXTENSION_GROUPS_TABLE .'
-			WHERE group_name = \''. $db->sql_escape($group) .'\'';
+		$sql = 'SELECT group_id FROM ' . EXTENSION_GROUPS_TABLE . '
+			WHERE group_name = \'' . $db->sql_escape($group) . '\'';
 		$result = $db->sql_query($sql);
 		$id = $db->sql_fetchrow($result);
-		$group_id = $id['group_id'];
+		$group_id = isset($id['group_id']) ? $id['group_id'] : 0;
 		$db->sql_freeresult($result);
 	}
 
@@ -439,6 +439,13 @@ function fetch_cleaner_data(&$data, $phpbb_version)
 		$data->module_categories_basenames			= array_merge($data->module_categories_basenames, $_datafile->module_categories_basenames);
 
 		$_datafile->get_schema_struct($data->schema_data);
+
+		// Flash/SWF files - @deprecated 3.3
+		if ($phpbb_version >= '3_3_0')
+		{
+			unset($data->extension_groups['FLASH_FILES']);
+			unset($data->extensions['FLASH_FILES']);
+		}
 
 		// Just make sure that nothing sticks
 		unset($_datafile);

@@ -216,7 +216,6 @@ a:active {
 }
 
 /* Tabbed menu
-	Based on: http://www.alistapart.com/articles/slidingdoors2/
 ----------------------------------------*/
 #tabs {
 	font-family: Arial, Helvetica, sans-serif;
@@ -226,84 +225,73 @@ a:active {
 	z-index: 2;
 }
 
-.rtl #tabs {
-	margin: 0 7px -6px 0;
-}
-
-#tabs ul {
-	margin:0;
-	padding: 0;
+#tabs > ul {
 	list-style: none;
-}
-
-#tabs li {
-	display: inline;
 	margin: 0;
 	padding: 0;
+}
+
+#tabs .tab {
+	display: inline-block;
+	float: left;
 	font-size: 0.85em;
 	font-weight: bold;
+	line-height: 14px;
 }
 
-#tabs a {
-	float: left;
-	background:url("../images/bg_tabs1.gif") no-repeat 0% -34px;
-	margin: 0 1px 0 0;
-	padding: 0 0 0 7px;
-	text-decoration: none;
-	position: relative;
-}
-
-.rtl #tabs a {
+.rtl #tabs .tab {
 	float: right;
 }
 
-#tabs a span {
-	float: left;
-	display: block;
-	background: url("../images/bg_tabs2.gif") no-repeat 100% -34px;
-	padding: 7px 10px 4px 4px;
+#tabs .tab > a {
+	background: #D4D6DA;
+	background: -moz-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #CACBCF), color-stop(100%, #D4D6DA));
+	background: -webkit-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
+	background: -o-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
+	background: -ms-linear-gradient(top, #CACBCF 0%, #D4D6DA 100%);
+	background: linear-gradient(to bottom, #CACBCF 0%, #D4D6DA 100%);
+	border: 1px solid #BBB;
+	border-bottom-width: 0;
+	border-radius: 5px 5px 0 0;
 	color: #767676;
-	white-space: nowrap;
-	font-family: Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
+	display: block;
 	font-weight: bold;
+	margin: 1px 1px 2px 0;
+	padding: 6px 9px 4px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+	cursor: pointer;
 }
 
-.rtl #tabs a span {
-	float: right;
-}
-
-/* Commented Backslash Hack hides rule from IE5-Mac \*/
-#tabs a span, .rtl #tabs a span { float:none;}
-/* End hack */
-
-#tabs a:hover span {
+#tabs .tab > a:hover {
+	background: #F1F1EE;
+	border-color: #C0BFBB;
 	color: #BC2A4D;
 }
 
-#tabs #activetab a {
-	background-position: 0 0;
-	border-bottom: 1px solid #DCDEE2;
-}
-
-#tabs #activetab a span {
-	background-position: 100% 0;
-	padding-bottom: 5px;
+#tabs .activetab > a,
+#tabs .activetab > a:hover {
+	background: #DCDEE2;
+	background: -moz-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F2F2F2), color-stop(100%, #DCDEE2));
+	background: -webkit-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
+	background: -o-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
+	background: -ms-linear-gradient(top, #F2F2F2 0%, #DCDEE2 100%);
+	background: linear-gradient(to bottom, #F2F2F2 0%, #DCDEE2 100%);
+	border-color: #999;
+	border-bottom: 2px solid #DCDEE2;
+	box-shadow: 0 1px 1px #FFF inset;
 	color: #23649F;
+	margin: 0 1px 0 0;
+	padding: 7px 10px 4px;
 }
 
-#tabs a:hover {
-	background-position: 0 -69px;
-}
-
-#tabs a:hover span {
-	background-position: 100% -69px;
-}
-
-#tabs #activetab a:hover span {
+#tabs .activetab > a:hover {
 	color: #115098;
 }
-
 
 /* Main Panel
 ---------------------------------------- */

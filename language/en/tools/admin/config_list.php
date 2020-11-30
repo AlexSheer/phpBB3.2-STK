@@ -405,5 +405,33 @@ $lang = array_merge($lang, array(
 	'text_reparser.post_text_last_cron'			=> ' ',
 	'text_reparser.user_signature_cron_interval'=> ' ',
 	'text_reparser.user_signature_last_cron'	=> ' ',
-	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Purpose unknown, parameter is not included in the standard set for phpBB3.2.x</em></span>',
+
+	'img_strip_metadata'						=> ' ',
+	'img_quality'								=> ' ',
+
+	'recaptcha_v3_key'							=> 'Site key',
+	'recaptcha_v3_secret'						=> 'Secret key',
+	'recaptcha_v3_domain'						=> 'Domain',
+	'recaptcha_v3_method'						=> 'Method',
+	'recaptcha_v3_threshold_default'			=> '',
+	'recaptcha_v3_threshold_register'			=> '',
+	'recaptcha_v3_threshold_login'				=> '',
+	'recaptcha_v3_threshold_post'				=> ' ',
+	'recaptcha_v3_threshold_report'				=> ' ',
+
+	'default_search_return_chars'				=> ' ',
+
+	'feed_limit'								=> ' ',
+	'feed_overall_forums_limit'					=> ' ',
+	'feed_overall_topics'						=> ' ',
+	'feed_overall_topics_limit'					=> ' ',
+
+	'auth_oauth_twitter_key'					=> ' ',
+	'auth_oauth_twitter_secret'					=> ' ',
+
+	'load_font_awesome_url'						=> ' ',
+	'display_unapproved_posts'					=> ' ',
+	'queue_trigger_posts'						=> 'Not used in phpBB versions higher than 3.0.5',
+	'enable_queue_trigger'						=> 'Not used in phpBB versions higher than 3.0.5',
+	'UNKNOWN'							=> '<span style="color:#FF5D00"><em>Purpose unknown, parameter is not included in the standard set for phpBB3.2.x or 3.3.x</em></span>',
 ));

@@ -24,7 +24,8 @@ if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
 	}
 }
 else
-{	$default_lang = 'en';
+{
+	$default_lang = 'en';
 }
 
 require PHPBB_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT;
@@ -43,7 +44,10 @@ $login = chk_auth();
 $enter			= request_var('enter', false);
 $action			= request_var('action', '');
 if ($login)
-{	hdr($default_lang, $login);	$link = @mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
+{
+	hdr($default_lang, $login);
+
+	$link = @mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
 	if (!$link)
 	{
 		$pass = ($src_dbpasswd) ? 'YES' : 'NO';
@@ -155,7 +159,8 @@ if ($login)
 			<?
 	}
 	else
-	{		_trigger_error($lang['NO_EXTENSIONS_TEXT'], true);
+	{
+		_trigger_error($lang['NO_EXTENSIONS_TEXT'], true);
 	}
 	$count = 0;
 	while ($row = mysqli_fetch_row($result))
@@ -217,7 +222,8 @@ if ($login)
 	mysqli_free_result($result);
 	echo "\t\t\t\t\t\t</table>\n";
 	if ($count)
-	{?>
+	{
+?>
 							<div class="rightside pagination"><a href="#" onclick="marklist('select_action', 'marked_name', true); return false;"><? echo($lang['MARK_ALL']); ?></a> :: <a href="#" onclick="marklist('select_action', 'marked_name', false); return false;"><? echo($lang['UNMARK_ALL']); ?></a></div>
 							<fieldset class="jumpbox">
 								<label for="submit"><? echo($lang['CLICK_TO_CLEAR']); ?></label> <div style="text-align: right;"><input type="submit" name="submit" class="button2" style="float: right;" value="<? echo($lang['DELETE']); ?>"></div>
@@ -234,24 +240,34 @@ if ($login)
 	}
 }
 else
-{	$passwd = request_var('pass', '');	if ($enter)
-	{		if ($passwd)
-		{			if (file_exists(STK_ROOT_PATH . 'passwd.' . PHP_EXT))
-			{				include (STK_ROOT_PATH . 'passwd.' . PHP_EXT);
+{
+	$passwd = request_var('pass', '');
+	if ($enter)
+	{
+		if ($passwd)
+		{
+			if (file_exists(STK_ROOT_PATH . 'passwd.' . PHP_EXT))
+			{
+				include (STK_ROOT_PATH . 'passwd.' . PHP_EXT);
 				if ($passwd == $stk_passwd)
-				{					setcookie('dpasswdfile', $passwd, (time() + 21600));
+				{
+					setcookie('dpasswdfile', $passwd, (time() + 21600));
 					$login = true;
 				}
 				else
-				{					$error[] = $lang['WRONG_PASSWD'];
+				{
+					$error[] = $lang['WRONG_PASSWD'];
 				}
-			}		}
+			}
+		}
 		else
-		{			$error[] = $lang['EMPTY_PASSWD'];
+		{
+			$error[] = $lang['EMPTY_PASSWD'];
 		}
 	}
 	if ($action == 'downloadpasswdfile')
-	{		$_pass_string			= request_var('stk_passwd', '');
+	{
+		$_pass_string			= request_var('stk_passwd', '');
 		$_pass_exprire			= request_var('pass_exprire', '');
 		setcookie('dpasswdfile', '', 0);
 		// Create the file and let the user download it
@@ -278,15 +294,17 @@ if (!defined('IN_PHPBB'))
 	hdr($default_lang, $login);
 
 	if (sizeof($error))
-	{		echo ('<div class="errorbox">' . implode('<br />', $error) . '</div>');
+	{
+		echo ('<div class="errorbox">' . implode('<br />', $error) . '</div>');
 	}
 	if (file_exists(STK_ROOT_PATH . 'passwd.' . PHP_EXT) && !$login)
-	{		?>
+	{
+		?>
 							<fieldset class="jumpbox">
 							<legend><? echo($lang['EMERGENCY_LOGIN_NAME']); ?></legend>
 								<dl>
 									<dt><label for="pass"><? echo($lang['STK_PASSWORD']); ?>:</label></dt>
-									<dd><input id="pass" type="text" size="60" maxlength="255" name="pass"  value=""></dd>
+									<dd><input id="pass" type="password" size="60" maxlength="255" name="pass"  value=""></dd>
 								</dl>
 								<input type="submit" name="enter" class="button2" value="<? echo($lang['SUBMIT']); ?>">
 							</fieldset>
@@ -305,7 +323,8 @@ if (!defined('IN_PHPBB'))
 		<?
 	}
 	if ($action == 'genpasswdfile')
-	{		$_pass_string = md5(generatecode(10));
+	{
+		$_pass_string = md5(generatecode(10));
 		$_pass_exprire = time() + 21600;
 		$redirect = STK_ROOT_PATH . 'cleaner.' . PHP_EXT . '';
 
@@ -322,7 +341,9 @@ if (!defined('IN_PHPBB'))
 	}
 	echo "\t\t\t\t</form>\n";
 	if ($login)
-	{		$redirect = STK_ROOT_PATH . 'cleaner.' . PHP_EXT;		redirect($redirect);
+	{
+		$redirect = STK_ROOT_PATH . 'cleaner.' . PHP_EXT;
+		redirect($redirect);
 	}
 }
 footer();
@@ -333,14 +354,17 @@ function redirect($url)
 	echo '<script type="text/javascript">window.location = "' . $url . '"</script>';
 }
 function hdr($default_lang, $login = false, $count = 0)
-{	global $lang;
+{
+	global $lang;
 
 	$u_undex = PHPBB_ROOT_PATH . 'index.' . PHP_EXT;
 	$u_acp = PHPBB_ROOT_PATH . 'adm/index.' . PHP_EXT;
 	$u_stk = STK_ROOT_PATH . 'index.' . PHP_EXT;
-	echo "<!DOCTYPE html>\n<html lang=" . $default_lang . ">\n<head>\n<meta charset='utf-8' />\n";
+
+	echo "<!DOCTYPE html>\n<html lang=" . $default_lang . ">\n<head>\n<meta charset='utf-8' />\n";
 	if ($login)
-	{		?>
+	{
+		?>
 <script>
 /**
 * Mark/unmark checkboxes
@@ -367,7 +391,8 @@ function marklist(id, name, state)
 	}
 }
 </script>
-		<?	}
+		<?
+	}
 	?>
 <title>STK - <?php echo ($lang['CLEAR_EXTENSIONS']); ?></title>
 <link href="<?php echo (STK_ROOT_PATH); ?>/style/style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -388,7 +413,8 @@ function marklist(id, name, state)
 							<form method="post" id="select_action" action="cleaner.php">
 	<?
 		if ($login && $count)
-		{			?>
+		{
+			?>
 									<table cellspacing="1">
 										<tr>
 											<th><? echo($lang['EXT_NAME']); ?></th>
@@ -396,11 +422,13 @@ function marklist(id, name, state)
 											<th><? echo($lang['MISSING_PATH']); ?></th>
 											<th class="mark"><? echo($lang['MARK']); ?></th>
 										</tr>
-			<?		}
+			<?
+		}
 	}
 
 	function footer()
-	{	?>
+	{
+	?>
 					</div>
 				</div>
 			</div>
@@ -408,12 +436,13 @@ function marklist(id, name, state)
 	</div>
 </div>
 <div class="copyright">
-	Support Toolkit for phpBB3.2.x &copy;<br>
-	Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by &copy; Sheer
+	Support Toolkit for phpBB3.2.x &amp; phpBB3.3.x &copy;<br>
+	Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x &amp; phpBB3.3.x by &copy; Sheer
 </div>
 </body>
 </html>
-<?}
+<?
+}
 
 function generatecode($length = 6)
 {
@@ -436,30 +465,39 @@ function exit_handler()
 }
 
 function chk_auth()
-{	if (file_exists(STK_ROOT_PATH . 'passwd.' . PHP_EXT))
-	{		include (STK_ROOT_PATH . 'passwd.' . PHP_EXT);
+{
+	if (file_exists(STK_ROOT_PATH . 'passwd.' . PHP_EXT))
+	{
+		include (STK_ROOT_PATH . 'passwd.' . PHP_EXT);
 		if ($stk_passwd_expiration !== false && time() < $stk_passwd_expiration)
 		{
 			$cookie = request_var('dpasswdfile', '', false, true);
 			if ($stk_passwd === $cookie)
-			{				return true;
+			{
+				return true;
 			}
 			else
-			{				return false;			}
+			{
+				return false;
+			}
 		}
 
 		setcookie('dpasswdfile', '', 0);
 		@unlink(STK_ROOT_PATH . 'passwd.' . PHP_EXT);
 		return false;
-	}	return false;
+	}
+	return false;
 }
 
 function _trigger_error($msg, $error_level = '')
-{	$class = ($error_level) ? 'errorbox' : 'successbox';	echo ('<div class="' . $class . '"> ' . $msg . '</div>');
+{
+	$class = ($error_level) ? 'errorbox' : 'successbox';
+	echo ('<div class="' . $class . '"> ' . $msg . '</div>');
 }
 
 function purge_cache($path)
-{	$files = glob($path . '/*');
+{
+	$files = glob($path . '/*');
 	foreach ($files as $file)
 	{
 		is_dir($file) ? purge_cache($file) : unlink($file);
@@ -469,14 +507,16 @@ function purge_cache($path)
 }
 
 function sql_like_expression($expression)
-{	$expression = str_replace(array('_', '%'), array("\_", "\%"), $expression);
+{
+	$expression = str_replace(array('_', '%'), array("\_", "\%"), $expression);
 	$expression = str_replace(array(chr(0) . "\_", chr(0) . "\%"), array('_', '%'), $expression);
 
 	return ('LIKE \'' . $expression . '\'');
 }
 
 function sql_in_set($field, $array, $negate = false, $allow_empty_set = false)
-{	if (!sizeof($array))
+{
+	if (!sizeof($array))
 	{
 		if (!$allow_empty_set)
 		{
@@ -510,9 +550,13 @@ function sql_in_set($field, $array, $negate = false, $allow_empty_set = false)
 		return $field . ($negate ? ' <> ' : ' = ') . sql_validate_value($var);
 	}
 	else
-	{		$sql_array = array();		foreach ($array as $var)
-		{			$sql_array[] = sql_validate_value($var);
-		}		return $field . ($negate ? ' NOT IN ' : ' IN ') . '(' . implode(', ', $sql_array) . ')';
+	{
+		$sql_array = array();
+		foreach ($array as $var)
+		{
+			$sql_array[] = sql_validate_value($var);
+		}
+		return $field . ($negate ? ' NOT IN ' : ' IN ') . '(' . implode(', ', $sql_array) . ')';
 	}
 }
 
@@ -533,8 +577,10 @@ function sql_validate_value($var)
 }
 
 function sql_escape($var)
-{	global $link;
-	return @mysqli_real_escape_string($link, $var);
+{
+	global $link;
+
+	return @mysqli_real_escape_string($link, $var);
 }
 
 function request_var($var_name, $default, $multibyte = false, $cookie = false)
@@ -638,7 +684,7 @@ function set_var(&$result, $var, $type, $multibyte = false)
 			}
 		}
 
-		$result = (STRIP) ? stripslashes($result) : $result;
+		$result = ('STRIP') ? stripslashes($result) : $result;
 	}
 }
 

@@ -753,20 +753,22 @@ class database_cleaner_views
 				FROM ' . MODULES_TABLE . '
 				WHERE module_id = ' . $row['parent_id'];
 			$res = $db->sql_query($sql);
-			$row = $db->sql_fetchrow($res);
-			$parent = $row['module_langname'];
-			$class = $row['module_class'];
-			$parent_id = $row['module_id'];
-
-			if ($parent)
+			$rw = $db->sql_fetchrow($res);
+			if (!empty($rw))
 			{
-				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '&parent_id='. $parent_id .'');
-				$module_mame = ($language->lang($parent) != null) ? '<b>' . $language->lang($parent) . '</b>' : '<i>' . $lang['UNDEFINED'] . '</i>';
-			}
-			else
-			{
-				$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '');
-				$module_mame = '';
+				$parent = $rw['module_langname'];
+				$class = $rw['module_class'];
+				$parent_id = $rw['module_id'];
+				if ($parent)
+				{
+					$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '&parent_id='. $parent_id .'');
+					$module_mame = ($language->lang($parent) != null) ? '<b>' . $language->lang($parent) . '</b>' : '<i>' . $lang['UNDEFINED'] . '</i>';
+				}
+				else
+				{
+					$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '');
+					$module_mame = '';
+				}
 			}
 			$db->sql_freeresult($res);
 

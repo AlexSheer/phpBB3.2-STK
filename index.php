@@ -98,7 +98,7 @@ if ($stk_passwd !== false)
 	// No active session?
 	if (!$stk_session)
 	{
-		add_form_key('stk_login_form', '_LOGIN');
+		add_form_key('login', '_LOGIN');
 		// We're trying to login
 		if (isset($_POST['login']))
 		{
@@ -107,7 +107,7 @@ if ($stk_passwd !== false)
 				// Make sure that we do not have an stk_last_login cache file (expires after 3 seconds).  To prevent a bruteforce attack
 				$err_msg = 'STK_LOGIN_WAIT';
 			}
-			else if (!check_form_key('stk_login_form'))
+			else if (!check_form_key('login'))
 			{
 				$err_msg = 'FORM_INVALID';
 			}
