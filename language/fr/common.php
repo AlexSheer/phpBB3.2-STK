@@ -49,11 +49,11 @@ $lang = array_merge($lang, array(
 	'CAT_ERK'							=> 'Kit de réparation d’urgence (ERK)',
 	'CAT_ERK_EXPLAIN'					=> 'Le kit de réparation d’urgence (ERK) est un outil séparé du STK qui a été conçu pour exécuter certains points de contrôle permettant de détecter des problèmes, liés à l’installation de phpBB, qui peuvent favoriser un dysfonctionnement sur le forum. Cliquer <a href="%s">ici</a> afin d’exécuter le ERK.',
 	'CAT_MAIN'							=> 'Principal',
-	'CAT_MAIN_EXPLAIN'					=> 'Support Toolkit (STK) peut être utilisé afin de régler les erreurs fréquemment rencontrées dans une installation fonctionnant sous phpBB 3.2.x. Il se présente comme un second « Panneau d’administration », offrant à un administrateur une multitude d’outils pouvant résoudre des problèmes fréquents qui peuvent empêcher une installation phpBB3 de fonctionner correctement.',
+	'CAT_MAIN_EXPLAIN'					=> 'Support Toolkit (STK) peut être utilisé afin de régler les erreurs fréquemment rencontrées dans une installation fonctionnant sous phpBB 3.2.x/3.3.x. Il se présente comme un second « Panneau d’administration », offrant à un administrateur une multitude d’outils pouvant résoudre des problèmes fréquents qui peuvent empêcher une installation phpBB3 de fonctionner correctement.',
 	'CAT_SUPPORT'						=> 'Outils de support',
-	'CAT_SUPPORT_EXPLAIN'				=> 'Les outils de support peuvent être utilisés afin d’aider à restaurer une installation de phpBB 3.2.x qui ne fonctionne plus correctement.',
+	'CAT_SUPPORT_EXPLAIN'				=> 'Les outils de support peuvent être utilisés afin d’aider à restaurer une installation de phpBB 3.2.x/3.3.x qui ne fonctionne plus correctement.',
 	'CAT_USERGROUP'						=> 'Outils pour les utilisateurs et les groupes',
-	'CAT_USERGROUP_EXPLAIN'				=> 'Ces outils peuvent être utilisés pour gérer des utilisateurs et des groupes avec certaines fonctionnalités nativement non présentes dans phpBB 3.2.x.',
+	'CAT_USERGROUP_EXPLAIN'				=> 'Ces outils peuvent être utilisés pour gérer des utilisateurs et des groupes avec certaines fonctionnalités nativement non présentes dans phpBB 3.2.x/3.3.x.',
 	'CONFIG_NOT_FOUND'					=> 'Le fichier de configuration de STK n’a pas pu être chargé. Merci de vérifier l’installation',
 
 	'DOWNLOAD_PASS'						=> 'Télécharger le fichier de mot de passe.',
@@ -92,7 +92,7 @@ $lang = array_merge($lang, array(
 	'STK_LOGOUT'						=> 'Déconnexion de STK',
 	'STK_LOGOUT_SUCCESS'				=> 'Déconnexion de STK réalisée.',
 	'STK_NON_LOGIN'						=> 'Se connecter afin d’accéder au STK.',
-	'STK_OUTDATED'						=> 'L’installation de STK ne semble pas être à jour. La dernière version disponible est la <strong style="color: #008000;">%1$s</strong>, alors que la version installée est la <strong style="color: #FF0000;">%2$s</strong>.<br /><br />En raison de l’impact considérable de cet outil sur l’installation de phpBB, il a été désactivé jusqu’à ce qu’une mise à jour soit effectuée. Il est fortement recommandé de s’assurer que tous les logiciels fonctionnant sur son serveur soient bien à jour.<br />Pour plus d’informations concernant la dernière mise à jour, merci de consulter le <a href="%3$s">sujet de publication</a> (en anglais).<br /><br /><em>Si cet avertissement s’affiche après une mise à jour de STK, cliquer <a href="%4$s">ici</a> afin de vider le cache du contrôle de version.</em>',
+	'STK_OUTDATED'						=> 'L’installation de STK ne semble pas être à jour. La dernière version disponible est la <strong style="color: #79ff79;">%1$s</strong>, alors que la version installée est la <strong style="color: #FFB465;">%2$s</strong>.<br /><br />En raison de l’impact considérable de cet outil sur l’installation de phpBB, il a été désactivé jusqu’à ce qu’une mise à jour soit effectuée. Il est fortement recommandé de s’assurer que tous les logiciels fonctionnant sur son serveur soient bien à jour.<br />Pour plus d’informations concernant la dernière mise à jour, merci de consulter le <a href="%3$s">sujet de publication</a> (en anglais).<br /><br /><em>Si cet avertissement s’affiche après une mise à jour de STK, cliquer <a href="%4$s">ici</a> afin de vider le cache du contrôle de version.</em>',
 	'SUPPORT_TOOL_KIT'					=> 'STK',
 	'SUPPORT_TOOL_KIT_INDEX'			=> 'Index de STK',
 	'SUPPORT_TOOL_KIT_PASSWORD'			=> 'Mot de passe',
@@ -145,7 +145,7 @@ $lang = array_merge($lang, array(
 	'FORUM_INDEX'						=> 'Index du forum',
 
 	'FILE_WRITE_FAIL'					=> 'Impossible d’écrire dans le fichier',
-	'STK_INCOMPATIBLE'					=> 'Cette version de STK est dédiée aux forums phpBB 3.2.x, alors que la version du forum phpBB utilisé est %1$s.',
+	'STK_INCOMPATIBLE'					=> 'Cette version de STK est dédiée aux forums phpBB 3.2.x/3.3.x, alors que la version du forum phpBB utilisé est %1$s.',
 
 	'PHPBB_DEBUG'						=> '[Débogueur phpBB]',
 	'DEBUG_IN_FILE'						=> 'dans le fichier',
