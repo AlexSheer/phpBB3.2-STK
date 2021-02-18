@@ -30,7 +30,7 @@ class resync_registered
 	/**
 	 * Constructor
 	 */
-	function resync_registered($main_object)
+	function __construct($main_object)
 	{
 		$this->parent = $main_object;
 	}

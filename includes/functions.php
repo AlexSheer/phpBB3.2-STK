@@ -246,48 +246,10 @@ function user_lang()
 
 */
 function stk_add_lang($lang_file)
-{
-	global $template, $lang, $user;
+{	global $template, $lang, $user, $config;
 
-	if (empty($user->data) || !$user->data['user_lang'])
-	{
-		if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
-		{
-			$default_lang = trim(file_get_contents(STK_ROOT_PATH . 'default_lang.txt'));
-			if (empty($default_lang))
-			{
-				$default_lang = 'en';
-			}
-		}
-		else
-		{
-			$default_lang = 'en';
-		}
-
-		$dir = @opendir(PHPBB_ROOT_PATH . 'language');
-		if (!$dir)
-		{
-			die('Unable to access the language directory');
-			exit;
-		}
-
-		while (($file = readdir($dir)) !== false)
-		{
-			$path = STK_ROOT_PATH . 'language/' . $file;
-			if (!is_file($path) && !is_link($path) && $file == strtolower($default_lang))
-			{
-				$language = $file;
-				break;
-			}
-		}
-		closedir($dir);
-
-		if (!file_exists(PHPBB_ROOT_PATH . 'language/' . $language) || !is_dir(PHPBB_ROOT_PATH . 'language/' . $language))
-		{
-			die('No language found!');
-		}
-
-		$user->data['user_lang'] = $default_lang;
+	if ($user->data['user_id'] == 1)
+	{		$user->data['user_lang'] = $config['default_lang'];
 	}
 
 	include(PHPBB_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
@@ -610,7 +572,7 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 	}
 
 	// Ignore Strict and Deprecated notices
-	if (in_array($errno, array(E_STRICT, E_DEPRECATED)))
+	if (in_array($errno, array(E_STRICT, E_DEPRECATED, E_USER_DEPRECATED)))
 	{
 		return true;
 	}
@@ -801,7 +763,7 @@ function stk_msg_handler($errno, $msg_text, $errfile, $errline)
 			echo '	</div>';
 			echo '	</div>';
 			echo '	<div id="page-footer">';
-			echo '		Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group';
+			echo '		Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group';
 			echo '	</div>';
 			echo '</div>';
 			echo '</body>';

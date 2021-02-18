@@ -125,7 +125,6 @@ class critical_repair
 	{
 		global $user, $lang;
 
-		$user = $this->user_setup($user);
 		if (!is_array($msg))
 		{
 			$msg = array($msg);
@@ -205,8 +204,8 @@ class critical_repair
 				</div>
 			</div>
 			<div id="page-footer">
-				Support Toolkit for phpBB3.2.x &copy;</a><br />
-				Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by &copy; Sheer
+				Support Toolkit for phpBB3.2.x and 3.3.x &copy;</a><br />
+				Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x and 3.3.x by &copy; Sheer
 			</div>
 		</div>
 	</body>
@@ -214,84 +213,5 @@ class critical_repair
 <?php
 		// Make sure we exit, can't use any phpBB stuff here
 		exit;
-	}
-
-	function user_setup($user = false)
-	{		global $user;
-
-		if (!isset($user))
-		{
-			if (!class_exists('phpbb\session'))
-			{
-				include(PHPBB_ROOT_PATH . 'phpbb/session.' . PHP_EXT);
-			}
-			if (!class_exists('phpbb\user'))
-			{
-				include(PHPBB_ROOT_PATH . 'phpbb/user.' . PHP_EXT);
-			}
-			if (!class_exists('phpbb\language\language_file_loader'))
-			{
-				include(PHPBB_ROOT_PATH . 'phpbb/language/language_file_loader.' . PHP_EXT);
-			}
-			if (!class_exists('phpbb\language\language'))
-			{
-				include(PHPBB_ROOT_PATH . 'phpbb/language/language.' . PHP_EXT);
-			}
-
-			if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
-			{
-				$default_lang = trim(file_get_contents(STK_ROOT_PATH . 'default_lang.txt'));
-			}
-			else
-			{
-				$default_lang = 'en';
-			}
-
-			$dir = @opendir(PHPBB_ROOT_PATH . 'language');
-			if (!$dir)
-			{
-				die('Unable to access the language directory');
-				exit;
-			}
-
-			while (($file = readdir($dir)) !== false)
-			{
-				$path = STK_ROOT_PATH . 'language/' . $file;
-				$lang[] = $file;
-			}
-			closedir($dir);
-
-			$lang = array_diff($lang, array('index.htm', '.', '..'));
-			foreach($lang as $key => $value)
-			{
-				if ($value == strtolower($default_lang))
-				{
-					$language = $value;
-				}
-			}
-
-			if (empty($language))
-			{
-				$language = $default_lang;
-			}
-
-			if (empty($lang))
-			{
-				die('No language found!');
-			}
-
-			$loader = new phpbb\language\language_file_loader(PHPBB_ROOT_PATH, 'php', 'ru');
-			$lng = new \phpbb\language\language($loader);
-			$user = new \phpbb\user($lng, '\phpbb\datetime');
-
-			$lang_path = $user->lang_path;
-			$lang_path = '' . $lang_path . '' . $language . '';
-			$user->lang_path = '' . PHPBB_ROOT_PATH . '' . $lang_path . '';
-			$user->data['user_lang'] = $language;
-			$user->add_lang(array(), array(), 'install.'. PHP_EXT . '');
-			$user->add_lang(array(), array(), 'common.'. PHP_EXT . '');
-			$user->lang_path = $lang_path;
-		}
-		return $user;
 	}
 }

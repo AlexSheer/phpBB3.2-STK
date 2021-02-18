@@ -100,7 +100,7 @@ class manage_ext
 
 			case 'new':
 				$path = $phpbb_root_path.'ext/' . $ext . '/' . $path_new;
-				if (!$handle = @opendir($path))
+				if (!file_exists($path))
 				{
 					$result = @mkdir($path, 0777, true);
 					if (!$result)

@@ -394,7 +394,7 @@ class dbbase_extractor
 	var $format;
 	var $run_comp = false;
 
-	function dbbase_extractor($format, $filename, $time, $download = false, $store = false)
+	function __construct($format, $filename, $time, $download = false, $store = false)
 	{
 		global $request, $lang;
 

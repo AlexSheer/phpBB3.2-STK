@@ -204,7 +204,6 @@ class add_user
 			'email'				=> array(
 				array('string', false, 6, 60),
 				array('email')),
-			'tz'				=> array('num', false, -14, 14),
 			'lang'				=> array('match', false, '#^[a-z_\-]{2,}$#i'),
 		));
 		if ($data['new_password'] != $data['password_confirm'])

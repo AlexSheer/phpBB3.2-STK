@@ -208,8 +208,8 @@ class erk_config_repair
 							</div>
 						</div>
 						<div id="page-footer">
-							Support Toolkit for phpBB3.2.x &copy;</a><br />
-							Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by &copy; Sheer
+							Support Toolkit for phpBB3.2.x and 3.3.x &copy;</a><br />
+							Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group - adaptation for phpBB3.2.x by and 3.3.x &copy; Sheer
 						</div>
 					</div>
 				</body>

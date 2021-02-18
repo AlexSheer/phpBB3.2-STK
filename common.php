@@ -31,12 +31,12 @@ $phpEx = PHP_EXT;
 
 // Prepare some vars
 $stk_no_error = false;
-define('PHPBB_MSG_HANDLER', 'stk_msg_handler');
 
 // Include all common stuff
-require(STK_ROOT_PATH . 'includes/functions.' . PHP_EXT);
 require(STK_ROOT_PATH . 'includes/fatal_error_handler.' . PHP_EXT);
 require(PHPBB_ROOT_PATH . 'common.' . PHP_EXT);
+require(STK_ROOT_PATH . 'includes/functions.' . PHP_EXT);
+define('PHPBB_MSG_HANDLER', 'stk_msg_handler');
 require(STK_ROOT_PATH . 'includes/plugin.' . PHP_EXT);
 require STK_ROOT_PATH . 'includes/umil.' . PHP_EXT;
 

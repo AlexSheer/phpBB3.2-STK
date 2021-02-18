@@ -68,13 +68,12 @@ class extensions
 			if (empty($error))
 			{
 				$ext_dir = '' . $phpbb_root_path . 'ext/' . $vendor;
-				$handle = @opendir($ext_dir);
-				$new_dir = '' . $ext_dir . '/' . $ext_name . '';
-				if(!$handle)
+				if (!file_exists($ext_dir))
 				{
 					mkdir($ext_dir);
 				}
-				if (@opendir($new_dir))
+				$new_dir = '' . $ext_dir . '/' . $ext_name . '';
+				if (file_exists($new_dir))
 				{
 					$error[] = $lang['ALREADY_EXISTS'];
 				}

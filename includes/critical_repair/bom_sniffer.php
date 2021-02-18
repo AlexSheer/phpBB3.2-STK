@@ -81,10 +81,6 @@ class erk_bom_sniffer
 	{
 		global $critical_repair, $stk_config, $user, $lang;
 
-		$user = $critical_repair->user_setup($user);
-
-		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
-
 		// "Store" must be writable
 		if (@is_writable(PHPBB_ROOT_PATH . 'store') !== true)
 		{
@@ -159,10 +155,6 @@ class erk_bom_sniffer
 	{
 		global $critical_repair, $stk_config, $user, $lang;
 
-		$user = $critical_repair->user_setup($user);
-
-		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
-
 		// Get all the files
 		$filelist = filelist(PHPBB_ROOT_PATH, '', PHP_EXT);
 
@@ -185,7 +177,7 @@ class erk_bom_sniffer
 				// Test whether we're sniffing a language directory (any)
 				$lang_test_dir	= '';
 				$lang_matches	= array();
-				if (preg_match('#language/([a-zA-Z\-_]+)/#ise', $directory, $lang_matches))
+				if (preg_match('#language/([a-zA-Z\-_]+)/#is', $directory, $lang_matches))
 				{
 					$lang_test_dir = str_replace($lang_matches[1], '..', $directory);
 				}
@@ -540,7 +532,7 @@ class erk_bom_sniffer
 				return false;
 		}
 
-		return (preg_match('~' . $match . '~ise', $buffer)) ? true : false;
+		return (preg_match('~' . $match . '~is', $buffer)) ? true : false;
 	}
 
 	//-- Wrappers
@@ -998,10 +990,6 @@ class _erk_bom_sniffer_cache
 	function __construct($bom_sniffer)
 	{
 		global $critical_repair, $lang, $user;
-
-		$user = $critical_repair->user_setup($user);
-
-		include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
 
 		$this->bom_sniffer = $bom_sniffer;
 

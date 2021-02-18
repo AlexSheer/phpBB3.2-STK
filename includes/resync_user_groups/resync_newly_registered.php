@@ -40,7 +40,7 @@ class resync_newly_registered
 	/**
 	 * Constructor
 	 */
-	function resync_newly_registered($main_object)
+	function __construct($main_object)
 	{
 		global $user;
 		$user->add_lang('acp/groups');

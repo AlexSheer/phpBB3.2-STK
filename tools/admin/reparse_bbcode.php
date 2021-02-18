@@ -22,7 +22,10 @@ if (!defined('IN_PHPBB'))
 * representing character. But this will fix broken htmlentities (&amp;#156;).
 * By default we won't run it, but at least give the user this option :)
 */
-define('RUN_HTMLSPECIALCHARS_DECODE', false);
+if (!defined('RUN_HTMLSPECIALCHARS_DECODE'))
+{
+	define('RUN_HTMLSPECIALCHARS_DECODE', false);
+}
 
 /**@#+
 * The bbcode reparse types

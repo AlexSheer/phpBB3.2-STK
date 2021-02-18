@@ -60,7 +60,7 @@ class database_cleaner_views
 	* Constructor
 	* @param database_cleaner $db_cleaner Object of the current database cleaner class
 	*/
-	function database_cleaner_views($db_cleaner)
+	function __construct($db_cleaner)
 	{
 		$this->db_cleaner = $db_cleaner;
 	}

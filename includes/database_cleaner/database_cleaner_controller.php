@@ -26,7 +26,7 @@ class database_cleaner_controller
 	*/
 	var $db_cleaner = array();
 
-	function database_cleaner_controller($db_cleaner)
+	function __construct($db_cleaner)
 	{
 		$this->db_cleaner = $db_cleaner;
 	}
