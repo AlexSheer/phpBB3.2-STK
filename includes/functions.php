@@ -246,14 +246,20 @@ function user_lang()
 
 */
 function stk_add_lang($lang_file)
-{	global $template, $lang, $user, $config;
+{
+	global $template, $lang, $user, $config;
 
-	if ($user->data['user_id'] == 1)
-	{		$user->data['user_lang'] = $config['default_lang'];
+	if (empty($user->data) || !$user->data['user_lang'] || $user->data['user_id'] == 1)
+	{
+		$default_lang = $config['default_lang'];
+	}
+	else
+	{
+		$default_lang = $user->data['user_lang'];
 	}
 
-	include(PHPBB_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/common.' . PHP_EXT);
-	include(STK_ROOT_PATH . 'language/' . $user->data['user_lang'] . '/' . $lang_file . '.' . PHP_EXT);
+	include(PHPBB_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT);
+	include(STK_ROOT_PATH . 'language/' . $default_lang . '/' . $lang_file . '.' . PHP_EXT);
 
 	if (!defined('IN_ERK') && isset($user->data['user_id']))
 	{
