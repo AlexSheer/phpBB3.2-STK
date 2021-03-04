@@ -54,6 +54,8 @@ $lang = array_merge($lang, array(
 	'CAT_USERGROUP'						=> 'User/Group Tools',
 	'CAT_USERGROUP_EXPLAIN'				=> 'User and Group Tools may be used to manage users and groups in ways that are not available in a stock phpBB 3.2.x installation.',
 	'CONFIG_NOT_FOUND'					=> 'The STK configuration file couldn’t be loaded. Please check your installation',
+	'CONFIG_VERSION'					=> 'Version number in Database',
+	'CONSTANT_VERSION'					=> 'Version number in /includes/constants.php',
 
 	'DOWNLOAD_PASS'						=> 'Download the password file.',
 	'STK_PASSWORD'						=> 'Password',

@@ -246,16 +246,13 @@ function user_lang()
 
 */
 function stk_add_lang($lang_file)
-{
-	global $template, $lang, $user, $config;
+{	global $template, $lang, $user, $config;
 
 	if (empty($user->data) || !$user->data['user_lang'] || $user->data['user_id'] == 1)
-	{
-		$default_lang = $config['default_lang'];
+	{		$default_lang = $config['default_lang'];
 	}
 	else
-	{
-		$default_lang = $user->data['user_lang'];
+	{		$default_lang = $user->data['user_lang'];
 	}
 
 	include(PHPBB_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT);
@@ -316,7 +313,12 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 				{
 					add_form_key('request_phpbb_version');
 					page_header($lang['REQUEST_PHPBB_VERSION'], false);
+
 					$version_helper = $phpbb_container->get('version_helper');
+					$template->assign_vars(array(
+						'CONFIG_VERSION'				=> $config['version'],
+						'CONSTANT_VERSION'				=> PHPBB_VERSION,
+					));
 					$updates_available = $version_helper->get_suggested_updates(false);
 					if ($updates_available)
 					{
@@ -348,15 +350,23 @@ function perform_unauthed_quick_tasks($action, $submit = false)
 
 					// Build the options
 					$version_options = '';
-					for ($i = $_phpbb_version; $i > 1; $i--)
-					{
-						$v = "3.2.{$i}";
-						$d = ($v == $config['version']) ? " default='default'" : '';
-						$version_options .= "<option value='{$v}'{$d}>{$v}</option>";
+					$v = (PHPBB_VERSION >= '3.3.0') ? "3.3.{$i}" : "3.2.{$i}";
+
+					if ($config['version'] < PHPBB_VERSION)
+					{						for ($i = $_phpbb_version; $i > 1; $i--)
+						{
+							$d = ($v == $config['version']) ? " default='default'" : '';
+							$version_options .= "<option value='{$v}'{$d}>{$v}</option>";
+						}
 					}
+					else
+					{						list(,, $_phpbb_version) = explode('.', $version_data['current']);
+						for($i = $_phpbb_version; $i > 1; $i--)
+						{							$d = ($v == $config['version']) ? " default='default'" : '';
+							$version_options .= "<option value='{$v}'{$d}>{$v}</option>";						}					}
 
 					$template->assign_vars(array(
-						'UPDATES_AVAILABLE'				=> (PHPBB_VERSION < $version_data['current'] || $config['version'] < $version_data['current']) ? sprintf($user->lang['UPDATES_AVAILABLE'], $version_data['current'], $announcement) : false,
+						'UPDATES_AVAILABLE'				=> (!$version_options && (PHPBB_VERSION < $version_data['current'] || $config['version'] < $version_data['current'])) ? sprintf($user->lang['UPDATES_AVAILABLE'], $version_data['current'], $announcement) : false,
 						'PROCEED_TO_STK'				=> user_lang('PROCEED_TO_STK', '', ''),
 						'REQUEST_PHPBB_VERSION_OPTIONS'	=> $version_options,
 						'U_ACTION'						=> append_sid(STK_INDEX, array('action' => 'request_phpbb_version')),
