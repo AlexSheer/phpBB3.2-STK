@@ -14,24 +14,35 @@ if (!defined('PHP_EXT')) { define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1));
 if (!defined('STK_DIR_NAME')) { define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1)); }	// Get the name of the stk directory
 if (!defined('STK_ROOT_PATH')) { define('STK_ROOT_PATH', './'); }
 if (!defined('STK_INDEX')) { define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT); }
+require PHPBB_ROOT_PATH . 'config.' . PHP_EXT;
 
-if (file_exists(STK_ROOT_PATH . 'default_lang.txt'))
+$link = @mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
+if (!$link)
 {
-	$default_lang = trim(file_get_contents(STK_ROOT_PATH . 'default_lang.txt'));
-	if (empty($default_lang))
-	{
-		$default_lang = 'en';
-	}
+	$pass = ($src_dbpasswd) ? 'YES' : 'NO';
+	$error = 'Access denied for user ' . $src_dbuser . '@' . $src_dbhost . ' (using password: ' . $pass . ')';
+	_trigger_error($error, E_USER_WARNING);
+	exit;
 }
-else
+else if (!mysqli_select_db($link, $dbname))
 {
-	$default_lang = 'en';
+	$error = mysqli_error($link);
+	_trigger_error($error, E_USER_WARNING);
+	exit;
 }
+$sql = "SELECT config_value FROM " . $table_prefix . "config WHERE config_name = 'default_lang'";
+
+$result = mysqli_query($link, $sql);
+
+$finfo = mysqli_fetch_row($result);
+mysqli_free_result($result);
+$default_lang = $finfo[0];
+
 
 require PHPBB_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT;
 require STK_ROOT_PATH . 'language/' . $default_lang . '/ext_cleaner.' . PHP_EXT;
 require STK_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT;
-require PHPBB_ROOT_PATH . 'config.' . PHP_EXT;
+
 
 define('EXT_TABLE',			'' . $table_prefix . 'ext');
 define('MIGRATIONS_TABLE',	'' . $table_prefix . 'migrations');
@@ -47,7 +58,6 @@ if ($login)
 {
 	hdr($default_lang, $login);
 
-	$link = @mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
 	if (!$link)
 	{
 		$pass = ($src_dbpasswd) ? 'YES' : 'NO';
@@ -607,7 +617,7 @@ function request_var($var_name, $default, $multibyte = false, $cookie = false)
 	}
 	else
 	{
-		list($key_type, $type) = each($default);
+		list($key_type, $type) = [key($default), current($default)];
 		$type = gettype($type);
 		$key_type = gettype($key_type);
 		if ($type == 'array')
