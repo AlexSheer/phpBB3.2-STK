@@ -245,7 +245,7 @@ else if($permission)
 	));
 }
 
-if($info)
+if ($info)
 {
 	$path = 'ext/' . $info['vendor'] . '/' . $info['ext'] . '';
 	if (file_exists('' . PHPBB_ROOT_PATH . '' . $path . '/composer.json'))
@@ -257,7 +257,7 @@ if($info)
 			$display_name = $obj->{'extra'}->{'display-name'};
 			$ext_path = $obj->{'name'};
 			$version = $obj->{'version'};
-			$description = $obj->{'description'};
+			$description = (isset($obj->{'description'})) ? $obj->{'description'} : '';
 		}
 	}
 	$sql = 'SELECT ext_active FROM ' . EXT_TABLE . '
