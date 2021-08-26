@@ -769,11 +769,17 @@ class database_cleaner_views
 					$link = append_sid("{$phpbb_root_path}adm/index.$phpEx", 'i=acp_modules&amp;sid=' . $user->data['session_id'] .'&amp;mode=' . $class . '');
 					$module_mame = '';
 				}
+				$name = '' . $module . ' (' . $module_id . ')' . $lang['GO_TO_ACP'] . ' <a href="' . $link . '" target="_blank">' . $module_mame . '</a> [' . $parent . ' (' . $parent_id . ')]';
+			}
+			else
+			{
+				$link = $module_mame = $parent = $parent_id = false;
+				$name = $module . ' (' . $module_id . ') --&raquo; ' . $lang['NO_PARENTS'];
 			}
 			$db->sql_freeresult($res);
 
 			$this->_section_data['acp_modules']['ITEMS'][] = array(
-				'NAME'			=> '' . $module . ' (' . $module_id . ')' . $lang['GO_TO_ACP'] . ' <a href="' . $link . '" target="_blank">' . $module_mame . '</a> [' . $parent . ' (' . $parent_id . ')]',
+				'NAME'			=> $name,
 				'FIELD_NAME'	=> $module_id,
 				'MISSING'		=> false,
 				'FIND'			=> append_sid("" . STK_ROOT_PATH . "finder." . PHP_EXT . "", 'm=' . $module . ''),
