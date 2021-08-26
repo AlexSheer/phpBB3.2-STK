@@ -91,6 +91,7 @@ $lang = array_merge($lang, array(
 	'NEXT_STEP'						=> 'Next step',
 	'NO_BOT_GROUP'					=> 'Could not reset the bots, missing Bot group.',
 	'NO_PARENT'						=> 'Parent module not exists.<br />Failed',
+	'NO_PARENTS'						=> 'No parents',
 
 	'PERMISSION_SETTINGS'			=> 'Permission Options',
 	'PERMISSION_UPDATE_SUCCESS'		=> 'The permission settings have been updated successfully!',
