@@ -265,7 +265,12 @@ if ($info)
 	$result = $db->sql_query($sql);
 	$row = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
-	$color = ($row['ext_active']) ? '#282' : '#BC2A4D';
+	$color = '#BC2A4D';
+	if ($row)
+	{
+		$color = ($row['ext_active']) ? '#282' : '#BC2A4D';
+	}
+
 }
 
 $template->assign_vars(array(
