@@ -14,75 +14,61 @@ if (!defined('PHP_EXT')) { define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1));
 if (!defined('STK_DIR_NAME')) { define('STK_DIR_NAME', substr(strrchr(dirname(__FILE__), DIRECTORY_SEPARATOR), 1)); }	// Get the name of the stk directory
 if (!defined('STK_ROOT_PATH')) { define('STK_ROOT_PATH', './'); }
 if (!defined('STK_INDEX')) { define('STK_INDEX', STK_ROOT_PATH . 'index.' . PHP_EXT); }
+
 require PHPBB_ROOT_PATH . 'config.' . PHP_EXT;
+
+define('EXT_TABLE',			'' . $table_prefix . 'ext');
+define('MIGRATIONS_TABLE',	'' . $table_prefix . 'migrations');
+define('CONFIG_TABLE',	'' . $table_prefix . 'config');
+
+$error = array();
+$cache = PHPBB_ROOT_PATH . 'cache/production';
 
 $link = @mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
 if (!$link)
 {
 	$pass = ($src_dbpasswd) ? 'YES' : 'NO';
-	$error = 'Access denied for user ' . $src_dbuser . '@' . $src_dbhost . ' (using password: ' . $pass . ')';
+	$error = '' . $lang['DB_CONNECT_PASS_ERROR'] . ' Access denied for user ' . $src_dbuser . '@' . $src_dbhost . ' (using password: ' . $pass . ')';
 	_trigger_error($error, E_USER_WARNING);
 	exit;
 }
 else if (!mysqli_select_db($link, $dbname))
 {
-	$error = mysqli_error($link);
+	$error = sprintf($lang['DB_CONNECT_ERROR'], mysqli_error($link));
 	_trigger_error($error, E_USER_WARNING);
 	exit;
 }
-$sql = "SELECT config_value FROM " . $table_prefix . "config WHERE config_name = 'default_lang'";
+
+$sql = 'SHOW TABLES LIKE \'' . EXT_TABLE . '\'';
 
 $result = mysqli_query($link, $sql);
-
-$finfo = mysqli_fetch_row($result);
+$row = mysqli_fetch_row($result);
+if (empty($row))
+{
+	$error = '' . sprintf($lang['DB_CONNECT_ERROR'], mysqli_error($link)) . '' . $lang['TABLE_NOT_EXISTS'] . '';
+	_trigger_error($error, true);
+	exit;
+}
 mysqli_free_result($result);
-$default_lang = $finfo[0];
 
+$sql = "SELECT config_value FROM " . CONFIG_TABLE  . " WHERE config_name = 'default_lang'";
+$result = mysqli_query($link, $sql);
+$row = mysqli_fetch_row($result);
+$default_lang = $row[0];
+mysqli_free_result($result);
 
 require PHPBB_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT;
 require STK_ROOT_PATH . 'language/' . $default_lang . '/ext_cleaner.' . PHP_EXT;
 require STK_ROOT_PATH . 'language/' . $default_lang . '/common.' . PHP_EXT;
 
-
-define('EXT_TABLE',			'' . $table_prefix . 'ext');
-define('MIGRATIONS_TABLE',	'' . $table_prefix . 'migrations');
-
-$error = array();
-$cache = PHPBB_ROOT_PATH . 'cache/production';
-
 $login = chk_auth();
 
-$enter			= request_var('enter', false);
-$action			= request_var('action', '');
+$enter		= request_var('enter', false);
+$action		= request_var('action', '');
 if ($login)
 {
 	hdr($default_lang, $login);
 
-	if (!$link)
-	{
-		$pass = ($src_dbpasswd) ? 'YES' : 'NO';
-		$error = '' . $lang['DB_CONNECT_PASS_ERROR'] . ' Access denied for user ' . $src_dbuser . '@' . $src_dbhost . ' (using password: ' . $pass . ')';
-		_trigger_error($error, E_USER_WARNING);
-		exit;
-	}
-	else if (!mysqli_select_db($link, $dbname))
-	{
-		$error = sprintf($lang['DB_CONNECT_ERROR'], mysqli_error($link));
-		_trigger_error($error, E_USER_WARNING);
-		exit;
-	}
-
-	$sql = 'SHOW TABLES LIKE \'' . EXT_TABLE . '\'';
-
-	$result = mysqli_query($link, $sql);
-	$row = mysqli_fetch_row($result);
-	if (empty($row))
-	{
-		$error = '' . sprintf($lang['DB_CONNECT_ERROR'], mysqli_error($link)) . '' . $lang['TABLE_NOT_EXISTS'] . '';
-		_trigger_error($error, true);
-		exit;
-	}
-	mysqli_free_result($result);
 
 	$submit			= request_var('submit', false);
 	$uids			= request_var('marked_name', array('', ''));
@@ -617,7 +603,7 @@ function request_var($var_name, $default, $multibyte = false, $cookie = false)
 	}
 	else
 	{
-		list($key_type, $type) = [key($default), current($default)];
+		list($key_type, $type) = each($default);
 		$type = gettype($type);
 		$key_type = gettype($key_type);
 		if ($type == 'array')
