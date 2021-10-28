@@ -350,12 +350,6 @@ class delete_bbcode
 			$db->sql_freeresult($result);
 		}
 
-		// Post has a poll?
-		if ($this->data['poll_title'] && $this->data['post_id'] == $this->data['topic_first_post_id'])
-		{
-			$this->_reparse_poll();
-		}
-
 		// Re-parse it
 		$this->message_parser->parse($this->flags['enable_bbcode'], $this->flags['enable_magic_url'], $this->flags['enable_smilies'], $this->flags['img_status'], $this->flags['flash_status'], true, $this->flags['enable_urls']);
 
