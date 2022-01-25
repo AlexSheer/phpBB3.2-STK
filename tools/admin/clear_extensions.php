@@ -148,8 +148,9 @@ class clear_extensions
 			$display_name = $root = $missing_path = '';
 			foreach($path as $key => $ext_path)
 			{
-				if($dir = @opendir('' . PHPBB_ROOT_PATH . 'ext/' . $root . '' . $ext_path . ''))
+				if (file_exists(PHPBB_ROOT_PATH . 'ext/' . '' . $path[0] . '/' . $path[1]))
 				{
+					$dir = @opendir('' . PHPBB_ROOT_PATH . 'ext/' . $root . '' . $ext_path . '');
 					$file = readdir($dir);
 					$root = '' . $ext_path. '/';
 				}
